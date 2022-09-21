@@ -5,9 +5,11 @@ CMD ["echo", "Hello StackOverflow!"]
 
 # COPY helloworld.go /
 #COPY helloworld.py /
+
+# This will make apt use default answers for interactive questions
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL=/bin/zsh
-ADD .zshrc .zshrc
+# ADD .zshrc .zshrc
 RUN apt update
 # RUN apt install -y golang
 RUN apt install -y zsh
@@ -16,11 +18,11 @@ RUN apt install -y bat
 RUN apt install -y grc
 RUN apt install -y vim
 RUN apt install -y inetutils-ping
-RUN ln -sr /media/sarnobat/git/computers.git ~/
-RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
+# RUN ln -sr /media/sarnobat/git/computers.git ~/
+# RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
 
 
-CMD [ "source /root/.zshrc", "zsh"]
+# CMD [ "source /root/.zshrc", "zsh"]
 # CMD ["/bin/zsh"]
 # CMD ["-f","/dev/null"]
 # CMD ["go", "run","helloworld.go"]
