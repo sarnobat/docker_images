@@ -7,18 +7,34 @@ CMD ["echo", "Hello StackOverflow!"]
 #COPY helloworld.py /
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL=/bin/zsh
-ADD .zshrc .zshrc
+# ADD .zshrc .zshrc
 RUN apt update
 # RUN apt install -y golang
 RUN apt install -y zsh
+RUN apt install -y lsof
 RUN apt install -y git
 RUN apt install -y bat
 RUN apt install -y grc
 RUN apt install -y vim
+RUN apt install -y openssh-server
+RUN apt install -y nmap
 RUN apt install -y inetutils-ping
-RUN ln -sr /media/sarnobat/git/computers.git ~/
-RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
+RUN apt install -y plocate
+# pstree
+RUN apt install -y psmisc
+RUN ln -sr /home/root/computers.git ~/computers.git
+RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
+RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
+RUN ln -sr /home/root/computers.git/mac/git/mac/.gitconfig ~/
 
+# RUN service ssh start
+RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
+RUN  echo 'test:test' | chpasswd
+RUN service ssh start
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
+
+# .gitconfig
 
 CMD [ "source /root/.zshrc", "zsh"]
 # CMD ["/bin/zsh"]
