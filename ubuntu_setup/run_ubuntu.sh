@@ -22,7 +22,7 @@ EOF
 sudo docker rm --force $(sudo docker ps --all --quiet) || echo "no existing container to delete"
 sudo docker image rm --force $(sudo docker images --quiet) || echo "no existing image to delete"
 sudo docker images
-sudo docker build --label mylabel --tag mytag .
+sudo docker build --file Dockerfile --label mylabel --tag mytag .
 sudo docker images
 
 cat <<EOF
