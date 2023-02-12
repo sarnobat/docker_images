@@ -1,13 +1,21 @@
 ## IDEMPOTENT
 
 set -e
-set -o pipefail
+#set -o pipefail
 
 cat <<EOF
 /Applications/Docker.app/Contents/MacOS/Docker
 or
 /Applications/Docker.app/Contents/MacOS/com.docker.backend -watchdog -native-api
 EOF
+
+# Get them from inside the mounted computers.git
+rm .zshrc
+rm .aliases
+#cp -v ~/computers.git/docker/.zshrc .
+#cp -v ~/.aliases .
+
+
 sudo docker rm --force $(sudo docker ps --all --quiet) || echo "no existing container to delete"
 sudo docker image rm --force $(sudo docker images --quiet) || echo "no existing image to delete"
 sudo docker images
