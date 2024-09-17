@@ -1,1 +1,0 @@
-../../../computers.git/docker/.zshrc

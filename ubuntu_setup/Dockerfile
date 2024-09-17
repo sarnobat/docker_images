@@ -1,5 +1,5 @@
 #FROM alpine
-FROM ubuntu
+FROM ubuntu:22.04
 CMD ["echo", "Hello StackOverflow!"]
 
 
@@ -21,10 +21,8 @@ RUN apt install -y vim
 RUN apt install -y openssh-server
 RUN apt install -y nmap
 RUN apt install -y inetutils-ping
-<<<<<<< HEAD
 # RUN ln -sr /media/sarnobat/git/computers.git ~/
 # RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
-=======
 RUN apt install -y plocate
 # pstree
 RUN apt install -y psmisc
@@ -32,7 +30,6 @@ RUN ln -sr /home/root/computers.git ~/computers.git
 RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
 RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
 RUN ln -sr /home/root/computers.git/mac/git/mac/.gitconfig ~/
->>>>>>> 32c7ae4a1f4006e8a4fccf54fd1541d1eb0251c1
 
 # RUN service ssh start
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
