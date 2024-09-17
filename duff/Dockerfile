@@ -1,5 +1,5 @@
 #FROM alpine
-FROM ubuntu:22.04
+FROM ubuntu:14.04.2
 CMD ["echo", "Hello StackOverflow!"]
 
 
@@ -11,13 +11,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL=/bin/zsh
 # ADD .zshrc .zshrc
 RUN apt update
-# RUN apt install -y golang
 RUN apt install -y zsh
-RUN apt install -y lsof
 RUN apt install -y git
-RUN apt install -y bat
-RUN apt install -y grc
-RUN apt install -y vim
 RUN apt install -y openssh-server
 RUN apt install -y nmap
 RUN apt install -y inetutils-ping
@@ -37,6 +32,8 @@ RUN  echo 'test:test' | chpasswd
 RUN service ssh start
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
+
+RUN git clone git@github.com:elmindreda/duff.git
 
 # .gitconfig
 
