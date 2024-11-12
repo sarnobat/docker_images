@@ -18,7 +18,6 @@ RUN apt install -y nmap
 RUN apt install -y inetutils-ping
 # RUN ln -sr /media/sarnobat/git/computers.git ~/
 # RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
-RUN apt install -y plocate
 # pstree
 RUN apt install -y psmisc
 RUN ln -sr /home/root/computers.git ~/computers.git
@@ -33,7 +32,7 @@ RUN service ssh start
 EXPOSE 22
 CMD ["/usr/sbin/sshd","-D"]
 
-RUN git clone git@github.com:elmindreda/duff.git
+RUN git clone https://github.com/elmindreda/duff.git
 
 # .gitconfig
 
