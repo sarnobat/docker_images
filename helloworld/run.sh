@@ -1,3 +1,8 @@
+cat <<EOF
+bbedit ~/.docker/config.json
+
+	replace "desktop" with "osxkeychain"
+
 sudo docker rm --force $(sudo docker ps --all --quiet)
 sudo docker image rm --force $(sudo docker images --quiet)
 sudo docker images
@@ -9,3 +14,9 @@ sudo docker exec -it mycontainer bash
 sudo docker rm mycontainer
 #sudo docker image rm myimage
 sudo docker ps --all
+
+cat <<EOF
+Minimal
+sudo docker build --label mylabel --tag intro/v1 .
+sudo docker run --name mycontainer intro/v1
+EOF
