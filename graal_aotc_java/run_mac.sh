@@ -22,8 +22,8 @@ sudo docker images
 sudo docker build --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
-sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 
-sudo docker exec -u root -it mycontainer zsh
+sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer_graalvm --detach --tty --interactive mytag sh
+sudo docker exec -u root -it mycontainer_graalvm sh
 sudo docker stop mycontainer
 sudo docker rm mycontainer
 #sudo docker image rm myimage
