@@ -6,6 +6,8 @@ FROM ubuntu:22.04
 # COPY helloworld.go /
 #COPY helloworld.py /
 
+COPY proj /proj
+
 # This will make apt use default answers for interactive questions
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL=/bin/zsh
@@ -21,6 +23,14 @@ RUN apt install -y vim
 RUN apt install -y openssh-server
 RUN apt install -y nmap
 RUN apt install -y inetutils-ping
+# RUN update-java-alternatives --set /usr/lib/jvm/graalvm-ce-java8
+RUN apt install -y software-properties-common
+RUN add-apt-repository ppa:graalvm-team/jdk
+RUN apt update
+RUN apt install graalvm-jdk
+
+RUN /proj/gradlew build
+
 # RUN ln -sr /media/sarnobat/git/computers.git ~/
 # RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
 RUN apt install -y plocate
