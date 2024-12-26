@@ -27,16 +27,28 @@ RUN apt install -y plocate
 # pstree
 RUN apt install -y psmisc
 RUN apt install -y gradle
-RUN ln -sr /home/root/computers.git ~/computers.git
-RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
-RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
-RUN ln -sr /home/root/computers.git/mac/git/mac/.gitconfig ~/
+# RUN ln -sr /home/root/computers.git ~/computers.git
+# RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
+# RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
+# RUN ln -sr /home/root/computers.git/mac/git/mac/.gitconfig ~/
+RUN <<EOF
+echo "sridhar heredoc"
+EOF
+# RUN <<EOF
+# /root/proj/gradlew build
+# EOF
+# RUN <<EOF
+# java -jar /root/proj/build/libs/graal_aotc_java-1.0.jar
+# EOF
+
+
+WORKDIR /
 
 # RUN service ssh start
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
-RUN  echo 'test:test' | chpasswd
-RUN service ssh start
-EXPOSE 22
+# RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
+# RUN  echo 'test:test' | chpasswd
+# RUN service ssh start
+# EXPOSE 22
 # CMD ["/usr/sbin/sshd","-D"]
 
 # .gitconfig
