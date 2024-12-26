@@ -4,11 +4,6 @@
 // import org.glassfish.jersey.jdkhttp.JdkHttpServerFactory;
 // import org.glassfish.jersey.server.ResourceConfig;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
-
 public class App {
     public String getGreeting() {
         return "Hello World";
