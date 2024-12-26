@@ -11,6 +11,9 @@ WORKDIR /proj/
 
 RUN ./gradlew build
 RUN ./gradlew nativeCompile -b build.gradle
+RUN cp -v build/native/nativeCompile/graal_aotc_java helloworld
+
+# COPY /proj/build/native/nativeCompile/graal_aotc_java /tmp/helloworld
 
 # RUN ./gradlew :wrapper
 
