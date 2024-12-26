@@ -22,7 +22,7 @@ sudo docker images
 sudo docker build --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
-sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer_graalvm --detach --tty --interactive mytag sh
+sudo docker run --volume /Volumes/git/github/docker_images/graal_aotc_java.2024:/root/proj --name mycontainer_graalvm --detach --tty --interactive mytag sh
 sudo docker exec -u root -it mycontainer_graalvm sh
 sudo docker stop mycontainer
 sudo docker rm mycontainer

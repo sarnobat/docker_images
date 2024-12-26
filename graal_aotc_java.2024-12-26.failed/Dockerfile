@@ -1,3 +1,5 @@
+# not good enough, no gradle
+
 FROM container-registry.oracle.com/graalvm/graalvm-community:latest
 CMD ["echo", "Hello StackOverflow"]
 
