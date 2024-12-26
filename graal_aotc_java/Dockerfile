@@ -1,6 +1,6 @@
 #FROM alpine
 FROM ubuntu:22.04
-CMD ["echo", "Hello StackOverflow!"]
+# CMD ["echo", "Hello StackOverflow!"]
 
 
 # COPY helloworld.go /
@@ -26,6 +26,7 @@ RUN apt install -y inetutils-ping
 RUN apt install -y plocate
 # pstree
 RUN apt install -y psmisc
+RUN apt install -y gradle
 RUN ln -sr /home/root/computers.git ~/computers.git
 RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
 RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
@@ -36,7 +37,7 @@ RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test
 RUN  echo 'test:test' | chpasswd
 RUN service ssh start
 EXPOSE 22
-CMD ["/usr/sbin/sshd","-D"]
+# CMD ["/usr/sbin/sshd","-D"]
 
 # .gitconfig
 
