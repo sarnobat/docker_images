@@ -22,7 +22,8 @@ sudo docker images
 sudo docker build --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
-sudo docker run  --name mycontainer --tty --interactive mytag sh 
+echo "cat INSTALL | /usr/local/bin/ccze"
+sudo docker run  --name mycontainer --tty --interactive mytag sh
 #sudo docker exec -u root -it mycontainer zsh
 sudo docker stop mycontainer
 sudo docker rm mycontainer

@@ -20,4 +20,4 @@ RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/confi
 RUN ./configure x86_64
 RUN make
 RUN make install
-# RUN find | /usr/local/bin/ccze
+# RUN cat INSTALL | /usr/local/bin/ccze
