@@ -39,5 +39,6 @@ cat <<EOF
 Unfortunately, the native image is only for linux.GraalVM will probably never support 
 cross-compile. You need a MacOS docker base (which is hard to include with GraalVM 
 and Gradle).
-Github Workflow or Golang is the only solution. Nothing for local mac os development.
+Github Workflow or Golang is the only solution. Nothing for local mac os development. 
+Just use gradle on the host machine, no docker.
 EOF
