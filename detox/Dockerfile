@@ -4,7 +4,7 @@ CMD ["echo", "Hello StackOverflow!"]
 
 
 
-COPY ccze /proj
+COPY detox /proj
 
 WORKDIR /proj/
 
