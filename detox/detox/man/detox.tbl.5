@@ -1,0 +1,127 @@
+.\"
+.\" This file is part of the Detox package.
+.\"
+.\" Copyright (c) Doug Harple <detox.dharple@gmail.com>
+.\"
+.\" For the full copyright and license information, please view the LICENSE
+.\" file that was distributed with this source code.
+.\"
+.Dd February 24, 2021
+.Dt DETOX.TBL 5
+.Os
+.Sh NAME
+.Nm detox.tbl
+.Nd translation table for
+.Xr detox 1
+.Sh OVERVIEW
+.Cm detox
+allows for configuration of how the safe, ISO-8859-1, and UTF-8 (Unicode)
+filters operate.
+Through text-based translation tables, it is possible to tune how these
+character sets are interpreted.
+.Sh SYNTAX
+The format of the translation tables is simple.
+There are two levels: one containing meta data and one containing the actual
+translations.
+.Bl -tag -width 0.25i
+.It Cm default Ar _
+Default specifies the default translation for a character.
+An empty or non-existent default indicates that any unknown character should
+fall through to the next filter.
+In this manner, it is possible to chain together multiple translation tables in
+a sequence.
+.It Cm start
+Indicates the start of a value list within the translation table.
+.It Cm start Ar lang
+Indicates the start of a language specific value list within the translation
+table.
+.It Cm end
+Indicates the end of a value list within the translation table.
+.It Ar value translation
+Value can be specified in decimal (1), hex (0x01) or octal (01).
+The same rules that apply to sscanf apply here.
+.Pp
+Translation can be a string or a quoted string, with either single or double
+quotes.
+.El
+.Sh EXAMPLES
+The following example shows a portion of a
+.Ar safe
+table, with only a few character replacements specified.
+.Bd -literal
+#
+# This is a simple example of a "safe" table.  It only translates 4 characters.
+#
+# The default is commented out, so any character that is not in this table will
+# be ignored.
+#
+
+# default   _
+
+#
+# This is the main replacement block.  Each line specifies a character and a
+# string to replace it with.
+#
+
+start
+0x09	_tab_		# comments work on lines, too
+0x24	_dollar_	# $$$
+0x26	_and_		# ampersand
+end
+
+#
+# Starts an optional, language-specific translation block.  detox will read
+# your locale and load the block if the word after start matches the language
+# portion of your locale.
+#
+# In the example here, the character $ will be replaced with "_money_" if the
+# user is working in English.  If the user is using a different language, $
+# will be replaced with the value configured in the previous block, "_dollar_".
+#
+
+start en
+0x24	_money_		# money money
+end
+
+# EOF
+.Ed
+.Pp
+You could then enable this table in your
+.Pa ~/.detoxrc ,
+in conjunction with other filters.
+.Bd -literal
+.\" START SAMPLE
+# Sample detoxrc
+
+sequence default {
+	safe {
+		filename "/home/MYUSERNAME/.local/share/detox/safe.tbl";
+	};
+	safe;
+	wipeup;
+};
+
+# EOF
+.\" END SAMPLE
+.Ed
+.Pp
+When
+.Cm detox
+is run, it will run the custom safe filter first, then run the default
+.Ar safe
+filter, and the finally the
+.Ar wipeup
+filter.
+See
+.Xr detoxrc 5
+for more details on the various filter types.
+.Sh SEE ALSO
+.Xr detox 1 ,
+.Xr detoxrc 5 ,
+.Xr ascii 7 ,
+.Xr iso_8859-1 7 ,
+.Xr unicode 7 ,
+.Xr utf-8 7
+.Sh AUTHORS
+detox was written by
+.An "Doug Harple" .

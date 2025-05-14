@@ -1,0 +1,186 @@
+.\"
+.\" This file is part of the Detox package.
+.\"
+.\" Copyright (c) Doug Harple <detox.dharple@gmail.com>
+.\"
+.\" For the full copyright and license information, please view the LICENSE
+.\" file that was distributed with this source code.
+.\"
+.Dd March 31, 2024
+.Dt DETOX 1
+.Os
+.Sh NAME
+.Nm detox
+.Nd clean up filenames
+.Sh SYNOPSIS
+.Nm
+.Op Fl f Pa configfile
+.Op Fl n | -dry-run
+.Op Fl r
+.Op Fl s Ar sequence
+.Op Fl -special
+.Op Fl v
+.Ar
+.Nm
+.Op Fl L
+.Op Fl f Pa configfile
+.Op Fl v
+.Nm
+.Op Fl h | -help
+.Nm
+.Op Fl V
+.Sh DESCRIPTION
+The
+.Nm
+utility renames files to make them easier to work with under Linux and other
+Unix-like operating systems.
+It replaces characters that make it hard to type out a filename with dashes and
+underscores.
+It also provides transcoding-based filters, converting ISO-8859-1 or CP-1252 to
+UTF-8.
+An additional filter unescapes CGI-escaped filenames.
+.Ss Sequences
+.Nm
+is driven by a configurable series of filters, called a sequence.
+Sequences are covered in more detail in
+.Xr detoxrc 5
+and are discoverable with the
+.Fl L
+option.
+The default sequence will run the
+.Ar safe
+and
+.Ar wipeup
+filters.
+Other examples of pre-configured sequences are
+.Ar iso8859_1
+and
+.Ar iso8859_1-legacy ,
+which both provide transcoding to UTF-8, and then finish with the
+.Ar safe
+and
+.Ar wipeup
+filters.
+.Ss Options
+.Bl -tag -width Fl
+.It Fl f Pa configfile
+Use
+.Pa configfile
+instead of the default configuration files for loading translation sequences.
+No other config file will be parsed.
+.It Fl h , -help
+Display helpful information.
+.It Fl -inline
+Run in inline mode.
+See
+.Xr inline-detox 1
+for more details.
+.It Fl L
+List the currently available sequences.
+When paired with
+.Fl v
+this option shows what filters are used in each sequence and any properties
+applied to the filters.
+.It Fl n , -dry-run
+Doesn't actually change anything.
+This implies the
+.Fl v
+option.
+.It Fl r
+Recurse into subdirectories.
+Any file or directory that starts with a period, such as
+.Pa .git/
+or
+.Pa .cache/ ,
+will be ignored during recursion unless specified on the command line.
+Also, any file or directory specified in the ignore section of the config file
+will be ignored during recursion.
+.It Fl s Ar sequence
+Use
+.Ar sequence
+instead of
+.Cm default .
+.It Fl -special
+Works on special files (including links).
+Normally
+.Nm
+ignores these files.
+.Nm
+will not recurse into symlinks that point at directories.
+.It Fl v
+Be verbose about which files are being renamed.
+.It Fl V
+Show the current version of
+.Nm .
+.El
+.Sh FILES
+.Bl -tag -width Fl
+.It Pa /etc/detoxrc
+The system-wide detoxrc file.
+.It Pa ~/.detoxrc
+A user's personal detoxrc.
+Normally it extends the system-wide
+.Pa detoxrc ,
+unless
+.Fl f
+has been specified, in which case, it is ignored.
+.It Pa /usr/share/detox/cp1252.tbl
+The provided CP-1252 transcoding table.
+.It Pa /usr/share/detox/iso8859_1.tbl
+The provided ISO-8859-1 transcoding table.
+.It Pa /usr/share/detox/safe.tbl
+The provided safe character translation table.
+.It Pa /usr/share/detox/unicode.tbl
+The provided Unicode control character filtering table, used by the UTF-8
+filter.
+.El
+.Sh EXAMPLES
+.Bl -tag -width Fl
+.It Nm Fl s Ar lower Fl r Fl v Fl n Pa /tmp/new_files
+Will run the sequence
+.Ar lower
+recursively, listing any changes, without changing anything, on the
+files of
+.Pa /tmp/new_files .
+.It Nm Fl f Pa my_detoxrc Fl L Fl v
+Will list the sequences within
+.Pa my_detoxrc ,
+showing their filters and options.
+.El
+.Sh SEE ALSO
+.Xr inline-detox 1 ,
+.Xr detox.tbl 5 ,
+.Xr detoxrc 5 ,
+.Xr ascii 7 ,
+.Xr iso_8859-1 7 ,
+.Xr unicode 7 ,
+.Xr utf-8 7
+.Sh HISTORY
+.Nm
+was originally designed to clean up files that I had received from friends
+which had been created using other operating systems.
+It's trivial to create a filename with spaces, parenthesis, brackets, and
+ampersands under some operating systems.
+These have special meaning within
+.Fx
+and Linux, and cause problems when you go to access them.
+I created
+.Nm
+to clean up these files.
+.Pp
+Version 2.0 stepped back from transliteration out of the box, instead focusing
+on ease of use.
+Version 3.0 further shifted this, by removing most of the transliteration from
+the tables.
+The primary motivations for this were user-provided feedback, and the fact that
+many modern Unix-like OSs use UTF-8 as their primary character set.
+Transliterating from UTF-8 to ASCII in this scenario is lossy and pointless.
+.Sh AUTHORS
+.Nm
+was written by
+.An Doug Harple .
+.Sh CAVEATS
+If, after the translation of a filename is finished, a file already exists with
+that same name,
+.Nm
+will not rename the file.

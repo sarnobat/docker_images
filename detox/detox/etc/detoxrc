@@ -1,0 +1,133 @@
+#
+# config file for detox(1)
+#
+# Remove problematic characters.
+#
+
+#
+# Default sequence.
+#
+
+sequence default {
+	safe {
+		builtin "safe";
+	};
+	wipeup {
+		remove_trailing;
+	};
+};
+
+#
+# Sequences meant primarily for detox
+#
+
+# transcodes ISO-8859-1 into UTF-8
+sequence "iso8859_1" {
+	iso8859_1 {
+		builtin "iso8859_1";
+	};
+	safe {
+		builtin "safe";
+	};
+	wipeup {
+		remove_trailing;
+	};
+};
+
+# transcodes CP-1252 and ISO-8859-1 into UTF-8
+sequence "iso8859_1-legacy" {
+	iso8859_1 {
+		builtin "cp1252";
+	};
+	iso8859_1 {
+		builtin "iso8859_1";
+	};
+	safe {
+		builtin "safe";
+	};
+	wipeup {
+		remove_trailing;
+	};
+};
+
+# handles UTF-8 control codes
+sequence "utf_8" {
+	utf_8 {
+		builtin "unicode";
+	};
+	safe {
+		builtin "safe";
+	};
+	wipeup {
+		remove_trailing;
+	};
+};
+
+# decodes CGI-escaped characters
+sequence "uncgi" {
+	uncgi;
+	safe {
+		builtin "safe";
+	};
+	wipeup {
+		remove_trailing;
+	};
+};
+
+# converts files to lower case
+sequence "lower" {
+	safe {
+		builtin "safe";
+	};
+	lower;
+	wipeup {
+		remove_trailing;
+	};
+};
+
+#
+# Sequences meant primarily for inline-detox
+#
+
+# transcodes ISO-8859-1 to ASCII
+sequence "iso8859_1-only" {
+	iso8859_1 {
+		builtin "iso8859_1";
+	};
+};
+
+# transcodes CP-1252 to ASCII
+sequence "cp1252-only" {
+	iso8859_1 {
+		builtin "cp1252";
+	};
+};
+
+# handles UTF-8 control codes
+sequence "utf_8-only" {
+	utf_8 {
+		builtin "unicode";
+	};
+};
+
+# decodes CGI-escaped characters
+sequence "uncgi-only" {
+	uncgi;
+};
+
+# converts files to lower case
+sequence "lower-only" {
+	lower;
+};
+
+
+#
+# Files to ignore during recursion (detox only)
+#
+# Any file or directory starting with '.' is automatically ignored except when
+# it is passed on the command-line.
+#
+
+ignore {
+	filename "{arch}";
+};

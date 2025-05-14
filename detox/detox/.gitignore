@@ -1,0 +1,52 @@
+# Maintainer files
+*.bak
+*.orig
+*.patch
+*.rej
+*~
+.idea
+
+# Automake / Autoconf
+aclocal.m4
+autom4te.cache/
+compile
+config.h
+config.h.in
+config.log
+config.status
+configure
+depcomp
+.deps/
+install-sh
+Makefile
+Makefile.in
+missing
+stamp-h1
+test-driver
+ylwrap
+
+# Debugging Cruft
+*.i
+*.s
+a.out
+
+# Built Objects
+*.o
+
+# Built Packages
+/detox_*.snap
+/detox-*.tar.gz
+/detox-*.tar.bz2
+/detox-*.zip
+
+# Coverage files
+*.gcda
+*.gcno
+*.gcov
+/coverage.info
+/coverage/
+mallocfail_hashes
+
+# CLion
+cmake-build-debug
+CMakeLists.txt
