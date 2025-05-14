@@ -1,6 +1,5 @@
 ## IDEMPOTENT
 
-set -e
 #set -o pipefail
 
 cat <<EOF
@@ -12,6 +11,8 @@ EOF
 # Get them from inside the mounted computers.git
 rm .zshrc
 rm .aliases
+set -e
+
 #cp -v ~/computers.git/docker/.zshrc .
 #cp -v ~/.aliases .
 
