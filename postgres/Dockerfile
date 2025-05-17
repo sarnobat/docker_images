@@ -64,7 +64,7 @@ ENV PATH=/usr/local/pgsql/bin/:$PATH
 
 RUN initdb -D /usr/local/pgsql/data
 RUN /usr/local/pgsql/bin/pg_ctl --help
-RUN echo "/usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start && createuser -s -d -r postgres && psql -U postgres"  
+RUN echo "/usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start && createuser -s -d -r postgres && psql -U postgres -c '\dt *.*'"  
 
 
 # RUN touch "ubarak-[7249661751770303746].mp4"
