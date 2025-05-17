@@ -62,9 +62,9 @@ ENV PATH=/usr/local/pgsql/bin/:$PATH
 # RUN su pguser - /usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start
 # no debugging info
 
-RUN initdb -D /usr/local/pgsql/data
-RUN /usr/local/pgsql/bin/pg_ctl --help
-RUN echo "/usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start && createuser -s -d -r postgres && psql -U postgres -c '\dt *.*'"  
+# RUN initdb -D /usr/local/pgsql/data
+# RUN /usr/local/pgsql/bin/pg_ctl --help
+RUN echo "initdb -D /usr/local/pgsql/data && /usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start && createuser -s -d -r postgres && psql -U postgres -c '\dt *.*'"  
 
 
 # RUN touch "ubarak-[7249661751770303746].mp4"
