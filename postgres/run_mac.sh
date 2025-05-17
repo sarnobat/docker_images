@@ -19,10 +19,10 @@ EOF
 sudo docker rm --force $(sudo docker ps --all --quiet) || echo "no existing container to delete"
 sudo docker image rm --force $(sudo docker images --quiet) || echo "no existing image to delete"
 sudo docker images
-sudo docker build --label mylabel --tag mytag .
+sudo docker build --label mylabel --tag mytag --progress=plain .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
-cat <<EOF
+cat <<EOF > /dev/null
 bison file is:
 bbedit /Volumes/git/github/2024/docker_images/detox/detox/src/config_file_yacc.y
 
