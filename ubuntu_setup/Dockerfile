@@ -1,7 +1,5 @@
 #FROM alpine
 FROM ubuntu:22.04
-CMD ["echo", "Hello StackOverflow!"]
-
 
 # COPY helloworld.go /
 #COPY helloworld.py /
@@ -10,6 +8,7 @@ CMD ["echo", "Hello StackOverflow!"]
 # This will make apt use default answers for interactive questions
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL=/bin/zsh
+ENV TERM=xterm-256color
 # ADD .zshrc .zshrc
 RUN apt update
 RUN apt install -y wget
@@ -28,10 +27,10 @@ RUN apt install -y inetutils-ping
 RUN apt install -y plocate
 # pstree
 RUN apt install -y psmisc
-RUN ln -sr /home/root/computers.git ~/computers.git
-RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
-RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
-RUN ln -sr /home/root/computers.git/mac/git/mac/.gitconfig ~/
+RUN ln -sr /media/sarnobat/git/computers.git ~/computers.git
+RUN cd /root/ && ln -sr /media/sarnobat/git/computers.git/2022/docker/.zshrc
+RUN ln -sr /media/sarnobat/git/computers.git/dotfiles_and_scripts/.dir_colors ~/
+RUN ln -sr /media/sarnobat/git/computers.git/mac/git/mac/.gitconfig ~/
 
 COPY .zshrc /root/
 

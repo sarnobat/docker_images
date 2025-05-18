@@ -9,7 +9,7 @@ or
 EOF
 
 # Get them from inside the mounted computers.git
-rm .zshrc
+# rm .zshrc
 rm .aliases
 set -e
 
