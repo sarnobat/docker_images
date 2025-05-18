@@ -8,6 +8,7 @@ CMD ["echo", "Hello StackOverflow!"]
 
 # This will make apt use default answers for interactive questions
 ENV DEBIAN_FRONTEND=noninteractive
+ENV TERM=xterm-256color
 ENV SHELL=/bin/zsh
 # ADD .zshrc .zshrc
 RUN apt update
@@ -36,7 +37,23 @@ RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test
 RUN  echo 'test:test' | chpasswd
 RUN service ssh start
 EXPOSE 22
-CMD ["/usr/sbin/sshd","-D"]
+# CMD ["/usr/sbin/sshd","-D"]
+RUN apt update && apt install -y curl gnupg2 lsb-release
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o /usr/share/keyrings/ros-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+# CMD apt update
+# CMD apt install -y ros2
+RUN mkdir -p ~/ros2_dashing && cd ~/ros2_dashing 
+RUN wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20250507/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2' 
+RUN apt install -y bzip2
+# RUN find ./
+RUN tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+RUN apt update 
+RUN apt install -y python3-rosdep2 
+RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
+RUN rosdep init && rosdep update
+
+
 
 # .gitconfig
 
