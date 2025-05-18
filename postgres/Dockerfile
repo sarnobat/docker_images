@@ -18,14 +18,16 @@ RUN apt install -y libpcre3-dev
 RUN apt install -y autoconf 
 RUN apt install -y automake 
 RUN apt install -y bison 
-RUN apt install -y flex 
-RUN apt install -y gcc  
-RUN apt install -y make 
+RUN apt install -y flex
+RUN apt install -y gcc 
+RUN apt install -y make
 RUN apt install -y pkg-config
 RUN apt install -y libicu-dev
 RUN apt install -y libreadline6-dev
 RUN apt install -y zlib1g-dev
-RUN apt install -y bat  
+RUN apt install -y bat
+RUN apt install -y psmisc
+RUN apt install -y zsh
 
 RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.guess'
 RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.sub'
@@ -64,7 +66,7 @@ ENV PATH=/usr/local/pgsql/bin/:$PATH
 
 # RUN initdb -D /usr/local/pgsql/data
 # RUN /usr/local/pgsql/bin/pg_ctl --help
-RUN echo "initdb -D /usr/local/pgsql/data && /usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start && createuser -s -d -r postgres && psql -U postgres -c '\dt *.*'"  
+RUN echo "initdb  --debug -D /usr/local/pgsql/data && /usr/local/pgsql/bin/pg_ctl -D /usr/local/pgsql/data -l logfile start && createuser -s -d -r postgres && psql -U postgres -c '\dt *.*'"  
 
 
 # RUN touch "ubarak-[7249661751770303746].mp4"
