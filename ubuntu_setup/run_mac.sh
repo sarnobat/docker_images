@@ -13,7 +13,7 @@ EOF
 rm .aliases
 
 set -e
-cp /Users/sarnobat/computers.git/2022/docker/.zshrc .
+cp /Users/sarnobat/computers.git/docker/.zshrc .
 
 #cp -v ~/computers.git/docker/.zshrc .
 #cp -v ~/.aliases .

@@ -27,10 +27,12 @@ RUN apt install -y inetutils-ping
 RUN apt install -y plocate
 # pstree
 RUN apt install -y psmisc
-RUN ln -sr /home/root/computers.git ~/computers.git
-RUN ln -sr /home/root/computers.git/docker/.zshrc ~/
-RUN ln -sr /home/root/computers.git/dotfiles_and_scripts/.dir_colors ~/
-RUN ln -sr /home/root/computers.git/mac/git/mac/.gitconfig ~/
+RUN ln -sr /media/sarnobat/git/computers.git ~/computers.git
+RUN cd /root/ && ln -sr /media/sarnobat/git/computers.git/2022/docker/.zshrc
+RUN ln -sr /media/sarnobat/git/computers.git/dotfiles_and_scripts/.dir_colors ~/
+RUN ln -sr /media/sarnobat/git/computers.git/mac/git/mac/.gitconfig ~/
+
+COPY .zshrc /root/
 
 # RUN service ssh start
 RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
@@ -48,10 +50,15 @@ RUN wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20
 RUN apt install -y bzip2
 # RUN find ./
 RUN tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
-RUN apt update 
+# RUN apt update 
 RUN apt install -y python3-rosdep2 
 RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
-RUN rosdep init && rosdep update
+RUN useradd -m -s /bin/zsh rosuser
+
+RUN rosdep init 
+USER rosuser
+ENV SHELL=/bin/zsh
+RUN rosdep update
 
 
 
