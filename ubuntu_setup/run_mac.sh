@@ -1,6 +1,6 @@
 ## IDEMPOTENT
 
-#set -o pipefail
+# set -o pipefail
 
 cat <<EOF
 /Applications/Docker.app/Contents/MacOS/Docker
@@ -11,7 +11,9 @@ EOF
 # Get them from inside the mounted computers.git
 # rm .zshrc
 rm .aliases
+
 set -e
+cp /Users/sarnobat/computers.git/2022/docker/.zshrc .
 
 #cp -v ~/computers.git/docker/.zshrc .
 #cp -v ~/.aliases .

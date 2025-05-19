@@ -40,6 +40,7 @@ bindkey -s "^[m"  'mv_file_to_subdir.sh '
 bindkey -s "^[t"  'tail -10f /tmp/cron_ffplay_before_perl.log | sed --unbuffered '\''s/.*from //'\'' | sed --unbuffered '\''s/:$//'\''\n'
 bindkey -s "^[e"  'epic_workspace_'
 # alias e='epic_workspace_'
+RPROMPT=' %F{178}%d%f '`bindkey -lL main | perl -pe 's{bindkey....(.*)main}{\$1}'`
 
 cd
 unlink ~/videos; ln -s /media/sarnobat/3TB/disks/thistle/videos ~/
