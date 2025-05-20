@@ -9,36 +9,50 @@ FROM ubuntu:22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV SHELL=/bin/zsh
 ENV TERM=xterm-256color
+# I think zsh is deleting /root/.zshrc on initial launch so it's not there.
+# Using ZDOTDIR works, even though I don't like it
+ENV ZDOTDIR=/tmp/
+COPY .zshrc /tmp/.zshrc
+
 # ADD .zshrc .zshrc
 RUN apt update
-RUN apt install -y wget
 # RUN apt install -y golang
-RUN apt install -y zsh
-RUN apt install -y lsof
-RUN apt install -y git
+
 RUN apt install -y bat
+RUN apt install -y git
 RUN apt install -y grc
-RUN apt install -y vim
-RUN apt install -y openssh-server
-RUN apt install -y nmap
 RUN apt install -y inetutils-ping
+RUN apt install -y lsof
+RUN apt install -y nmap
+RUN apt install -y openssh-server
+RUN apt install -y plocate
+RUN apt install -y psmisc # pstree
+RUN apt install -y vim
+RUN apt install -y wget
+RUN apt install -y zsh
+
 # RUN ln -sr /media/sarnobat/git/computers.git ~/
 # RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
-RUN apt install -y plocate
+#RUN apt install -y plocate
 # pstree
-RUN apt install -y psmisc
+#RUN apt install -y psmisc
 RUN ln -sr /media/sarnobat/git/computers.git ~/computers.git
 RUN cd /root/ && ln -sr /media/sarnobat/git/computers.git/2022/docker/.zshrc
 RUN ln -sr /media/sarnobat/git/computers.git/dotfiles_and_scripts/.dir_colors ~/
 RUN ln -sr /media/sarnobat/git/computers.git/mac/git/mac/.gitconfig ~/
+RUN ln -srf /media/sarnobat/git/computers.git ~/
 
-COPY .zshrc /root/
+# This gets erased if in root, though it works for non-root
+#COPY .zshrc /root/
 
 # RUN service ssh start
-RUN useradd -rm -d /home/ubuntu -s /bin/bash -g root -G sudo -u 1000 test 
+RUN useradd -rm -d /home/sarnobat -s /bin/bash -g root -G sudo -u 1000 test 
 RUN  echo 'test:test' | chpasswd
 RUN service ssh start
+# RUN useradd -m -s /bin/zsh sarnobat
+# USER sarnobat
 
+COPY .zshrc /home/sarnobat/
 
 
 EXPOSE 22

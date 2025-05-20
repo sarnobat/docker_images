@@ -10,23 +10,28 @@ CMD ["echo", "Hello StackOverflow!"]
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM=xterm-256color
 ENV SHELL=/bin/zsh
+ENV TERM=xterm-256color
 # ADD .zshrc .zshrc
 RUN apt update
+
 # RUN apt install -y golang
-RUN apt install -y zsh
-RUN apt install -y lsof
-RUN apt install -y git
+
 RUN apt install -y bat
+RUN apt install -y git
 RUN apt install -y grc
-RUN apt install -y vim
-RUN apt install -y openssh-server
-RUN apt install -y nmap
 RUN apt install -y inetutils-ping
+RUN apt install -y lsof
+RUN apt install -y nmap
+RUN apt install -y openssh-server
+RUN apt install -y plocate
+RUN apt install -y psmisc # pstree
+RUN apt install -y vim
+RUN apt install -y zsh
+
 # RUN ln -sr /media/sarnobat/git/computers.git ~/
 # RUN ln -sr /media/sarnobat/git/computers.git/docker/.zshrc ~/
-RUN apt install -y plocate
-# pstree
-RUN apt install -y psmisc
+
+
 RUN ln -sr /media/sarnobat/git/computers.git ~/computers.git
 RUN cd /root/ && ln -sr /media/sarnobat/git/computers.git/2022/docker/.zshrc
 RUN ln -sr /media/sarnobat/git/computers.git/dotfiles_and_scripts/.dir_colors ~/
@@ -45,12 +50,12 @@ RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key  -o
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
 # CMD apt update
 # CMD apt install -y ros2
-RUN mkdir -p ~/ros2_dashing && cd ~/ros2_dashing 
-RUN wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20250507/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2' 
+
+
 RUN apt install -y bzip2
 # RUN find ./
-RUN tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
 # RUN apt update 
+# USER root
 RUN apt install -y python3-rosdep2 
 RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
 RUN useradd -m -s /bin/zsh rosuser
@@ -60,7 +65,19 @@ USER rosuser
 ENV SHELL=/bin/zsh
 RUN rosdep update
 
-
+USER root
+COPY .zshrc /root/
+COPY .zshrc /home/rosuser/
+RUN apt install -y libpython3-dev python3-pip
+RUN pip3 install -U argcomplete
+ENV SHELL=/bin/zsh
+RUN rosdep fix-permissions
+USER rosuser
+RUN rosdep update 
+USER rosuser
+RUN mkdir -p ~/ros2_dashing && cd ~/ros2_dashing && wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20250507/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2' && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+RUN rosdep install --from-paths ~/ros2_dashing/ros2-linux/share --ignore-src --rosdistro kilted -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 osrf_testing_tools_cpp poco_vendor rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp rti-connext-dds-5.3.1 tinyxml_vendor tinyxml2_vendor urdfdom urdfdom_headers"
+#RUN source /home/rosuser/.zshrc
 
 # .gitconfig
 

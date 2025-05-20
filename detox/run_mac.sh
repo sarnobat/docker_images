@@ -1,6 +1,6 @@
 ## IDEMPOTENT
 
-set -e
+#set -e
 #set -o pipefail
 
 cat <<EOF
@@ -12,6 +12,9 @@ EOF
 # Get them from inside the mounted computers.git
 # rm .zshrc
 # rm .aliases
+set -e
+cp /Users/sarnobat/computers.git/docker/.zshrc .
+
 #cp -v ~/computers.git/docker/.zshrc .
 #cp -v ~/.aliases .
 
@@ -19,9 +22,10 @@ EOF
 sudo docker rm --force $(sudo docker ps --all --quiet) || echo "no existing container to delete"
 sudo docker image rm --force $(sudo docker images --quiet) || echo "no existing image to delete"
 sudo docker images
-sudo docker build --label mylabel --tag mytag .
+sudo docker build  --progress=plain --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
+sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 
 cat <<EOF
 bison file is:
 bbedit /Volumes/git/github/2024/docker_images/detox/detox/src/config_file_yacc.y
@@ -29,8 +33,8 @@ bbedit /Volumes/git/github/2024/docker_images/detox/detox/src/config_file_yacc.y
 touch "ubarak-[7249661751770303746].mp4"
 /usr/local/bin/detox "ubarak-[7249661751770303746].mp4" && ls ubarak*
 EOF
-sudo docker run  --name mycontainer --tty --interactive mytag bash
-#sudo docker exec -u root -it mycontainer zsh
+#sudo docker run  --name mycontainer --tty --interactive mytag bash
+sudo docker exec -u root -it mycontainer zsh
 sudo docker stop mycontainer
 sudo docker rm mycontainer
 #sudo docker image rm myimage

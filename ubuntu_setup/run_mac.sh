@@ -22,7 +22,7 @@ cp /Users/sarnobat/computers.git/docker/.zshrc .
 sudo docker rm --force $(sudo docker ps --all --quiet) || echo "no existing container to delete"
 sudo docker image rm --force $(sudo docker images --quiet) || echo "no existing image to delete"
 sudo docker images
-sudo docker build --label mylabel --tag mytag .
+sudo docker build  --progress=plain --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
 sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 

@@ -90,6 +90,7 @@ char help_message[] = {
 #endif
     "	-v --verbose 	be verbose\n"
     "	-V 		show the current version\n"
+    "	-S 		SRIDHAR 2\n"
 };
 
 char usage_message_inline[] = {

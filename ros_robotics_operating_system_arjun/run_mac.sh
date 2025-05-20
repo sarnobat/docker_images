@@ -12,6 +12,7 @@ EOF
 # rm .zshrc
 # rm .aliases
 set -e
+cp /Users/sarnobat/computers.git/docker/.zshrc .
 
 #cp -v ~/computers.git/docker/.zshrc .
 #cp -v ~/.aliases .
@@ -23,7 +24,7 @@ sudo docker images
 sudo docker build --progress=plain  --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
-sudo docker run --volume /Volumes/git/computers.git:/media/sarnobat/computers.git --name mycontainer --detach --tty --interactive mytag zsh 
+sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 
 sudo docker exec -u root -it mycontainer zsh
 sudo docker stop mycontainer
 sudo docker rm mycontainer
