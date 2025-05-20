@@ -26,6 +26,7 @@ sudo docker images
 # sudo docker run --name mycontainer intro/v1
 sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 
 sudo docker exec -u root -it mycontainer zsh
+# sudo docker exec -u rosuser -it mycontainer zsh
 sudo docker stop mycontainer
 sudo docker rm mycontainer
 #sudo docker image rm myimage

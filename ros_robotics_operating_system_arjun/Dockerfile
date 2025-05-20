@@ -66,8 +66,10 @@ ENV SHELL=/bin/zsh
 RUN rosdep update
 
 USER root
-COPY .zshrc /root/
-COPY .zshrc /home/rosuser/
+
+# COPY .zshrc /root/
+# COPY .zshrc /home/rosuser/
+RUN touch /root/.zshrc
 RUN apt install -y libpython3-dev python3-pip
 RUN pip3 install -U argcomplete
 ENV SHELL=/bin/zsh
@@ -75,8 +77,16 @@ RUN rosdep fix-permissions
 USER rosuser
 RUN rosdep update 
 USER rosuser
-RUN mkdir -p ~/ros2_dashing && cd ~/ros2_dashing && wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20250507/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2' && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
-RUN rosdep install --from-paths ~/ros2_dashing/ros2-linux/share --ignore-src --rosdistro kilted -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 osrf_testing_tools_cpp poco_vendor rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp rti-connext-dds-5.3.1 tinyxml_vendor tinyxml2_vendor urdfdom urdfdom_headers"
+# RUN mkdir -p ~/ros2_dashing && cd ~/ros2_dashing && wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20250507/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2' && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+
+RUN mkdir -p ~/ros2_dashing/
+COPY ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2 /home/rosuser/ros2_dashing/
+RUN cd /home/rosuser/ros2_dashing/ && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+
+USER root
+RUN ln -s /home/rosuser/ros2_dashing /root/
+# WORKDIR /home/rosuser/ros2_dashing/
+# RUN rosdep install --from-paths ~/ros2_dashing/ros2-linux/share --ignore-src --rosdistro kilted -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 osrf_testing_tools_cpp poco_vendor rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp rti-connext-dds-5.3.1 tinyxml_vendor tinyxml2_vendor urdfdom urdfdom_headers"
 #RUN source /home/rosuser/.zshrc
 
 # .gitconfig
