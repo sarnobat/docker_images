@@ -32,11 +32,12 @@ source ~/computers.git/mac/zsh/.zshrc-tab-completions
 source ~/computers.git/mac/zsh/.zshrc-key-bindings
 source ~/computers.git/mac/zsh/.zshrc-misc
 source ~/computers.git/dotfiles_and_scripts/.aliases
+source ~/computers.git/common/.zshrc-dircolors.auto
 
 ln -srf ~/computers.git/ubuntu/bin ~/
 ln -srf ~/computers.git/dotfiles_and_scripts/.dir_colors
 
-PROMPT='%F{164}docker %F{068}%D{%a %d %B %G} %F{139}%t>%f '
+PROMPT='%F{164}docker %n %F{068}%D{%a %d %B %G} %F{139}%t>%f '
 
 
 #  ________________________

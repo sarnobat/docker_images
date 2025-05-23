@@ -2,11 +2,29 @@
 
 #set -o pipefail
 
+# cat <<EOF
+# /Applications/Docker.app/Contents/MacOS/Docker
+# or
+# /Applications/Docker.app/Contents/MacOS/com.docker.backend -watchdog -native-api
+# EOF
+
 cat <<EOF
-/Applications/Docker.app/Contents/MacOS/Docker
-or
-/Applications/Docker.app/Contents/MacOS/com.docker.backend -watchdog -native-api
+Warning: you'll get this error:
+
+	root@e851f886a854:/opt/ros# source setup.bash
+	[rti_connext_dds_cmake_module][warning] No RTI Connext DDS installation specified.. RTI Connext DDS will not be available at runtime,unless you already configured LD_LIBRARY_PATH manually.
+
 EOF
+
+read -p "Are you sure (y/N)? " -n 1 -r
+echo    # (optional) move to a new line
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+    # do dangerous stuff
+    echo ""
+else
+	exit
+fi
 
 # Get them from inside the mounted computers.git
 # rm .zshrc

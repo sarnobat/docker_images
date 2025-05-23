@@ -32,11 +32,12 @@ source ~/computers.git/mac/zsh/.zshrc-tab-completions
 source ~/computers.git/mac/zsh/.zshrc-key-bindings
 source ~/computers.git/mac/zsh/.zshrc-misc
 source ~/computers.git/dotfiles_and_scripts/.aliases
+source ~/computers.git/common/.zshrc-dircolors.auto
 
 ln -srf ~/computers.git/ubuntu/bin ~/
 ln -srf ~/computers.git/dotfiles_and_scripts/.dir_colors
 
-PROMPT='%F{164}docker %F{068}%D{%a %d %B %G} %F{139}%t>%f '
+PROMPT='%F{164}docker %F{154}%n %F{068}%D{%a %d %B %G} %F{139}%t>%f '
 
 
 #  ________________________
@@ -53,7 +54,7 @@ cat <<'EOF2' | tee ~/computers.git/common/.zshrc-key-bindings.emacs.auto  > ~/co
 # Alternatively just use fc (fix command), 
 # though in practice it's too tricky to find the previous command.
 
-# bindkey -e
+bindkey -e
 
 bindkey -s  			"^[2"   	 " 2> /dev/null"
 bindkey -s  			"^[-" 	 	"cd -\n"

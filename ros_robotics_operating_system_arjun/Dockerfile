@@ -66,6 +66,7 @@ ENV SHELL=/bin/zsh
 RUN rosdep update
 
 USER root
+# RUN ln -s /media/sarnobat/git/computers.git ~/
 
 # COPY .zshrc /root/
 # COPY .zshrc /home/rosuser/
@@ -79,12 +80,28 @@ RUN rosdep update
 USER rosuser
 # RUN mkdir -p ~/ros2_dashing && cd ~/ros2_dashing && wget 'https://github.com/ros2/ros2/releases/download/release-kilted-beta2-20250507/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2' && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
 
-RUN mkdir -p ~/ros2_dashing/
-COPY ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2 /home/rosuser/ros2_dashing/
-RUN cd /home/rosuser/ros2_dashing/ && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+
+# RUN mkdir -p ~/ros2_dashing/
+# RUN mkdir -p /opt/
+# COPY ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2 /home/rosuser/ros2_dashing/
+# RUN cd /home/rosuser/ros2_dashing/ && tar -xvf ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+
+
 
 USER root
+COPY ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2 /tmp/
+
+#####################
+### Works but let's see if we  can do it with apt
+#####################
+RUN cd /opt/ && tar -xvf /tmp/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+RUN cd /opt/ && mv -v ros2-linux ros
+
 RUN ln -s /home/rosuser/ros2_dashing /root/
+RUN ln -s /opt/ros
+
+COPY google_compute_engine /hoome/rosuser/.ssh/
+CMD autossh -M0 -i ~/.ssh/google_compute_engine -R 3334:localhost:22 sarnobat@34.69.137.166
 # WORKDIR /home/rosuser/ros2_dashing/
 # RUN rosdep install --from-paths ~/ros2_dashing/ros2-linux/share --ignore-src --rosdistro kilted -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 osrf_testing_tools_cpp poco_vendor rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp rti-connext-dds-5.3.1 tinyxml_vendor tinyxml2_vendor urdfdom urdfdom_headers"
 #RUN source /home/rosuser/.zshrc
