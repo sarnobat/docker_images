@@ -2,6 +2,8 @@
 
 # set -o pipefail
 
+trap 'script did not finish. Want to print anything here?' ERR
+
 cat <<EOF
 /Applications/Docker.app/Contents/MacOS/Docker
 or

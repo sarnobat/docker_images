@@ -52,23 +52,27 @@ RUN ln -srf /media/sarnobat/git/computers.git ~/
 # RUN service ssh start
 RUN useradd -rm -d /home/sarnobat -s /bin/bash -g root -G sudo -u 1000 sarnobat
 RUN echo 'sarnobat	ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
-RUN  echo 'sarnobat:changeme' | chpasswd
+RUN  echo 'sarnobat:sarnobat' | chpasswd
+RUN ssh-keygen -A
 RUN service ssh start
 # RUN useradd -m -s /bin/zsh sarnobat
 # USER sarnobat
 
+EXPOSE 22
+CMD ["/usr/sbin/sshd","-D"]
+
 COPY .zshrc /home/sarnobat/
 
 
-EXPOSE 22
-CMD ["/usr/sbin/sshd","-D"]
 
 USER sarnobat
 
 RUN ln -sr /media/sarnobat/git/computers.git ~/
 RUN ln -sr /media/sarnobat/git/github ~/
-RUN chsh /bin/zsh
-RUN gsettings set org.gnome.desktop.session idle-delay 0
+# RUN chsh /usr/bin/zsh
+
+# I think I need to install gnome first
+# RUN gsettings set org.gnome.desktop.session idle-delay 0
 # .gitconfig
 
 # CMD [ "source /root/.zshrc", "zsh"]
