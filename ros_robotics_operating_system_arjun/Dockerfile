@@ -16,6 +16,7 @@ RUN apt update
 
 # RUN apt install -y golang
 
+RUN apt install -y autossh
 RUN apt install -y bat
 RUN apt install -y git
 RUN apt install -y grc
@@ -94,14 +95,19 @@ COPY ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2 /tmp/
 #####################
 ### Works but let's see if we  can do it with apt
 #####################
-RUN cd /opt/ && tar -xvf /tmp/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
-RUN cd /opt/ && mv -v ros2-linux ros
+##RUN cd /opt/ && tar -xvf /tmp/ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
+##RUN cd /opt/ && mv -v ros2-linux ros
 
 RUN ln -s /home/rosuser/ros2_dashing /root/
 RUN ln -s /opt/ros
+RUN touch /home/rosuser/.zshrc
 
-COPY google_compute_engine /hoome/rosuser/.ssh/
-CMD autossh -M0 -i ~/.ssh/google_compute_engine -R 3334:localhost:22 sarnobat@34.69.137.166
+COPY google_compute_engine /home/rosuser/.ssh/
+RUN chmod 600 /home/rosuser/.ssh/*
+RUN chown rosuser /home/rosuser/.ssh/*
+USER rosuser
+RUN echo "now run (TODO: find a way to run this automatically):\nautossh -M0 -i ~/.ssh/google_compute_engine -R 3334:localhost:22 -o "StrictHostKeyChecking no" sarnobat@34.69.137.166"
+CMD autossh -M0 -i ~/.ssh/google_compute_engine -R 3334:localhost:22 -o "StrictHostKeyChecking no" sarnobat@34.69.137.166
 # WORKDIR /home/rosuser/ros2_dashing/
 # RUN rosdep install --from-paths ~/ros2_dashing/ros2-linux/share --ignore-src --rosdistro kilted -y --skip-keys "console_bridge fastcdr fastrtps libopensplice67 libopensplice69 osrf_testing_tools_cpp poco_vendor rmw_connext_cpp rosidl_typesupport_connext_c rosidl_typesupport_connext_cpp rti-connext-dds-5.3.1 tinyxml_vendor tinyxml2_vendor urdfdom urdfdom_headers"
 #RUN source /home/rosuser/.zshrc

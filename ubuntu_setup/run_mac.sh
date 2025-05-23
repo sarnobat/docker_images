@@ -31,3 +31,4 @@ sudo docker stop mycontainer
 sudo docker rm mycontainer
 #sudo docker image rm myimage
 sudo docker ps --all
+sh /Volumes/git/computers.git/mac/bin/docker_prune_images.sh
