@@ -14,7 +14,7 @@ EOF
 
 # Get them from inside the mounted computers.git
 # rm .zshrc
-rm .aliases
+# rm .aliases
 
 set -e
 cp /Users/sarnobat/computers.git/docker/.zshrc .
