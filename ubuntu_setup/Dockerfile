@@ -24,6 +24,7 @@ RUN apt install -y bzip2
 RUN apt install -y git
 RUN apt install -y grc
 RUN apt install -y inetutils-ping
+iproute2
 RUN apt install -y lsof
 RUN apt install -y net-tools
 RUN apt install -y nmap
