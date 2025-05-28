@@ -46,7 +46,7 @@ sudo docker images
 rm google_compute_engine
 # rm ros2-kilted-beta2-20250507-linux-noble-amd64.tar.bz2
 # sudo docker run --name mycontainer intro/v1
-sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 
+sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty mytag
 # sudo docker exec -u root -it mycontainer zsh
 sudo docker exec -u ros -it mycontainer zsh
 # sudo docker exec -u rosuser -it mycontainer zsh

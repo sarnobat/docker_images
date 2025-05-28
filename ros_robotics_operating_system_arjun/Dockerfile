@@ -1,4 +1,5 @@
-FROM ubuntu:22.04
+FROM ubuntu:jammy
+
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TERM=xterm-256color
@@ -23,29 +24,90 @@ RUN apt install -y zsh
 COPY .zshrc /root/
 COPY .zshrc /tmp/
 
-RUN locale	\
-	&& sudo apt update && sudo apt install locales \
-	&& sudo locale-gen en_US en_US.UTF-8	\
-	&& sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8	\
-	&& export LANG=en_US.UTF-8	\	
-	&& locale	\
-	&& sudo apt install -y software-properties-common	\
-	&& sudo add-apt-repository universe	\
-	&& sudo apt update && sudo apt install curl -y	\
-	&& sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg	\
-	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null	\
-	&& echo ""
-RUN apt install -y bzip2
+# Set the locale
+RUN apt-get update && apt-get install -y locales && \
+    locale-gen en_US en_US.UTF-8 && \
+    update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 && \
+    export LANG=en_US.UTF-8
 
-RUN apt install -y python3-rosdep2 
-RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
+# Set the timezone
+ENV ROS_VERSION=2
+ENV ROS_DISTRO=humble
+ENV ROS_PYTHON_VERSION=3
+ENV TZ=Europe/Berlin
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Setup the sources
+RUN apt-get update && apt-get install -y software-properties-common curl && \
+    add-apt-repository universe && \
+    curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null
+
+# Install ROS 2 packages
+RUN apt-get update && apt-get upgrade -y && \
+	apt-get install -y \
+	ros-humble-desktop-full ros-humble-ros2run ros-humble-simulation	ros-humble-teleop-twist-keyboard
+
+
+# install bootstrap tools
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    build-essential \
+    git \
+    nano \
+    iputils-ping \
+    wget \
+    python3-colcon-common-extensions \
+    python3-colcon-mixin \
+    python3-rosdep \
+    python3-vcstool \
+    && rm -rf /var/lib/apt/lists/*
+
+# bootstrap rosdep
+RUN rosdep init && \
+  rosdep update --rosdistro humble
+
+# Environment setup
+RUN echo 'source /opt/ros/humble/setup.bash' >> ~/.bashrc
+RUN echo '#!/usr/bin/env bash' > /ros_entrypoint.sh
+RUN echo 'source /opt/ros/humble/setup.bash' >> /ros_entrypoint.sh
+RUN echo 'exec "$@"' >> /ros_entrypoint.sh
+RUN chmod +x /ros_entrypoint.sh
+
+
 RUN useradd -m -s /bin/zsh ros
 RUN echo 'ros	ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
 RUN  echo 'ros:ros' | chpasswd
 
-RUN apt update -y
-ENV DEBIAN_FRONTEND=noninteractive
-RUN apt upgrade
+ENV ZDOTDIR=/tmp/
+COPY .zshrc /tmp/.zshrc
+
+
+# ENTRYPOINT ["/ros_entrypoint.sh"]
+
+
+# RUN locale	\
+# 	&& sudo apt update && sudo apt install locales \
+# 	&& sudo locale-gen en_US en_US.UTF-8	\
+# 	&& sudo update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8	\
+# 	&& export LANG=en_US.UTF-8	\	
+# 	&& locale	\
+# 	&& sudo apt install -y software-properties-common	\
+# 	&& sudo add-apt-repository universe	\
+# 	&& sudo apt update && sudo apt install curl -y	\
+# 	&& sudo curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg	\
+# 	&& echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null	\
+# 	&& echo ""
+# RUN apt install -y bzip2
+# 
+# RUN apt install -y python3-rosdep2 
+# RUN rm /etc/ros/rosdep/sources.list.d/20-default.list
+# RUN useradd -m -s /bin/zsh ros
+# RUN echo 'ros	ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
+# RUN  echo 'ros:ros' | chpasswd
+# 
+# RUN apt update -y
+# ENV DEBIAN_FRONTEND=noninteractive
+# RUN apt upgrade
 # RUN sudo apt install -y ros-humble-ros-base
 # RUN sudo apt install -y ros-humble-desktop
 # RUN sudo apt install -y ros-humble-desktop-full
