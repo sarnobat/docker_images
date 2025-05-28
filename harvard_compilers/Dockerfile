@@ -45,7 +45,9 @@ COPY .zshrc /home/sarnobat/
 
 COPY e95-src.git /home/sarnobat/e95-src.git
 RUN sudo chown sarnobat -Rv /home/sarnobat/e95-src.git
-RUN cd /home/sarnobat/e95-src.git/src/compiler && make clean && make && ./compiler mips/input/debug.txt
+
+# I couldn't get this working on Ubuntu docker. It does work on Mac OS
+# RUN cd /home/sarnobat/e95-src.git/src/compiler && make clean && make && ./compiler mips/input/debug.txt
 
 
 
