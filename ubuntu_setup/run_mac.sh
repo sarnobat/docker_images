@@ -4,10 +4,15 @@
 
 trap 'script did not finish. Want to print anything here?' ERR
 
-cat <<EOF
+## Not sure why I have this
+cat <<EOF >/dev/null
 /Applications/Docker.app/Contents/MacOS/Docker
 or
 /Applications/Docker.app/Contents/MacOS/com.docker.backend -watchdog -native-api
+EOF
+
+cat <<EOF
+TODO 2025-05: create a makefile? Then you can express dependencies easily and have an affordalce of just typing make
 EOF
 
 # Get them from inside the mounted computers.git
