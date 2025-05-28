@@ -17,9 +17,7 @@ rm .aliases
 set -e
 cp /Users/sarnobat/computers.git/docker/.zshrc .
 
-#cp -v ~/computers.git/docker/.zshrc .
-#cp -v ~/.aliases .
-
+rsync -a -v /Users/sarnobat/Desktop/2025-01_harvard_compilers/e95-src.git .
 
 sudo docker rm --force $(sudo docker ps --all --quiet) || echo "no existing container to delete"
 sudo docker image rm --force $(sudo docker images --quiet) || echo "no existing image to delete"
