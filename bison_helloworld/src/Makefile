@@ -1,4 +1,4 @@
-all:	build
+all:	build run
 
 build:
 	set -e
@@ -13,10 +13,10 @@ build:
 	gcc -o main *.o -ll -ly
 # 	gcc *h *.c
 # 	gcc -g -Wall -Wextra -pedantic -MM *c
-	cp main main.`uname | tr 'A-Z' 'a-z'`
+	cp main helloworld.`uname | tr 'A-Z' 'a-z'`
 
 clean:
 	rm -v *.yy.[ch] *.tab.[ch] # *.o 
 
 run:
-	./helloworld                   # Run the parser
+	./main                   # Run the parser
