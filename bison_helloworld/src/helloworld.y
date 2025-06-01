@@ -3,6 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "helloworld.yy.h"
+
+int yyerror(const char *s);
+
 %}
 
 %token HELLO WORLD
