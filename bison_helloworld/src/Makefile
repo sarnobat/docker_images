@@ -16,7 +16,7 @@ build:
 	cp main helloworld.`uname | tr 'A-Z' 'a-z'`
 
 clean:
-	rm -v *.yy.[ch] *.tab.[ch] # *.o 
+	rm -v *.yy.[ch] *.tab.[ch] main *darwin
 
 run:
 	./main                   # Run the parser
