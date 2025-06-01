@@ -6,6 +6,6 @@
 hello    return HELLO;
 world    return WORLD;
 [ \t\n]+ ;     // Ignore whitespace
-.        ;     // Ignore any other characters
+.        { printf("other\n");}     // Ignore any other characters
 %%
 
