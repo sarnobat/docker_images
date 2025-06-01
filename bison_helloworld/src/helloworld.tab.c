@@ -71,7 +71,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "lex.yy.h"
+#include "helloworld.yy.h"
 
 #line 77 "helloworld.tab.c"
 
