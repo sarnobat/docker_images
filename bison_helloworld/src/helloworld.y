@@ -12,7 +12,7 @@ int yyerror(const char *s);
 
 %%
 start:
-    HELLO WORLD    { printf("Hello, world parsed successfully!\n"); }
+    HELLO WORLD    { printf("Hello, world parsed successfully\n"); }
 ;
 %%
 

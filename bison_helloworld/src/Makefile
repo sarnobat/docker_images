@@ -1,4 +1,4 @@
-all:	dist
+all:	build
 
 build:
 	set -e
@@ -15,8 +15,11 @@ build:
 dist:	build
 	cp main helloworld.`uname | tr 'A-Z' 'a-z'`
 
-clean:
-	rm -fv *.yy.[ch] *.tab.[ch] main *darwin
+clean-temp:
+	rm -fv *.yy.[ch] *.tab.[ch] *o
+
+clean:	clean-temp
+	rm -fv main *darwin
 
 run:
 	./main
