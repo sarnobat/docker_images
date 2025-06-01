@@ -7,9 +7,9 @@ build:
 
 	bison -d helloworld.y
 
-	gcc -g -Wall -Wextra -pedantic -c	lex.yy.c
-	gcc -g -Wall -Wextra -pedantic -c	helloworld.tab.c
-	gcc -g -Wall -Wextra -pedantic   -c -o main.o main.c
+	gcc -g -Wall -Wextra -pedantic -c lex.yy.c
+	gcc -g -Wall -Wextra -pedantic -c helloworld.tab.c
+	gcc -g -Wall -Wextra -pedantic -c main.c
 	gcc -o main *.o -ll -ly
 
 dist:	build
@@ -21,5 +21,9 @@ clean-temp:
 clean:	clean-temp
 	rm -fv main *darwin
 
+doc:
+	cflow *c
+
 run:
 	./main
+
