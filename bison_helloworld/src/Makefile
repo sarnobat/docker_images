@@ -13,10 +13,10 @@ build:
 	gcc -o main *.o -ll -ly
 # 	gcc *h *.c
 # 	gcc -g -Wall -Wextra -pedantic -MM *c
+	cp main main.`uname | tr 'A-Z' 'a-z'`
 
 clean:
 	rm -v *.yy.[ch] *.tab.[ch] # *.o 
 
 run:
 	./helloworld                   # Run the parser
-
