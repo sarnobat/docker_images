@@ -9,7 +9,7 @@ build:
 	gcc -g -Wall -Wextra -pedantic -c	lex.yy.c
 	gcc -g -Wall -Wextra -pedantic -c	helloworld.tab.c
 	# -c     Run all of the above, plus the assembler, generating a target ".o" object file.
-# 	gcc -g -Wall -Wextra -pedantic   -c -o main.o main.c
+	gcc -g -Wall -Wextra -pedantic   -c -o main.o main.c
 # 	gcc -o main lex.yy.o main.o -ll -ly
 # 	gcc *h *.c
 # 	gcc -g -Wall -Wextra -pedantic -MM *c
