@@ -24,7 +24,7 @@ RUN apt install -y bzip2
 RUN apt install -y git
 RUN apt install -y grc
 RUN apt install -y inetutils-ping
-iproute2
+RUN apt install -y iproute2
 RUN apt install -y lsof
 RUN apt install -y net-tools
 RUN apt install -y nmap
@@ -84,4 +84,4 @@ RUN ln -sr /media/sarnobat/git/github ~/
 
 # Mounting via Dockerfile
 # This simply cannot be done. Docker images are designed to be portable. Host mounts are host specific. Thus if you are able to specify a host mount at build time, it will make the image non-portable across machine that don't have this mount folder. Thus this is why this option is not available.
-# You can use docker compose to help the user not choose the mount folder. 
+# You can use docker compose to help the user not choose the mount folder.

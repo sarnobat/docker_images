@@ -32,7 +32,7 @@ sudo docker images
 sudo docker build  --progress=plain --label mylabel --tag mytag .
 sudo docker images
 # sudo docker run --name mycontainer intro/v1
-sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh 
+sudo docker run --volume /Volumes/git/:/media/sarnobat/git --name mycontainer --detach --tty --interactive mytag zsh
 sudo docker exec -u sarnobat -it mycontainer zsh
 sudo docker stop mycontainer
 sudo docker rm mycontainer
