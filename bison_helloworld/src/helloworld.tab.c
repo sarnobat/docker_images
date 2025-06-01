@@ -71,8 +71,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "lex.yy.h"
 
-#line 76 "helloworld.tab.c"
+#line 77 "helloworld.tab.c"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -492,7 +493,7 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int8 yyrline[] =
 {
-       0,    11,    11
+       0,    12,    12
 };
 #endif
 
@@ -1049,13 +1050,13 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* start: HELLO WORLD  */
-#line 11 "helloworld.y"
+#line 12 "helloworld.y"
                    { printf("Hello, world parsed successfully!\n"); }
-#line 1055 "helloworld.tab.c"
+#line 1056 "helloworld.tab.c"
     break;
 
 
-#line 1059 "helloworld.tab.c"
+#line 1060 "helloworld.tab.c"
 
       default: break;
     }
@@ -1248,7 +1249,7 @@ yyreturnlab:
   return yyresult;
 }
 
-#line 13 "helloworld.y"
+#line 14 "helloworld.y"
 
 
 int yyerror(const char *s) {
