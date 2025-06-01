@@ -745,7 +745,7 @@ YY_RULE_SETUP
 case 4:
 YY_RULE_SETUP
 #line 9 "helloworld.l"
-;     // Ignore any other characters
+{ printf("other\n");}     // Ignore any other characters
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
