@@ -7,11 +7,14 @@ BUILT_SOURCES = helloworld.tab.h
 AM_YFLAGS = -d
 AM_LFLAGS = --header-file=helloworld.yy.h
 
-# Explicit Bison rule
+# Bison generates these
 helloworld.tab.c helloworld.tab.h: helloworld.y
 	$(YACC) -d helloworld.y
 
-# Explicit Flex rule with dependency on Bison header
+# Flex depends on Bison header
+helloworld.l: helloworld.tab.h
+
+# Flex rule
 helloworld.yy.c: helloworld.l helloworld.tab.h
 	$(LEX) $(AM_LFLAGS) helloworld.l
 
