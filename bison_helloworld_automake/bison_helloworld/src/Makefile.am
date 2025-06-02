@@ -1,8 +1,8 @@
 bin_PROGRAMS = helloworld
 
-helloworld_SOURCES = main.c helloworld.l helloworld.y
+helloworld_SOURCES = main.c helloworld.yy.c helloworld.tab.c
 
-BUILT_SOURCES = helloworld.tab.h
+BUILT_SOURCES = helloworld.tab.h helloworld.yy.c
 
 AM_YFLAGS = -d
 AM_LFLAGS = --header-file=helloworld.yy.h
@@ -11,10 +11,7 @@ AM_LFLAGS = --header-file=helloworld.yy.h
 helloworld.tab.c helloworld.tab.h: helloworld.y
 	$(YACC) -d helloworld.y
 
-# Flex depends on Bison header
-helloworld.l: helloworld.tab.h
-
-# Flex rule
+# Flex generates helloworld.yy.c, depends on Bison header
 helloworld.yy.c: helloworld.l helloworld.tab.h
 	$(LEX) $(AM_LFLAGS) helloworld.l
 
