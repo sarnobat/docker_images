@@ -12,10 +12,6 @@ echo `date +%s::`"$0" >> ~/db.git/command_history.txt >> ~/db.git/command_histor
 
 cat <<EOF | batcat --style=plain --paging=never --language sh --theme TwoDark
 
-aclocal
-autoconf
-automake --add-missing
-./configure
-make
+make distclean || true ; rm -rf autom4te.cache aclocal.m4 configure Makefile.in  && aclocal && autoconf && automake --add-missing && ./configure && make
 EOF
 
