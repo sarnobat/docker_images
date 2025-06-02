@@ -1,0 +1,6 @@
+AC_INIT([helloworld], [0.1])
+AM_INIT_AUTOMAKE([foreign])
+AC_PROG_CC
+AC_PROG_YACC
+AC_PROG_LEX
+AC_OUTPUT([Makefile])
