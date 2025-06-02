@@ -1,17 +1,19 @@
 bin_PROGRAMS = helloworld
 
-helloworld_SOURCES = main.c helloworld.yy.c helloworld.tab.c
+# Compile these generated .c files + main.c
+helloworld_SOURCES = main.c helloworld.tab.c helloworld.yy.c
 
-BUILT_SOURCES = helloworld.tab.h helloworld.yy.c
+# These files must be built before compiling sources
+BUILT_SOURCES = helloworld.tab.h helloworld.tab.c helloworld.yy.c
 
 AM_YFLAGS = -d
 AM_LFLAGS = --header-file=helloworld.yy.h
 
-# Bison generates these
+# Generate Bison output files
 helloworld.tab.c helloworld.tab.h: helloworld.y
 	$(YACC) -d helloworld.y
 
-# Flex generates helloworld.yy.c, depends on Bison header
+# Generate Flex output file (depends on Bison header)
 helloworld.yy.c: helloworld.l helloworld.tab.h
 	$(LEX) $(AM_LFLAGS) helloworld.l
 
