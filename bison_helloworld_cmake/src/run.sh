@@ -12,10 +12,18 @@ echo `date +%s::`"$0" >> ~/db.git/command_history.txt >> ~/db.git/command_histor
 
 cat <<EOF | batcat --style=plain --paging=never --language sh --theme TwoDark
 
-cd /Volumes/git/github/2024/docker_images/bison_helloworld_cmake/src && mkdir build && cd build && cmake .. && make
+
 
 make dist  # copies executable with uname-lowercase suffix
 make run   # runs the program
 make clean-temp  # removes generated flex/bison and object files
 EOF
 
+cat <<EOF | tee /tmp/make.sh | batcat --style=plain --paging=never --language sh --theme TwoDark
+cd /Volumes/git/github/2024/docker_images/bison_helloworld_cmake/src && mkdir -p build && cd build && cmake .. && make clean && make
+EOF
+
+cat <<EOF | batcat --style=plain --paging=never --language sh --theme TwoDark
+
+sh /tmp/make.sh
+EOF
