@@ -1,0 +1,21 @@
+#!/bin/sh
+
+#----------------------------------------------------------------------------
+# DESCRIPTION			
+# DATE				2025
+# AUTHOR			ss401533@gmail.com
+#----------------------------------------------------------------------------
+# template found at ~/.vim/sh_header.temp
+
+set -o errexit
+echo `date +%s::`"$0" >> ~/db.git/command_history.txt >> ~/db.git/command_history_timestamped.txt
+
+cat <<EOF | batcat --style=plain --paging=never --language sh --theme TwoDark
+
+cd /Volumes/git/github/2024/docker_images/bison_helloworld_cmake/src && mkdir build && cd build && cmake .. && make
+
+make dist  # copies executable with uname-lowercase suffix
+make run   # runs the program
+make clean-temp  # removes generated flex/bison and object files
+EOF
+
