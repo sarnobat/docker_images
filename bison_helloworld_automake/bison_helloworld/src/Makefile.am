@@ -2,8 +2,14 @@ bin_PROGRAMS = helloworld
 
 helloworld_SOURCES = main.c helloworld.l helloworld.y
 
+BUILT_SOURCES = helloworld.tab.h
+
 AM_YFLAGS = -d
 AM_LFLAGS = --header-file=helloworld.yy.h
+
+# Rule to build the header explicitly
+helloworld.tab.h: helloworld.y
+	$(YACC) -d helloworld.y
 
 CLEANFILES = *.tab.c *.tab.h *.yy.c *.yy.h *.o helloworld *darwin
 
