@@ -38,10 +38,10 @@ print_trace (void)
 
 %%
 start:
-    HELLO WORLD    { fprintf(stderr, "[debug] %s:%d Hello world parsed successfully %d %d\n", __FILE__,  __LINE__, $$, yylval);
-  print_trace ();
-
-}
+    HELLO WORLD    {
+      fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d\n", __FILE__,  __LINE__, $$, yylval);
+      print_trace();
+    }
 ;
 %%
 
