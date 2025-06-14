@@ -27,6 +27,11 @@ echo "hello world" | ./helloworld
 EOF
 
 cat <<EOF | batcat --style=plain --paging=never --language sh --theme TwoDark
+(-) CMake - cross platform
+(-) IMake - cross platform (old)
+(-) automake - GNU legacy projects
+
+https://github.com/sarnobat/cpp_makefile_helloworld
 
 sh /tmp/make.sh
 EOF
