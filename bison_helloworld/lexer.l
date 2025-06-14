@@ -1,5 +1,6 @@
 %{
-#include "helloworld.tab.h"
+// This is a circular dependency. The output file needs this even though only bison generates it
+#include "parser.tab.h"
 %}
 
 %%

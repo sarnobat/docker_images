@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "helloworld.yy.h"
+#include "lexer.yy.h"
 
 int yyerror(const char *s);
 

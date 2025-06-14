@@ -4,12 +4,14 @@ all:	build
 build:
 	set -e
 
-	flex  --header-file=helloworld.yy.h lexer.l
+	# the header file gets generated
+	flex  --header-file=lexer.yy.h lexer.l
+	ls lexer.yy.h
 
-	bison -d helloworld.y
+	bison -d parser.y
 
 	gcc -g -Wall -Wextra -pedantic -c lex.yy.c
-	gcc -g -Wall -Wextra -pedantic -c helloworld.tab.c
+	gcc -g -Wall -Wextra -pedantic -c parser.tab.c
 	gcc -g -Wall -Wextra -pedantic -c main.c
 	gcc -o main *.o -ll -ly
 
