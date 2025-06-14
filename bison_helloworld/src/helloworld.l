@@ -3,9 +3,9 @@
 %}
 
 %%
-hello    return HELLO;
-world    return WORLD;
+hello    { fprintf(stderr, "hello\n");	return HELLO;	}
+world    { fprintf(stderr, "world\n");	return WORLD;	}
 [ \t\n]+ ;     // Ignore whitespace
-.        { printf("other\n");}     // Ignore any other characters
+.        { printf("other\n"); fprintf(stderr, "other\n");}     // Ignore any other characters
 %%
 

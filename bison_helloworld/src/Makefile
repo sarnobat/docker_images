@@ -1,4 +1,5 @@
 all:	build
+	echo "now try make run"
 
 build:
 	set -e
@@ -25,5 +26,4 @@ doc:
 	cflow *c
 
 run:
-	./main
-
+	echo "hello world" | ./main
