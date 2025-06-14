@@ -4,7 +4,7 @@ all:	build
 build:
 	set -e
 
-	flex  --header-file=helloworld.yy.h helloworld.l
+	flex  --header-file=helloworld.yy.h lexer.l
 
 	bison -d helloworld.y
 
