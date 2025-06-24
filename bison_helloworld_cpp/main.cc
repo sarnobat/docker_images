@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include "parser.tab.hh"
 #include <FlexLexer.h>
+#include "globals.h"
 // extern int yyparse(void);
 
-extern yyFlexLexer* currentLexer;
+yyFlexLexer* currentLexer = nullptr;
 
 
 
@@ -17,6 +18,10 @@ int main(void) {
     currentLexer = &lexer;  // Link the global lexer
 
     yy::Parser parser(&lexer);
+
+
+    
+    
 	fprintf(stderr, "[debug] %s:%d\treturned from yyparse()\n", __FILE__,  __LINE__);
 	return parser.parse();
 

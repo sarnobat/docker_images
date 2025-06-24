@@ -2,9 +2,18 @@
 %option noyywrap
 
 %{
+#ifndef GLOBALS_H
+#define GLOBALS_H
+
+#include <FlexLexer.h>
+
+extern yyFlexLexer* currentLexer;
+
+#endif
+
 #include "parser.tab.hh"
 using namespace yy;
-yyFlexLexer* currentLexer = nullptr;
+
 %}
 
 %%
