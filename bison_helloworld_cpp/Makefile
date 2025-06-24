@@ -5,14 +5,14 @@ build:
 	set -e
 
 	# the header file gets generated
-	flex  --header-file=lexer.yy.h lexer.l
-	ls lexer.yy.h
+	flex  --header-file=lexer.yy.hh lexer.l
+	ls lexer.yy.hh
 
 	bison -d parser.y
 
-	g++ -g -Wall -Wextra -pedantic -c lex.yy.c
-	g++ -g -Wall -Wextra -pedantic -c parser.tab.c
-	g++ -g -Wall -Wextra -pedantic -c main.c
+	g++ -g -Wall -Wextra -pedantic -c lex.yy.cc
+	g++ -g -Wall -Wextra -pedantic -c parser.tab.cc
+	g++ -g -Wall -Wextra -pedantic -c main.cc
 	g++ -o main *.o -ll -ly
 
 dist:	build
