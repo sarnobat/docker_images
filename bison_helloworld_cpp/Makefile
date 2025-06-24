@@ -19,7 +19,7 @@ dist:	build
 	cp main helloworld.`uname | tr 'A-Z' 'a-z'`
 
 clean-temp:
-	rm -fv *.yy.cc *.tab.[ch] *o
+	rm -fv *.yy.cc *.yy.hh *.tab.cc *.tab.hh *o stack.hh
 
 clean:	clean-temp
 	rm -fv main *darwin
