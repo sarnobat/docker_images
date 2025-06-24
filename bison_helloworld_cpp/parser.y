@@ -2,8 +2,14 @@
 %language "C++"
 
 %defines
-%define api.namespace {myparser}
 %define api.parser.class {Parser}
+%define api.namespace {yy}
+
+%code requires {
+    class yyFlexLexer;
+}
+
+%parse-param { yyFlexLexer* lexer }
 
 %{
 #include <execinfo.h>
@@ -11,7 +17,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lexer.yy.h"
+#include "lexer.yy.hh"
 
 int yyerror(const char *s);
 

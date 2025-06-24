@@ -11,9 +11,9 @@ build:
 	bison -d parser.y
 
 	g++ -g -Wall -Wextra -pedantic -c lex.yy.cc
-	g++ -g -Wall -Wextra -pedantic -c parser.tab.cc
-	g++ -g -Wall -Wextra -pedantic -c main.cc
-	g++ -o main *.o -ll -ly
+	# g++ -g -Wall -Wextra -pedantic -c parser.tab.cc
+	# g++ -g -Wall -Wextra -pedantic -c main.cc
+	# g++ -o main *.o -ll -ly
 
 dist:	build
 	cp main helloworld.`uname | tr 'A-Z' 'a-z'`
