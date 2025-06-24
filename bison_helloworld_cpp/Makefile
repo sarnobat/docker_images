@@ -11,9 +11,9 @@ build:
 	bison -d -o parser.tab.cc --skeleton=lalr1.cc parser.y
 
 	g++ -g -Wall -Wextra -pedantic -c lex.yy.cc -Wno-sign-compare
-	g++ -g -Wall -Wextra -pedantic -c parser.tab.cc
-	# g++ -g -Wall -Wextra -pedantic -c main.cc
-	# g++ -o main *.o -ll -ly
+	g++ -g -Wall -Wextra -pedantic -c parser.tab.cc -Wno-unused-but-set-variable
+	g++ -g -Wall -Wextra -pedantic -c main.cc
+	g++ -o main *.o
 
 dist:	build
 	cp main helloworld.`uname | tr 'A-Z' 'a-z'`

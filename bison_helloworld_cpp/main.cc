@@ -3,16 +3,24 @@
 #include <FlexLexer.h>
 // extern int yyparse(void);
 
+extern yyFlexLexer* currentLexer;
+
+
+
 int main(void) {
 	printf("main()\n");
 
 	fprintf(stderr, "[debug] %s:%d\tgoing to call yyparse()\n", __FILE__,  __LINE__);
 	// int status = yyparse();
 
-    yyFlexLexer lexer;
+	yyFlexLexer lexer;
+    currentLexer = &lexer;  // Link the global lexer
+
     yy::Parser parser(&lexer);
-    return parser.parse();
 	fprintf(stderr, "[debug] %s:%d\treturned from yyparse()\n", __FILE__,  __LINE__);
+	return parser.parse();
+
+
 
 }
 

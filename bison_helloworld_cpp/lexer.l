@@ -4,6 +4,7 @@
 %{
 #include "parser.tab.hh"
 using namespace yy;
+yyFlexLexer* currentLexer = nullptr;
 %}
 
 %%

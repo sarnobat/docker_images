@@ -11,8 +11,9 @@
 }
 
 %code {
-    yy::Parser::symbol_type yylex();
+    yy::Parser::symbol_type yylex();  // No parameters!
 }
+
 %token HELLO WORLD
 
 %{
@@ -23,7 +24,6 @@
 
 #include "lexer.yy.hh"
 
-int yyerror(const char *s);
 
 
 /* Obtain a backtrace and print it to stdout. */
@@ -54,18 +54,18 @@ print_trace (void)
 %%
 start:
     HELLO WORLD    {
-      fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d\n", __FILE__,  __LINE__, $$, yyla);
+//      fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d\n", __FILE__,  __LINE__, $$, yyla);
+      fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d %d\n",
+        __FILE__, __LINE__, yylhs.value.as<int>(), yyla.value.as<int>());
+
       print_trace();
     }
 ;
 %%
-
-yy::Parser::symbol_type yy::Parser::yylex() {
-    return lexer->yylex();
+yy::Parser::symbol_type yylex() {
+    return currentParser->lexer_->yylex();  // assuming you track the parser globally
 }
 
-
-int yyerror(const char *s) {
-    fprintf(stderr, "Parse error: %s\n", s);
-    return 1;
+void yy::Parser::error(const std::string& msg) {
+    std::cerr << "Syntax error: " << msg << std::endl;
 }
