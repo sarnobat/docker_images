@@ -11,7 +11,7 @@ build:
 	bison -d parser.y
 
 	g++ -g -Wall -Wextra -pedantic -c lex.yy.cc -Wno-sign-compare
-	# g++ -g -Wall -Wextra -pedantic -c parser.tab.cc
+	#g++ -g -Wall -Wextra -pedantic -c parser.tab.cc
 	# g++ -g -Wall -Wextra -pedantic -c main.cc
 	# g++ -o main *.o -ll -ly
 

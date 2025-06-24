@@ -51,7 +51,7 @@ print_trace (void)
 %%
 start:
     HELLO WORLD    {
-      fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d\n", __FILE__,  __LINE__, $$, yylval);
+      fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d\n", __FILE__,  __LINE__, $$, yyla);
       print_trace();
     }
 ;
