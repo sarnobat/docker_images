@@ -5,12 +5,16 @@ build:
 	set -e
 
 	# the header file gets generated
-	flex  --header-file=lexer.yy.hh lexer.l
+# 	/opt/homebrew/opt/flex/bin/flex --header-file=lexer.yy.hh lexer.l
+# 	/opt/homebrew/opt/flex/bin/flex --header-file=lexer.yy.hh --yyclass=MyFlexLexer -o lex.yy.cc lexer.l
+	/opt/homebrew/opt/flex/bin/flex --header-file=lexer.yy.hh --prefix=MyLexer -o lex.yy.cc lexer.l
+
+
 	ls lexer.yy.hh
 
-	bison -d -o parser.tab.cc --skeleton=lalr1.cc parser.y
+	/opt/homebrew/Cellar/bison/3.8.2/bin/bison -d -o parser.tab.cc --skeleton=lalr1.cc parser.y
 
-	g++ -g -Wall -Wextra -pedantic -c lex.yy.cc -Wno-sign-compare
+	g++ -I/opt/homebrew/opt/flex/include -g -Wall -Wextra -pedantic -c lex.yy.cc -Wno-sign-compare
 	g++ -g -Wall -Wextra -pedantic -c parser.tab.cc -Wno-unused-but-set-variable
 	g++ -g -Wall -Wextra -pedantic -c main.cc
 	g++ -o main *.o
