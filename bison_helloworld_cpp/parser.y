@@ -1,15 +1,19 @@
-
+%skeleton "lalr1.cc"
 %language "C++"
-
-%defines
-%define api.parser.class {Parser}
 %define api.namespace {yy}
+%define api.parser.class {Parser}
+%define api.token.constructor
+%define api.value.type variant
+%parse-param { yyFlexLexer* lexer }
 
 %code requires {
     class yyFlexLexer;
 }
 
-%parse-param { yyFlexLexer* lexer }
+%code {
+    yy::Parser::symbol_type yylex();
+}
+%token HELLO WORLD
 
 %{
 #include <execinfo.h>
@@ -46,7 +50,6 @@ print_trace (void)
 
 %}
 
-%token HELLO WORLD
 
 %%
 start:
@@ -56,6 +59,11 @@ start:
     }
 ;
 %%
+
+yy::Parser::symbol_type yy::Parser::yylex() {
+    return lexer->yylex();
+}
+
 
 int yyerror(const char *s) {
     fprintf(stderr, "Parse error: %s\n", s);

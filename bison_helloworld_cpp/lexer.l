@@ -2,9 +2,8 @@
 %option noyywrap
 
 %{
-// This is a circular dependency. The output file needs this even though only bison generates it
 #include "parser.tab.hh"
-//using namespace myparser;  // Optional for shorthand
+using namespace yy;
 %}
 
 %%
