@@ -1,4 +1,10 @@
 
+%language "C++"
+
+%defines
+%define api.namespace {myparser}
+%define api.parser.class {Parser}
+
 %{
 #include <execinfo.h>
 #include <signal.h>

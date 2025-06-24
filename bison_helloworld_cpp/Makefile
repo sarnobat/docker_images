@@ -10,16 +10,16 @@ build:
 
 	bison -d parser.y
 
-	gcc -g -Wall -Wextra -pedantic -c lex.yy.c
-	gcc -g -Wall -Wextra -pedantic -c parser.tab.c
-	gcc -g -Wall -Wextra -pedantic -c main.c
-	gcc -o main *.o -ll -ly
+	g++ -g -Wall -Wextra -pedantic -c lex.yy.c
+	g++ -g -Wall -Wextra -pedantic -c parser.tab.c
+	g++ -g -Wall -Wextra -pedantic -c main.c
+	g++ -o main *.o -ll -ly
 
 dist:	build
 	cp main helloworld.`uname | tr 'A-Z' 'a-z'`
 
 clean-temp:
-	rm -fv *.yy.[ch] *.tab.[ch] *o
+	rm -fv *.yy.cc *.tab.[ch] *o
 
 clean:	clean-temp
 	rm -fv main *darwin
