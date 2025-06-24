@@ -21,7 +21,7 @@ EOF
 
 cat <<EOF | tee /tmp/make.sh | batcat --style=plain --paging=never --language sh --theme TwoDark
 set -e
-cd /Volumes/git/github/2024/docker_images/bison_helloworld_cmake/src && mkdir -p build && cd build && cmake .. && make clean && make
+cd /Volumes/git/github/2024/docker_images/bison_helloworld_cmake/src && mkdir -p build && cd build && cmake --graphviz=call_graph.dot .. && make clean && make
 pwd
 echo "hello world" | ./helloworld
 EOF
