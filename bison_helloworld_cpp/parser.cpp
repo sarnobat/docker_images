@@ -41,6 +41,7 @@
     #include "scanner.h"
     #include "parser.hpp"
     
+    // called from Parser.cpp::Parser.parse() (which is called from main())
     // yylex() arguments are defined in parser.y
     static EzAquarii::Parser::symbol_type yylex(EzAquarii::Scanner &scanner) {
         cout << "SRIDHAR 4 - scanner waiting for next token)";
@@ -54,7 +55,7 @@
     
     using namespace EzAquarii;
 
-#line 58 "parser.cpp"
+#line 59 "parser.cpp"
 
 
 
@@ -135,7 +136,7 @@
 
 #line 9 "parser.y"
 namespace  EzAquarii  {
-#line 139 "parser.cpp"
+#line 140 "parser.cpp"
 
   /// Build a parser object.
    Parser :: Parser  (EzAquarii::Scanner &scanner_yyarg)
@@ -595,7 +596,7 @@ namespace  EzAquarii  {
           switch (yyn)
             {
   case 2: // program: %empty
-#line 71 "parser.y"
+#line 72 "parser.y"
             {
                 cout << "Examples: " << endl
                      << " * function()" << endl
@@ -607,64 +608,64 @@ namespace  EzAquarii  {
                 //assert(false);
                 
             }
-#line 611 "parser.cpp"
+#line 612 "parser.cpp"
     break;
 
   case 3: // program: program command
-#line 83 "parser.y"
+#line 84 "parser.y"
             {
                 const Command &cmd = yystack_[0].value.as <  EzAquarii::Command  > ();
                 cout << "SRIDHAR: command parsed, updating AST" << endl;
                 cout << endl << "SRIDHAR 2 prompt> ";
                 assert(false);
             }
-#line 622 "parser.cpp"
+#line 623 "parser.cpp"
     break;
 
   case 4: // program: program "semicolon"
-#line 90 "parser.y"
+#line 91 "parser.y"
             {
                 // assert(false);
                 cout << "*** STOP RUN (no more non-terminals to read) ***" << endl;
                 // assert(false);
             }
-#line 632 "parser.cpp"
+#line 633 "parser.cpp"
     break;
 
   case 5: // command: "string" "leftpar" "rightpar"
-#line 99 "parser.y"
+#line 100 "parser.y"
         {
             string &id = yystack_[2].value.as < std::string > ();
             cout << "ID: " << id << endl;
             yylhs.value.as <  EzAquarii::Command  > () = Command(id);
         }
-#line 642 "parser.cpp"
+#line 643 "parser.cpp"
     break;
 
   case 6: // command: "string" "leftpar" arguments "rightpar"
-#line 105 "parser.y"
+#line 106 "parser.y"
         {
             string &id = yystack_[3].value.as < std::string > ();
             const std::vector<uint64_t> &args = yystack_[1].value.as <  std::vector<uint64_t>  > ();
             cout << "function: " << id << ", " << args.size() << endl;
             yylhs.value.as <  EzAquarii::Command  > () = Command(id, args);
         }
-#line 653 "parser.cpp"
+#line 654 "parser.cpp"
     break;
 
   case 7: // arguments: "number"
-#line 114 "parser.y"
+#line 115 "parser.y"
         {
             uint64_t number = yystack_[0].value.as < uint64_t > ();
             yylhs.value.as <  std::vector<uint64_t>  > () = std::vector<uint64_t>();
             yylhs.value.as <  std::vector<uint64_t>  > ().push_back(number);
             cout << "first argument: " << number << endl;
         }
-#line 664 "parser.cpp"
+#line 665 "parser.cpp"
     break;
 
   case 8: // arguments: arguments "comma" "number"
-#line 121 "parser.y"
+#line 122 "parser.y"
         {
             uint64_t number = yystack_[0].value.as < uint64_t > ();
             std::vector<uint64_t> &args = yystack_[2].value.as <  std::vector<uint64_t>  > ();
@@ -672,11 +673,11 @@ namespace  EzAquarii  {
             yylhs.value.as <  std::vector<uint64_t>  > () = args;
             cout << "next argument: " << number << ", arg list size = " << args.size() << endl;
         }
-#line 676 "parser.cpp"
+#line 677 "parser.cpp"
     break;
 
 
-#line 680 "parser.cpp"
+#line 681 "parser.cpp"
 
             default:
               break;
@@ -1105,7 +1106,7 @@ namespace  EzAquarii  {
   const signed char
    Parser ::yyrline_[] =
   {
-       0,    71,    71,    82,    89,    98,   104,   113,   120
+       0,    72,    72,    83,    90,    99,   105,   114,   121
   };
 
   void
@@ -1138,9 +1139,9 @@ namespace  EzAquarii  {
 
 #line 9 "parser.y"
 } //  EzAquarii 
-#line 1142 "parser.cpp"
+#line 1143 "parser.cpp"
 
-#line 130 "parser.y"
+#line 131 "parser.y"
 
 
 // Bison expects us to provide implementation - otherwise linker complains
