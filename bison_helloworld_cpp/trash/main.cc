@@ -1,3 +1,4 @@
+#include <FlexLexer.h>
 #include "parser.tab.hh"
 #include "globals.h"
 
@@ -9,4 +10,9 @@ int main() {
 
     yy::Parser parser(&lexer);
     return parser.parse();
+}
+
+
+yy::Parser::symbol_type yylex() {
+    return currentLexer->yylex();
 }

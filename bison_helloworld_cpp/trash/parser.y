@@ -11,7 +11,7 @@
 }
 
 %code {
-    yy::Parser::symbol_type yylex();  // Free function, not a method
+    yy::Parser::symbol_type yylex();
 }
 
 %token HELLO WORLD
@@ -24,14 +24,7 @@ greeting:
 
 %%
 
-#include "globals.h"
-
-// Define yylex as a free function
-yy::Parser::symbol_type yylex() {
-    return currentLexer->yylex();
-}
-
-// Required error handler
+// Error handler required by Bison's C++ skeleton
 void yy::Parser::error(const std::string& msg) {
     std::cerr << "Syntax error: " << msg << std::endl;
 }
