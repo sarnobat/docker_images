@@ -34,12 +34,15 @@ print_trace (void)
 
 %}
 
-%token HELLO WORLD
+%token HELLO WORLD NEWLINE
 
 %%
 start:
     HELLO WORLD    {
       fprintf(stderr, "[debug] %s:%d production HELLO WORLD detected %d\n", __FILE__,  __LINE__, $$, yylval);
+      print_trace();
+    }
+    NEWLINE {fprintf(stderr, "[debug] %s:%d production NEWLINE detected %d\n", __FILE__,  __LINE__, $$, yylval);
       print_trace();
     }
 ;
