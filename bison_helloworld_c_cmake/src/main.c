@@ -3,7 +3,7 @@
 extern int yyparse(void);
 
 int main(void) {
-	printf("main()\n");
+	printf("[debug] %s:%d main()\n", __FILE__,  __LINE__);
 	return yyparse();
 }
 
