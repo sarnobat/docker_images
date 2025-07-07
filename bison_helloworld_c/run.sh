@@ -21,12 +21,12 @@ cat <<EOF | batcat --style=plain --paging=never --language sh --theme TwoDark
 '            '     '                '     '             '
 + - - - - - -+     +- - - - - - - - +     + - - - - - - +
 
-
-
-
-2025-07-04 - I'm not sure this is true anymore. The source files look the same now.
-
+(2025-07-04 - I'm not sure the following is true anymore. The source files look the same now.)
 
 This makefile is easier to understand. 	But for latest C code, use /Volumes/git/github/2024/docker_images/bison_helloworld_cmake/src which has a bit more bison functionality and run instructions.
+
+Python Lark parser generator is even easier. Look at:
+
+	/Volumes/git/github/python/11_grammar_parser_generator_lark
 EOF
 
