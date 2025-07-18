@@ -30,8 +30,8 @@ RUN apt install -y bat
 RUN apt install -y psmisc
 RUN apt install -y zsh
 
-RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.guess'
-RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.sub'
+# RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.guess'
+# RUN wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.sub'
 # RUN ./configure x86_64
 # RUN autoreconf --install
 RUN ./configure
@@ -78,9 +78,9 @@ ENV PATH=/usr/local/pgsql/bin/:/usr/local/bin/:$PATH
 
 # RUN createuser -s -d -r postgres
 # RUN psql -U postgres
-# COPY ./docker-entrypoint.sh /proj/
+COPY ./docker-entrypoint.sh /proj/
 # COPY ./docker-entrypoint.sh /usr/local/bin/
-# COPY ./docker-entrypoint.sh /usr/bin/
+COPY ./docker-entrypoint.sh /usr/bin/
 # WORKDIR /
 RUN echo $PATH
-ENTRYPOINT ["docker-entrypoint.sh"]
+# ENTRYPOINT ["docker-entrypoint.sh"]
