@@ -66,7 +66,12 @@ NFS_Core_Param {
     Bind_Addr = 0.0.0.0;
     MNT_Port = 20048;
     NFS_Port = 2049;
+}
+
+NFSv4 {
     Grace_Period = 0;
+    Lease_Lifetime = 10;
+    RecoveryBackend = fs;
 }
 
 NFS_KRB5 {
