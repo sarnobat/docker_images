@@ -1,83 +1,151 @@
-# Dockerfile: hello-fuse-nfs
+# ==============================================
+#  FUSE + NFS-Ganesha Complete Working Solution
+#  Exports FUSE filesystem via NFS using bindfs
+#  REQUIRES: docker run --privileged -p 2049:2049
+# ==============================================
 FROM ubuntu:24.04
+ENV DEBIAN_FRONTEND=noninteractive
 
+# ---- Install all required packages ----
 RUN apt-get update && \
-    apt-get install -y fuse libfuse2 libfuse-dev nfs-kernel-server build-essential && \
-    mkdir -p /mnt/fuse /exports && \
-    echo "/mnt/fuse *(rw,sync,no_subtree_check,no_root_squash)" > /etc/exports
+    apt-get install -y \
+        fuse3 libfuse3-dev \
+        bindfs \
+        nfs-ganesha nfs-ganesha-vfs \
+        dbus \
+        build-essential \
+        net-tools iproute2 procps psmisc vim less && \
+    echo "user_allow_other" >> /etc/fuse.conf && \
+    mkdir -p /mnt/fuse /export/fuse /var/run/ganesha /var/lib/nfs /var/log /run/dbus
 
-# --- Hello World FUSE filesystem source ---
+# ---- Build the FUSE "Hello World" program ----
 RUN cat > /root/hello.c <<'EOF'
 #define FUSE_USE_VERSION 31
 #include <fuse3/fuse.h>
 #include <string.h>
+#include <errno.h>
+#include <fcntl.h>
+#include <stddef.h>
 
-static int hello_getattr(const char *path, struct stat *st, struct fuse_file_info *fi) {
-    (void) fi;
-    memset(st, 0, sizeof(struct stat));
-    if (strcmp(path, "/") == 0) {
-        st->st_mode = S_IFDIR | 0755;
-        st->st_nlink = 2;
-    } else if (strcmp(path, "/hello") == 0) {
-        st->st_mode = S_IFREG | 0444;
-        st->st_nlink = 1;
-        st->st_size = 13;
-    } else
-        return -ENOENT;
+static int getattr_cb(const char *p, struct stat *st, struct fuse_file_info *fi) {
+    (void)fi; memset(st,0,sizeof(*st));
+    if (!strcmp(p,"/")) { st->st_mode=S_IFDIR|0755; st->st_nlink=2; return 0; }
+    if (!strcmp(p,"/hello")) { st->st_mode=S_IFREG|0444; st->st_nlink=1; st->st_size=13; return 0; }
+    return -ENOENT;
+}
+static int readdir_cb(const char *p, void *b, fuse_fill_dir_t f, off_t o,
+                      struct fuse_file_info *fi, enum fuse_readdir_flags fl) {
+    (void)o;(void)fi;(void)fl;
+    if (strcmp(p,"/")) return -ENOENT;
+    f(b,".",NULL,0,0); f(b,"..",NULL,0,0); f(b,"hello",NULL,0,0);
     return 0;
 }
-
-static int hello_readdir(const char *path, void *buf, fuse_fill_dir_t filler,
-                         off_t offset, struct fuse_file_info *fi, enum fuse_readdir_flags flags) {
-    (void) offset; (void) fi; (void) flags;
-    if (strcmp(path, "/") != 0)
-        return -ENOENT;
-    filler(buf, ".", NULL, 0, 0);
-    filler(buf, "..", NULL, 0, 0);
-    filler(buf, "hello", NULL, 0, 0);
+static int open_cb(const char *p, struct fuse_file_info *fi) {
+    if (strcmp(p,"/hello")) return -ENOENT;
+    if ((fi->flags&O_ACCMODE)!=O_RDONLY) return -EACCES;
     return 0;
 }
+static int read_cb(const char *p,char *b,size_t s,off_t o,struct fuse_file_info *fi){
+    const char *msg="Hello World!\n"; size_t l=strlen(msg);
+    if (strcmp(p,"/hello")) return -ENOENT;
+    if (o<l){ if (o+s>l) s=l-o; memcpy(b,msg+o,s);} else s=0; return s;
+}
+static const struct fuse_operations ops={ .getattr=getattr_cb,.readdir=readdir_cb,
+                                         .open=open_cb,.read=read_cb };
+int main(int a,char **v){ return fuse_main(a,v,&ops,NULL); }
+EOF
 
-static int hello_open(const char *path, struct fuse_file_info *fi) {
-    if (strcmp(path, "/hello") != 0)
-        return -ENOENT;
-    if ((fi->flags & O_ACCMODE) != O_RDONLY)
-        return -EACCES;
-    return 0;
+RUN gcc /root/hello.c -o /usr/local/bin/hello -lfuse3
+
+# ---- Configure NFS-Ganesha ----
+RUN mkdir -p /etc/ganesha
+RUN cat > /etc/ganesha/ganesha.conf <<'EOF'
+NFS_Core_Param {
+    NFS_Protocols = 4;
+    Bind_Addr = 0.0.0.0;
+    Disable_Tcp6 = true;
+    MNT_Port = 20048;
+    NFS_Port = 2049;
 }
 
-static int hello_read(const char *path, char *buf, size_t size, off_t offset,
-                      struct fuse_file_info *fi) {
-    const char *hello_str = "Hello World!\n";
-    size_t len = strlen(hello_str);
-    if (strcmp(path, "/hello") != 0)
-        return -ENOENT;
-    if (offset < len) {
-        if (offset + size > len)
-            size = len - offset;
-        memcpy(buf, hello_str + offset, size);
-    } else
-        size = 0;
-    return size;
+NFS_KRB5 {
+    Active_krb5 = false;
 }
 
-static const struct fuse_operations hello_oper = {
-    .getattr = hello_getattr,
-    .readdir = hello_readdir,
-    .open    = hello_open,
-    .read    = hello_read,
-};
+LOG {
+    Components {
+        ALL = EVENT;
+    }
+    Facility {
+        name = FILE;
+        destination = "/var/log/ganesha.log";
+    }
+}
 
-int main(int argc, char *argv[]) {
-    return fuse_main(argc, argv, &hello_oper, NULL);
+EXPORT {
+    Export_Id = 1;
+    Path = /export/fuse;
+    Pseudo = /;
+    Access_Type = RW;
+    Squash = No_Root_Squash;
+    Protocols = 4;
+    Transports = TCP;
+    SecType = "sys";
+    FSAL { Name = VFS; }
 }
 EOF
 
-# --- Build FUSE hello ---
-RUN gcc /root/hello.c -o /usr/local/bin/hello -lfuse3
+# ---- Expose NFS port ----
+EXPOSE 2049
 
-# --- Entrypoint: start FUSE + NFS ---
-CMD /usr/local/bin/hello /mnt/fuse -f -o allow_other & \
-    service nfs-kernel-server start && \
-    echo "Container ready. Exporting /mnt/fuse over NFS..." && \
-    tail -f /dev/null
+# ---- Entrypoint ----
+CMD ["/bin/bash", "-c", "\
+set -e; \
+echo '🔧 Setting up directories...'; \
+mkdir -p /var/run/ganesha /var/lib/nfs /var/log /run/dbus /mnt/fuse /export/fuse; \
+\
+echo '🚀 Starting DBUS...'; \
+dbus-daemon --system --fork 2>/dev/null || true; \
+\
+echo '📁 Starting FUSE Hello filesystem at /mnt/fuse...'; \
+/usr/local/bin/hello /mnt/fuse -f -o allow_other & \
+sleep 3; \
+\
+echo '✅ Verifying FUSE mount...'; \
+if ! mountpoint -q /mnt/fuse; then \
+  echo '❌ ERROR: FUSE mount failed!'; \
+  echo '❌ Run container with: docker run --privileged -p 2049:2049 IMAGE'; \
+  exit 1; \
+fi; \
+ls -la /mnt/fuse; \
+cat /mnt/fuse/hello; \
+\
+echo '🔗 Binding FUSE to /export/fuse with bindfs...'; \
+bindfs /mnt/fuse /export/fuse; \
+ls -la /export/fuse; \
+\
+echo '✅ Starting NFS-Ganesha...'; \
+ganesha.nfsd -F -f /etc/ganesha/ganesha.conf -L /var/log/ganesha.log -N NIV_EVENT & \
+sleep 3; \
+\
+echo ''; \
+echo '═══════════════════════════════════════════════'; \
+echo '✅ NFS Server Ready!'; \
+echo '═══════════════════════════════════════════════'; \
+echo 'FUSE mount: /mnt/fuse'; \
+echo 'NFS export: /export/fuse'; \
+echo 'NFS port: 2049'; \
+echo ''; \
+echo 'Test inside container:'; \
+echo '  mkdir -p /mnt/test'; \
+echo '  mount -t nfs -o vers=4,port=2049 127.0.0.1:/ /mnt/test'; \
+echo '  cat /mnt/test/hello'; \
+echo ''; \
+echo 'Test from host (get container IP first):'; \
+echo '  hostname -I'; \
+echo '  sudo mount -t nfs -o vers=4 CONTAINER_IP:/ /tmp/nfs'; \
+echo '═══════════════════════════════════════════════'; \
+echo ''; \
+\
+tail -f /var/log/ganesha.log \
+"]
