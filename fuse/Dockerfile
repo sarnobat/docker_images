@@ -48,7 +48,7 @@ static int open_cb(const char *p, struct fuse_file_info *fi) {
     return 0;
 }
 static int read_cb(const char *p,char *b,size_t s,off_t o,struct fuse_file_info *fi){
-    const char *msg="Hello World!\n"; size_t l=strlen(msg);
+    const char *msg="Hello World\n"; size_t l=strlen(msg);
     if (strcmp(p,"/hello")) return -ENOENT;
     if (o<l){ if (o+s>l) s=l-o; memcpy(b,msg+o,s);} else s=0; return s;
 }
@@ -122,10 +122,10 @@ echo '📁 Starting FUSE Hello filesystem at /mnt/fuse...'; \
 /usr/local/bin/hello /mnt/fuse -f -o allow_other & \
 sleep 3; \
 \
-echo '✅ Verifying FUSE mount...'; \
+echo 'Verifying FUSE mount...'; \
 if ! mountpoint -q /mnt/fuse; then \
-  echo '❌ ERROR: FUSE mount failed!'; \
-  echo '❌ Run container with: docker run --privileged -p 2049:2049 IMAGE'; \
+  echo 'ERROR: FUSE mount failed'; \
+  echo 'Run container with: docker run --privileged -p 2049:2049 IMAGE'; \
   exit 1; \
 fi; \
 ls -la /mnt/fuse; \
@@ -135,21 +135,21 @@ echo '🔗 Binding FUSE to /export/fuse with bindfs...'; \
 bindfs /mnt/fuse /export/fuse; \
 ls -la /export/fuse; \
 \
-echo '✅ Starting NFS-Ganesha...'; \
+echo 'Starting NFS-Ganesha...'; \
 ganesha.nfsd -F -f /etc/ganesha/ganesha.conf -L /var/log/ganesha.log -N NIV_EVENT & \
 sleep 5; \
 \
 echo '🔍 Verifying NFS port 2049 is listening...'; \
 if ! netstat -tulpn | grep -q ':2049'; then \
-  echo '❌ ERROR: NFS port 2049 not listening!'; \
-  echo '❌ Ganesha failed to start properly'; \
+  echo 'ERROR: NFS port 2049 not listening'; \
+  echo 'Ganesha failed to start properly'; \
   cat /var/log/ganesha.log | tail -20; \
   exit 1; \
 fi; \
 \
 echo ''; \
 echo '═══════════════════════════════════════════════'; \
-echo '✅ NFS Server Ready!'; \
+echo 'NFS Server Ready'; \
 echo '═══════════════════════════════════════════════'; \
 echo 'FUSE mount: /mnt/fuse'; \
 echo 'NFS export: /export/fuse'; \
