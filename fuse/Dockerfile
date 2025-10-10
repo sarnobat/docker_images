@@ -13,6 +13,7 @@ RUN apt-get update && \
         bindfs \
         nfs-ganesha nfs-ganesha-vfs \
         rpcbind \
+        systemd-sysv \
         dbus \
         build-essential \
         net-tools iproute2 procps psmisc vim less && \
@@ -166,4 +167,4 @@ echo '════════════════════════�
 echo ''; \
 \
 tail -f /var/log/ganesha.log \
-"]
+"]  
