@@ -1,4 +1,4 @@
-    # ==============================================
+# ==============================================
 #  FUSE + NFS-Ganesha Complete Working Solution
 #  Exports FUSE filesystem via NFS using bindfs
 #  REQUIRES: docker run --privileged -p 2049:2049
@@ -9,18 +9,31 @@ ENV DEBIAN_FRONTEND=noninteractive
 # ---- Install all required packages ----
 RUN apt-get update && \
     apt-get install -y \
-        python3 python3-pip \
+        python3 python3-pip-whl python3-pip python3-venv \
         fuse3 bindfs rpcbind dbus \
         nfs-ganesha nfs-ganesha-vfs \
-        net-tools iproute2 procps psmisc vim less && \
-    echo "user_allow_other" >> /etc/fuse.conf && \
-    pip install fusepy && \
-    mkdir -p /mnt/fuse /export/fuse /var/run/ganesha /var/lib/nfs /var/log /run/dbus /root/app
+        net-tools iproute2 procps psmisc vim less
+
+RUN echo "user_allow_other" >> /etc/fuse.conf && \
+    python3 -m venv /opt/venv && \
+        /opt/venv/bin/python3 -m ensurepip --upgrade && \
+        /opt/venv/bin/pip install fusepy && \
+        mkdir -p /mnt/fuse /export/fuse /var/run/ganesha /var/lib/nfs /var/log /run/dbus /root/app
+
+    # python3 -m pip install --upgrade pip setuptools && \
+    # python3 -m pip install --break-system-packages fusepy && \
+    # mkdir -p /mnt/fuse /export/fuse /var/run/ganesha /var/lib/nfs /var/log /run/dbus /root/app
 
 # ---- Copy Python FUSE script ----
 COPY hello.py /root/app/hello.py
 
 # ---- Configure NFS-Ganesha ----
+
+# RUN apt-get install -y \
+#         fuse3 bindfs rpcbind dbus \
+#         nfs-ganesha nfs-ganesha-vfs \
+#         net-tools iproute2 procps psmisc vim less
+
 RUN mkdir -p /etc/ganesha
 RUN cat > /etc/ganesha/ganesha.conf <<'EOF'
 NFS_Core_Param {
@@ -57,6 +70,9 @@ EOF
 
 # ---- Expose NFS port ----
 EXPOSE 2049
+
+ENV PATH="/opt/venv/bin:$PATH"
+
 
 # ---- Entrypoint ----
 CMD ["/bin/bash", "-c", "\
