@@ -1,4 +1,5 @@
 build:
+	docker rm fuse-nfs-test || echo ""
 # 	docker build -t fuse-nfs-image .
 	# detached is hard to stop
 	docker run -d --privileged -p 2049:2049 --name fuse-nfs-test fuse-nfs
