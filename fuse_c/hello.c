@@ -44,6 +44,12 @@ static int open_cb(const char *p, struct fuse_file_info *fi) {
 static int read_cb(const char *p, char *b, size_t s, off_t o,
                    struct fuse_file_info *fi) {
   const char *msg = "Hello World C\n";
+   //fprintf(stderr, "[trace] %10s:%-5d %32s() SRIDHAR\n", __FILE__, __LINE__, __func__);
+
+  // I can't get this to work
+  //  const char msg[256];  // You can size this as needed
+  //  snprintf(msg, sizeof(msg), "[tracey] %10s:%-5d %32s() SRIDHAR\n", __FILE__, __LINE__, __func__);
+
   size_t l = strlen(msg);
   if (strcmp(p, "/hello"))
     return -ENOENT;

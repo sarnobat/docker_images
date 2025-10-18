@@ -1,8 +1,8 @@
-    # ==============================================
+# ==============================================
 #  FUSE + NFS-Ganesha Complete Working Solution
 #  Exports FUSE filesystem via NFS using bindfs
 #  REQUIRES: docker run --privileged -p 2049:2049
-==============================================
+# ==============================================
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -28,7 +28,7 @@ RUN apt-get install -y \
 
 COPY hello.c /root/hello.c
 
-RUN gcc /root/hello.c -o /usr/local/bin/hello -lfuse3
+RUN gcc /root/hello.c -o /usr/local/bin/hello -lfuse3 || { echo "Build failed"; exit 1; }
 
 # ---- Configure NFS-Ganesha ----
 RUN mkdir -p /etc/ganesha
