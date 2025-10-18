@@ -45,6 +45,16 @@ NFS_Core_Param {
     NFS_Port = 2051;
 }
 
+NFSv4 {
+    Grace_Period = 0;
+    Lease_Lifetime = 10;
+    RecoveryBackend = fs;
+}
+
+NFS_KRB5 {
+    Active_krb5 = false;
+}
+
 LOG {
     Components {
         ALL = EVENT;

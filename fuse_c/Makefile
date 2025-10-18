@@ -1,20 +1,23 @@
-build:
-	docker stop fuse-nfs-test  || echo ""
-	docker rm fuse-nfs-test || echo ""
-	# detached is hard to stop
-	docker run -d --privileged -p 2049:2049 --name fuse-nfs-test fuse-nfs-image
-	mkdir -p /tmp/nfs-test
-	sudo mount -t nfs -o vers=4,resvport,port=2049 localhost:/ /tmp/nfs-test \
-		&& find /tmp/nfs-test \
-		&& echo "Works" \
-		&& cat  /tmp/nfs-test/hello
-
 image:
 	docker build -t fuse-nfs-image .
+	
+build:	image
 
 run:
-	find /tmp/nfs-test
-	cat  /tmp/nfs-test/hello
+	docker stop fuse-nfs-test-c  || echo ""
+	docker rm fuse-nfs-test-c || echo ""
+	# detached is hard to stop
+	docker run -d --privileged -p 2049:2049 --name fuse-nfs-test-c fuse-nfs-image
+	mkdir -p /tmp/nfs-test-c
+	sudo mount -t nfs -o vers=4,resvport,port=2049 localhost:/ /tmp/nfs-test-c \
+		&& find /tmp/nfs-test-c \
+		&& echo "Works" \
+		&& cat  /tmp/nfs-test-c/hello
+
+
+test:
+	find /tmp/nfs-test-c
+	cat  /tmp/nfs-test-c/hello
 
 stop:
 	echo "pkill ganesha.nfsd && killall tail"
