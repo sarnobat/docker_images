@@ -6,7 +6,7 @@ class HelloFS(Operations):
         if path == '/':
             return dict(st_mode=(0o755 | 0o040000), st_nlink=2)
         elif path == '/hello':
-            data = b"Hello World!\n"
+            data = b"Hello World from python 1\n"
             return dict(st_mode=(0o444 | 0o100000), st_nlink=1, st_size=len(data))
         else:
             raise FuseOSError(errno.ENOENT)
@@ -19,7 +19,7 @@ class HelloFS(Operations):
             raise FuseOSError(errno.ENOENT)
 
     def read(self, path, size, offset, fh):
-        data = b"Hello World!\n"
+        data = b"Hello World from python 2\n"
         return data[offset:offset + size]
 
 if __name__ == '__main__':
