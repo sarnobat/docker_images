@@ -7,8 +7,9 @@ FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ---- Install all required packages ----
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update
+
+RUN apt-get install -y \
         python3 python3-pip-whl python3-pip python3-venv \
         fuse3 bindfs rpcbind dbus \
         nfs-ganesha nfs-ganesha-vfs \

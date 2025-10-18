@@ -43,7 +43,7 @@ static int open_cb(const char *p, struct fuse_file_info *fi) {
 }
 static int read_cb(const char *p, char *b, size_t s, off_t o,
                    struct fuse_file_info *fi) {
-  const char *msg = "Hello World\n";
+  const char *msg = "Hello World C\n";
   size_t l = strlen(msg);
   if (strcmp(p, "/hello"))
     return -ENOENT;

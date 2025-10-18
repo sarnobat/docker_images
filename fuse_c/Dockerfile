@@ -2,13 +2,14 @@
 #  FUSE + NFS-Ganesha Complete Working Solution
 #  Exports FUSE filesystem via NFS using bindfs
 #  REQUIRES: docker run --privileged -p 2049:2049
-# ==============================================
+==============================================
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # ---- Install all required packages ----
-RUN apt-get update && \
-    apt-get install -y \
+RUN apt-get update
+
+RUN apt-get install -y \
         fuse3 libfuse3-dev \
         bindfs \
         nfs-ganesha nfs-ganesha-vfs \
@@ -81,14 +82,14 @@ set -e; \
 echo '🔧 Setting up directories...'; \
 mkdir -p /var/run/ganesha /var/lib/nfs /var/log /run/dbus /mnt/fuse /export/fuse; \
 \
-echo '🚀 Starting rpcbind (required for NFS)...'; \
+echo 'Starting rpcbind (required for NFS)...'; \
 rpcbind; \
 sleep 2; \
 \
-echo '🚀 Starting DBUS...'; \
+echo 'Starting DBUS...'; \
 dbus-daemon --system --fork 2>/dev/null || true; \
 \
-echo '📁 Starting FUSE Hello filesystem at /mnt/fuse...'; \
+echo 'Starting FUSE Hello filesystem at /mnt/fuse...'; \
 /usr/local/bin/hello /mnt/fuse -f -o allow_other & \
 sleep 3; \
 \
@@ -101,7 +102,7 @@ fi; \
 ls -la /mnt/fuse; \
 cat /mnt/fuse/hello; \
 \
-echo '🔗 Binding FUSE to /export/fuse with bindfs...'; \
+echo 'Binding FUSE to /export/fuse with bindfs...'; \
 bindfs /mnt/fuse /export/fuse; \
 ls -la /export/fuse; \
 \
@@ -109,7 +110,7 @@ echo 'Starting NFS-Ganesha...'; \
 ganesha.nfsd -F -f /etc/ganesha/ganesha.conf -L /var/log/ganesha.log -N NIV_EVENT & \
 sleep 5; \
 \
-echo '🔍 Verifying NFS port 2049 is listening...'; \
+echo 'Verifying NFS port 2049 is listening...'; \
 if ! netstat -tulpn | grep -q ':2049'; then \
   echo 'ERROR: NFS port 2049 not listening'; \
   echo 'Ganesha failed to start properly'; \
