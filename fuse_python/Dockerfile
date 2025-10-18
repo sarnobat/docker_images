@@ -1,7 +1,7 @@
 # ==============================================
 #  FUSE + NFS-Ganesha Complete Working Solution
 #  Exports FUSE filesystem via NFS using bindfs
-#  REQUIRES: docker run --privileged -p 2049:2049
+#  REQUIRES: docker run --privileged -p 2051:2051
 # ==============================================
 FROM ubuntu:24.04
 ENV DEBIAN_FRONTEND=noninteractive
@@ -42,7 +42,7 @@ NFS_Core_Param {
     Bind_Addr = 0.0.0.0;
     Disable_Tcp6 = true;
     MNT_Port = 20048;
-    NFS_Port = 2049;
+    NFS_Port = 2051;
 }
 
 LOG {
@@ -70,7 +70,7 @@ EXPORT {
 EOF
 
 # ---- Expose NFS port ----
-EXPOSE 2049
+EXPOSE 2051
 
 ENV PATH="/opt/venv/bin:$PATH"
 
@@ -95,7 +95,7 @@ sleep 3; \
 echo 'Verifying FUSE mount...'; \
 if ! mountpoint -q /mnt/fuse; then \
   echo 'ERROR: FUSE mount failed'; \
-  echo 'Run container with: docker run --privileged -p 2049:2049 IMAGE'; \
+  echo 'Run container with: docker run --privileged -p 2051:2051 IMAGE'; \
   exit 1; \
 fi; \
 ls -la /mnt/fuse; \
@@ -109,9 +109,9 @@ echo 'Starting NFS-Ganesha...'; \
 ganesha.nfsd -F -f /etc/ganesha/ganesha.conf -L /var/log/ganesha.log -N NIV_EVENT & \
 sleep 5; \
 \
-echo 'Verifying NFS port 2049 is listening...'; \
-if ! netstat -tulpn | grep -q ':2049'; then \
-  echo 'ERROR: NFS port 2049 not listening'; \
+echo 'Verifying NFS port 2051 is listening...'; \
+if ! netstat -tulpn | grep -q ':2051'; then \
+  echo 'ERROR: NFS port 2051 not listening'; \
   echo 'Ganesha failed to start properly'; \
   cat /var/log/ganesha.log | tail -20; \
   exit 1; \
@@ -123,11 +123,11 @@ echo 'NFS Server Ready'; \
 echo '------------------------------------------------------------'; \
 echo 'FUSE mount: /mnt/fuse'; \
 echo 'NFS export: /export/fuse'; \
-echo 'NFS port: 2049'; \
+echo 'NFS port: 2051'; \
 echo ''; \
 echo 'Test inside container:'; \
 echo '  mkdir -p /mnt/test'; \
-echo '  mount -t nfs -o vers=4,port=2049 127.0.0.1:/ /mnt/test'; \
+echo '  mount -t nfs -o vers=4,port=2051 127.0.0.1:/ /mnt/test'; \
 echo '  cat /mnt/test/hello'; \
 echo ''; \
 echo 'Test from host (get container IP first):'; \

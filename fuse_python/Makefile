@@ -2,9 +2,9 @@ build:
 	docker stop fuse-nfs-python  || echo ""
 	docker rm fuse-nfs-python || echo ""
 	# detached is hard to stop
-	docker run -d --privileged -p 2049:2049 --name fuse-nfs-python fuse-nfs-image-python
+	docker run -d --privileged -p 2051:2051 --name fuse-nfs-python fuse-nfs-image-python
 	mkdir -p /tmp/nfs-test
-	sudo mount -t nfs -o vers=4,resvport,port=2049 localhost:/ /tmp/nfs-test && find /tmp/nfs-test && echo "Works"
+	sudo mount -t nfs -o vers=4,resvport,port=2051 localhost:/ /tmp/nfs-test && find /tmp/nfs-test && echo "Works"
 
 image:
 	docker build -t fuse-nfs-image-python . 2>&1| tee /tmp/docker.log
