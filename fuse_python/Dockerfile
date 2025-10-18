@@ -9,25 +9,16 @@ ENV DEBIAN_FRONTEND=noninteractive
 # ---- Install all required packages ----
 RUN apt-get update && \
     apt-get install -y \
-        fuse3 libfuse3-dev \
-        bindfs \
+        python3 python3-pip \
+        fuse3 bindfs rpcbind dbus \
         nfs-ganesha nfs-ganesha-vfs \
-        rpcbind \
-        systemd-sysv \
-        dbus \
-        build-essential \
         net-tools iproute2 procps psmisc vim less && \
     echo "user_allow_other" >> /etc/fuse.conf && \
-    mkdir -p /mnt/fuse /export/fuse /var/run/ganesha /var/lib/nfs /var/log /run/dbus
+    pip install fusepy && \
+    mkdir -p /mnt/fuse /export/fuse /var/run/ganesha /var/lib/nfs /var/log /run/dbus /root/app
 
-# ---- Build the FUSE "Hello World" program ----
-# RUN cat > /root/hello.c <<'EOF'
-
-# EOF
-
-COPY hello.c /root/hello.c
-
-RUN gcc /root/hello.c -o /usr/local/bin/hello -lfuse3
+# ---- Copy Python FUSE script ----
+COPY hello.py /root/app/hello.py
 
 # ---- Configure NFS-Ganesha ----
 RUN mkdir -p /etc/ganesha
@@ -35,18 +26,9 @@ RUN cat > /etc/ganesha/ganesha.conf <<'EOF'
 NFS_Core_Param {
     NFS_Protocols = 4;
     Bind_Addr = 0.0.0.0;
+    Disable_Tcp6 = true;
     MNT_Port = 20048;
     NFS_Port = 2049;
-}
-
-NFSv4 {
-    Grace_Period = 0;
-    Lease_Lifetime = 10;
-    RecoveryBackend = fs;
-}
-
-NFS_KRB5 {
-    Active_krb5 = false;
 }
 
 LOG {
@@ -68,6 +50,7 @@ EXPORT {
     Protocols = 4;
     Transports = TCP;
     SecType = "sys";
+    Clients = ALL;
     FSAL { Name = VFS; }
 }
 EOF
@@ -78,18 +61,18 @@ EXPOSE 2049
 # ---- Entrypoint ----
 CMD ["/bin/bash", "-c", "\
 set -e; \
-echo '🔧 Setting up directories...'; \
+echo 'Setting up directories...'; \
 mkdir -p /var/run/ganesha /var/lib/nfs /var/log /run/dbus /mnt/fuse /export/fuse; \
 \
-echo '🚀 Starting rpcbind (required for NFS)...'; \
+echo 'Starting rpcbind (required for NFS)...'; \
 rpcbind; \
 sleep 2; \
 \
-echo '🚀 Starting DBUS...'; \
+echo 'Starting DBUS...'; \
 dbus-daemon --system --fork 2>/dev/null || true; \
 \
-echo '📁 Starting FUSE Hello filesystem at /mnt/fuse...'; \
-/usr/local/bin/hello /mnt/fuse -f -o allow_other & \
+echo 'Starting Python FUSE filesystem at /mnt/fuse...'; \
+python3 /root/app/hello.py /mnt/fuse -f -o allow_other & \
 sleep 3; \
 \
 echo 'Verifying FUSE mount...'; \
@@ -101,7 +84,7 @@ fi; \
 ls -la /mnt/fuse; \
 cat /mnt/fuse/hello; \
 \
-echo '🔗 Binding FUSE to /export/fuse with bindfs...'; \
+echo 'Binding FUSE to /export/fuse with bindfs...'; \
 bindfs /mnt/fuse /export/fuse; \
 ls -la /export/fuse; \
 \
@@ -109,7 +92,7 @@ echo 'Starting NFS-Ganesha...'; \
 ganesha.nfsd -F -f /etc/ganesha/ganesha.conf -L /var/log/ganesha.log -N NIV_EVENT & \
 sleep 5; \
 \
-echo '🔍 Verifying NFS port 2049 is listening...'; \
+echo 'Verifying NFS port 2049 is listening...'; \
 if ! netstat -tulpn | grep -q ':2049'; then \
   echo 'ERROR: NFS port 2049 not listening'; \
   echo 'Ganesha failed to start properly'; \
@@ -118,9 +101,9 @@ if ! netstat -tulpn | grep -q ':2049'; then \
 fi; \
 \
 echo ''; \
-echo '═══════════════════════════════════════════════'; \
+echo '------------------------------------------------------------'; \
 echo 'NFS Server Ready'; \
-echo '═══════════════════════════════════════════════'; \
+echo '------------------------------------------------------------'; \
 echo 'FUSE mount: /mnt/fuse'; \
 echo 'NFS export: /export/fuse'; \
 echo 'NFS port: 2049'; \
@@ -133,8 +116,8 @@ echo ''; \
 echo 'Test from host (get container IP first):'; \
 echo '  hostname -I'; \
 echo '  sudo mount -t nfs -o vers=4 CONTAINER_IP:/ /tmp/nfs'; \
-echo '═══════════════════════════════════════════════'; \
+echo '------------------------------------------------------------'; \
 echo ''; \
 \
 tail -f /var/log/ganesha.log \
-"]  
+"]
