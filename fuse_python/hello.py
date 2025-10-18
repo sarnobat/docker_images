@@ -6,7 +6,7 @@ class HelloFS(Operations):
         if path == '/':
             return dict(st_mode=(0o755 | 0o040000), st_nlink=2)
         elif path == '/hello':
-            return dict(st_mode=(0o444 | 0o100000), st_nlink=1, st_size=len("Hello world python 1\n"))
+            return dict(st_mode=(0o444 | 0o100000), st_nlink=1, st_size=len("[hello.py] getattr()\n"))
         else:
             raise FileNotFoundError
 
@@ -20,7 +20,7 @@ class HelloFS(Operations):
 
     def read(self, path, size, offset, fh):
         if path == '/hello':
-            data = b"Hello world python 2\n"
+            data = b"[hello.py] read()\n"
             return data[offset:offset + size]
         raise FileNotFoundError
 

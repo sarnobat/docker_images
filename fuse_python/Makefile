@@ -28,9 +28,9 @@ debug:
 
 stop:
 	sudo umount -f /tmp/nfs-test-python || echo ""
-	docker stop fuse-nfs-python
-	docker rm fuse-nfs-python
-	mount | grep python
+	docker stop fuse-nfs-python || echo ""
+	docker rm fuse-nfs-python || echo ""
+	mount | grep python || echo ""
 	docker ps
 
 stop_nfs:
