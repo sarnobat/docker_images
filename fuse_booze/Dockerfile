@@ -37,7 +37,6 @@ ENV PKG_CONFIG_PATH=/usr/local/include/bash-5.2.21/support/:/root/bash-5.2.21:/r
 
 RUN sed -i '/^booze\.so:/i CFLAGS += -Wl,--no-as-needed /usr/lib/aarch64-linux-gnu/libfuse.so -Wl,--as-needed  -D_FILE_OFFSET_BITS=64 -pthread -Wl,-rpath,/usr/lib/aarch64-linux-gnu' /root/booze/Makefile
 
-
 RUN sed -i '/^#include <common.h>/i #include <execute_cmd.h>' /root/booze/booze.c
 
 # You also need: CFLAGS += -Wl,--no-as-needed /usr/lib/aarch64-linux-gnu/libfuse.so -Wl,--as-needed  -D_FILE_OFFSET_BITS=64 -pthread -Wl,-rpath,/usr/lib/aarch64-linux-gnu
