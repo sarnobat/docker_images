@@ -26,42 +26,19 @@ RUN apt-get install -y \
         build-essential \
         pkg-config
 
-#     apt-get source bash && \
-#     cp -r bash-*/builtins /usr/include/bash-builtins && \
-#     cp -r bash-*/include /usr/include/bash-include && \
-#     rm -rf bash-*
+RUN apt-get install -y \
+        libfuse2 
 
 RUN cd /usr/local/include && apt-get source bash \
         && ln -s bash-5.2.21 bash && cd bash && ./configure && make
-        # && cp -r bash-*/builtins /usr/include/bash-builtins \
-        # && cp -r bash-*/include /usr/include/bash-include \
-# RUN cp -r /bash-5.2.21 /usr/include/bash-full
-# RUN cp -r /bash-5.2.21 /root/bash-5.2.21
 
 COPY booze/ /root/booze/
 
+# COPY /usr/lib/aarch64-linux-gnu/libfuse.so /usr/lib/
+
 ENV PKG_CONFIG_PATH=/usr/local/include/bash-5.2.21/support/:/root/bash-5.2.21:/root/bash-5.2.21/support:/usr/lib/aarch64-linux-gnu/pkgconfig:/usr/share/pkgconfig:/bash-5.2.21:/bash-5.2.21/support
+ENV LD_LIBRARY_PATH=/usr/local/include/bash-5.2.21/lib/:/usr/lib/aarch64-linux-gnu/
 
-
-# RUN cd /root/booze && make 
-
-
-
-
-
-
-
-
-
-
-# CFLAGS="$CFLAGS -D_FILE_OFFSET_BITS=64 -I/usr/include/bash-include -I/usr/include/bash-builtins -I/root/bash-5.2.21         -I/root/bash-5.2.21/include  -I/root/bash-5.2.21/builtins "
-# RUN cd /root/booze && \
-#         gcc -Wall -O2 -fPIC -shared booze.c \
-#         -I/root/bash-5.2.21 \
-#         -I/root/bash-5.2.21/include \
-#         -I/root/bash-5.2.21/builtins \
-#         -D_FILE_OFFSET_BITS=64 \
-#         -lfuse \
-#         -o booze.so
+RUN cd /root/booze && make --always-make
 
 CMD ["tail", "-f", "/dev/null"]
