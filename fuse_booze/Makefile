@@ -1,5 +1,6 @@
 build:
-	docker build -t fuse-nfs-booze-image --file Dockerfile.2025-10-18 .
+# 	docker build -t fuse-nfs-booze-image --file Dockerfile.2025-10-18 .
+	docker build -t fuse-nfs-booze-image --file Dockerfile .
 	
 run:
 	docker stop fuse-nfs-booze  || echo ""

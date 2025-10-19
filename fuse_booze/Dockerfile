@@ -32,7 +32,6 @@ RUN echo "deb-src http://archive.ubuntu.com/ubuntu noble main restricted univers
     cp -r bash-*/include /usr/include/bash-include && \
     rm -rf bash-*
 
-# /bash-5.2.21/builtins.h
 RUN apt-get source bash \
         && cp -r bash-*/builtins /usr/include/bash-builtins \
         && cp -r bash-*/include /usr/include/bash-include
@@ -40,14 +39,11 @@ RUN apt-get source bash \
 RUN cd /bash-5.2.21 && ./configure && make
 RUN cp -r /bash-5.2.21 /usr/include/bash-full
 
-# Copy Bash source into container
 RUN cp -r /bash-5.2.21 /root/bash-5.2.21
-
 
 COPY booze/ /root/booze/
 
-# Compile booze.c with all needed include paths
-RUN cd /root/bash-5.2.21 && make
+# RUN cd /root/bash-5.2.21 && make
 RUN cd /root/booze && \
         gcc -Wall -O2 -fPIC -shared booze.c \
         -I/root/bash-5.2.21 \
