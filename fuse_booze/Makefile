@@ -8,5 +8,6 @@ run:
 	docker run -d --privileged --name fuse-nfs-booze fuse-nfs-booze-image
 	docker ps
 	docker exec -it fuse-nfs-booze find / -iname  "builtins.h"
+	docker exec -it fuse-nfs-booze find / -iname  "bash.pc"
 	docker exec -it fuse-nfs-booze find / -iname  "config.h"
 	docker exec -it fuse-nfs-booze bash
