@@ -11,3 +11,12 @@ run:
 	docker exec -it fuse-nfs-booze find / -iname  "bash.pc"
 	docker exec -it fuse-nfs-booze find / -iname  "config.h"
 	docker exec -it fuse-nfs-booze bash
+# 	cd /root/booze/ && /usr/local/include/bash-5.2.21/bash booze.sh
+# 
+# 	export LD_LIBRARY_PATH=/usr/local/include/bash-5.2.21/lib/:/usr/lib/aarch64-linux-gnu/
+# 	
+# 	mkdir /tmp/test
+# 	/usr/local/include/bash-5.2.21/bash hello.sh /tmp/test
+# 	find /tmp/test
+# 	
+# 	ldd /root/booze/booze.so
