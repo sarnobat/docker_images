@@ -36,8 +36,7 @@ RUN apt-get source bash \
         && cp -r bash-*/include /usr/include/bash-include
 
 RUN cd /bash-5.2.21 && ./configure && make
-RUN cp -r /bash-5.2.21 /usr/include/bash-full
-
+# RUN cp -r /bash-5.2.21 /usr/include/bash-full
 RUN cp -r /bash-5.2.21 /root/bash-5.2.21
 
 COPY booze/ /root/booze/
