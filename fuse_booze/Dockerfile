@@ -32,8 +32,6 @@ RUN cd /usr/local/include && apt-get source bash \
 
 COPY booze/ /root/booze/
 
-# COPY /usr/lib/aarch64-linux-gnu/libfuse.so /usr/lib/
-
 ENV PKG_CONFIG_PATH=/usr/local/include/bash-5.2.21/support/:/root/bash-5.2.21:/root/bash-5.2.21/support:/usr/lib/aarch64-linux-gnu/pkgconfig:/usr/share/pkgconfig:/bash-5.2.21:/bash-5.2.21/support
 ENV LD_LIBRARY_PATH=/usr/local/include/bash-5.2.21/lib/:/usr/lib/aarch64-linux-gnu/
 
