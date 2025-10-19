@@ -1,8 +1,13 @@
 FROM ubuntu:24.04
 # you’re telling APT not to ask any questions during installs (like timezone selection, service restarts, or confirmation prompts).
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update
+# RUN apt-get update
 
+
+RUN echo "deb-src http://archive.ubuntu.com/ubuntu noble main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.ubuntu.com/ubuntu noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
+    echo "deb-src http://archive.ubuntu.com/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list && \
+    apt-get update 
 
 RUN apt-get install -y \
         bindfs \
@@ -11,9 +16,7 @@ RUN apt-get install -y \
         systemd-sysv \
         dbus \
         build-essential \
-        net-tools iproute2 procps psmisc vim less 
-
-RUN apt-get install -y \
+        net-tools iproute2 procps psmisc vim less \
         lsof
 
 RUN apt-get install -y \
@@ -23,14 +26,10 @@ RUN apt-get install -y \
         build-essential \
         pkg-config
 
-RUN echo "deb-src http://archive.ubuntu.com/ubuntu noble main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb-src http://archive.ubuntu.com/ubuntu noble-updates main restricted universe multiverse" >> /etc/apt/sources.list && \
-    echo "deb-src http://archive.ubuntu.com/ubuntu noble-security main restricted universe multiverse" >> /etc/apt/sources.list && \
-    apt-get update && \
-    apt-get source bash && \
-    cp -r bash-*/builtins /usr/include/bash-builtins && \
-    cp -r bash-*/include /usr/include/bash-include && \
-    rm -rf bash-*
+#     apt-get source bash && \
+#     cp -r bash-*/builtins /usr/include/bash-builtins && \
+#     cp -r bash-*/include /usr/include/bash-include && \
+#     rm -rf bash-*
 
 RUN apt-get source bash \
         && cp -r bash-*/builtins /usr/include/bash-builtins \
