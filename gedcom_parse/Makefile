@@ -1,9 +1,9 @@
-# Simple Makefile for gedcom-parse on macOS
-# Just run: make
+# Simple Makefile for gedcom-parse (macOS-safe)
+# Usage: make
 
 SRCDIR = /tmp/gedcom-parse-0.90.0
 PORTFILE = $(SRCDIR)/t/src/portability.c
-CFILES = $(SRCDIR)/t/src/gomtest.c $(SRCDIR)/t/src/dump_gom.c $(SRCDIR)/t/src/update.c $(SRCDIR)/t/src/testintl.c
+CFILES = $(shell find $(SRCDIR)/t/src -name '*.c')
 
 all:
 	@echo "==> Entering $(SRCDIR)"
