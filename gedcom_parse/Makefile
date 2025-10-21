@@ -1,4 +1,4 @@
-# Makefile for gedcom-parse 0.90.0 (macOS/ARM-ready)
+.PHONY: all clean
 
 SRCDIR = /tmp/gedcom-parse-0.90.0
 PORTFILE = $(SRCDIR)/t/src/portability.c
@@ -25,7 +25,7 @@ all:
 				tmp=$$(mktemp); \
 				awk '\
 				/char\* get_encoding/ { f=1; print; next } \
-				/{/ { if(f){ print; print "    if (strcmp(gedcom_n, \"UTF-8\") == 0) return \"UTF-8\";"; f=0; next } } \
+				/{/ { if(f){ print; print "    add_encoding(\"ASCII\", \"1\", \"ASCII\");"; print "    add_encoding(\"UTF-8\", \"1\", \"UTF-8\");"; f=0; next } } \
 				{print}' "$$ENC_FILE" > $$tmp && mv $$tmp "$$ENC_FILE"; \
 			fi; \
 		fi; \
@@ -47,6 +47,9 @@ all:
 	./configure && \
 	make \
 	&& echo "Your file is called: $(SRCDIR)/t/src/testgedcom"
+
+clean:
+	cd $(SRCDIR) && make clean
 
 
 build:
