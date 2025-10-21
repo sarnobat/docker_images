@@ -32,3 +32,207 @@ ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
 
 === Total conversion failures: 0
 Parse failed
+
+=== Parsing file rohidekar.ged
+Header start
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5.1 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Duplicate entry found for encoding 'ASCII', ignoring
+WARNING: Warning on line 5: Duplicate entry found for encoding 'UTF-8', ignoring
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+Source is MYHERITAGE (ctxt is 1001, parent is 1)
+== 2 NAME (342) MyHeritage Family Tree Builder (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 8.2.0.8522 (ctxt is 1001, conversion failures: 0)
+== 2 _RTLSAVE (264) RTL (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) MyHeritage.com (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+== 1 DEST (310) MYHERITAGE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 14 JAN 2024 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 22:02:10 (ctxt is 1, conversion failures: 0)
+== 2 _TIMEZONE (264) GMT-8 (ctxt is 1, conversion failures: 0)
+== 1 _RINS (264) I304,F110,N4,M0,R0,S0,U5,L0,P16,Q0,IF2,FF-2 (ctxt is 1, conversion failures: 0)
+== 1 _UID (264) 65A4CA149E91E6DDA29F73A6F0000290 (ctxt is 1, conversion failures: 0)
+== 1 _DESCRIPTION_AWARE (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _FACTS_DEFRAGGED (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _USERNAME (264) ss401533@gmail.com (ctxt is 1, conversion failures: 0)
+== 1 _DISABLED (264) Y (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 RIN (372) MH:U1 (ctxt is 10000, conversion failures: 0)
+ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
+
+=== Total conversion failures: 0
+Parse failed
+
+=== Parsing file rohidekar.ged
+Header start
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5.1 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Duplicate entry found for encoding 'ASCII', ignoring
+WARNING: Warning on line 5: Duplicate entry found for encoding 'UTF-8', ignoring
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+Source is MYHERITAGE (ctxt is 1001, parent is 1)
+== 2 NAME (342) MyHeritage Family Tree Builder (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 8.2.0.8522 (ctxt is 1001, conversion failures: 0)
+== 2 _RTLSAVE (264) RTL (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) MyHeritage.com (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+== 1 DEST (310) MYHERITAGE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 14 JAN 2024 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 22:02:10 (ctxt is 1, conversion failures: 0)
+== 2 _TIMEZONE (264) GMT-8 (ctxt is 1, conversion failures: 0)
+== 1 _RINS (264) I304,F110,N4,M0,R0,S0,U5,L0,P16,Q0,IF2,FF-2 (ctxt is 1, conversion failures: 0)
+== 1 _UID (264) 65A4CA149E91E6DDA29F73A6F0000290 (ctxt is 1, conversion failures: 0)
+== 1 _DESCRIPTION_AWARE (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _FACTS_DEFRAGGED (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _USERNAME (264) ss401533@gmail.com (ctxt is 1, conversion failures: 0)
+== 1 _DISABLED (264) Y (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 RIN (372) MH:U1 (ctxt is 10000, conversion failures: 0)
+ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
+
+=== Total conversion failures: 0
+Parse failed
+
+=== Parsing file rohidekar.ged
+Header start
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5.1 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Duplicate entry found for encoding 'ASCII', ignoring
+WARNING: Warning on line 5: Duplicate entry found for encoding 'UTF-8', ignoring
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+Source is MYHERITAGE (ctxt is 1001, parent is 1)
+== 2 NAME (342) MyHeritage Family Tree Builder (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 8.2.0.8522 (ctxt is 1001, conversion failures: 0)
+== 2 _RTLSAVE (264) RTL (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) MyHeritage.com (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+== 1 DEST (310) MYHERITAGE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 14 JAN 2024 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 22:02:10 (ctxt is 1, conversion failures: 0)
+== 2 _TIMEZONE (264) GMT-8 (ctxt is 1, conversion failures: 0)
+== 1 _RINS (264) I304,F110,N4,M0,R0,S0,U5,L0,P16,Q0,IF2,FF-2 (ctxt is 1, conversion failures: 0)
+== 1 _UID (264) 65A4CA149E91E6DDA29F73A6F0000290 (ctxt is 1, conversion failures: 0)
+== 1 _DESCRIPTION_AWARE (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _FACTS_DEFRAGGED (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _USERNAME (264) ss401533@gmail.com (ctxt is 1, conversion failures: 0)
+== 1 _DISABLED (264) Y (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 RIN (372) MH:U1 (ctxt is 10000, conversion failures: 0)
+ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
+
+=== Total conversion failures: 0
+Parse failed
+
+=== Parsing file rohidekar.ged
+Header start
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5.1 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Duplicate entry found for encoding 'ASCII', ignoring
+WARNING: Warning on line 5: Duplicate entry found for encoding 'UTF-8', ignoring
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+Source is MYHERITAGE (ctxt is 1001, parent is 1)
+== 2 NAME (342) MyHeritage Family Tree Builder (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 8.2.0.8522 (ctxt is 1001, conversion failures: 0)
+== 2 _RTLSAVE (264) RTL (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) MyHeritage.com (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+== 1 DEST (310) MYHERITAGE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 14 JAN 2024 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 22:02:10 (ctxt is 1, conversion failures: 0)
+== 2 _TIMEZONE (264) GMT-8 (ctxt is 1, conversion failures: 0)
+== 1 _RINS (264) I304,F110,N4,M0,R0,S0,U5,L0,P16,Q0,IF2,FF-2 (ctxt is 1, conversion failures: 0)
+== 1 _UID (264) 65A4CA149E91E6DDA29F73A6F0000290 (ctxt is 1, conversion failures: 0)
+== 1 _DESCRIPTION_AWARE (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _FACTS_DEFRAGGED (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _USERNAME (264) ss401533@gmail.com (ctxt is 1, conversion failures: 0)
+== 1 _DISABLED (264) Y (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 RIN (372) MH:U1 (ctxt is 10000, conversion failures: 0)
+ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
+
+=== Total conversion failures: 0
+Parse failed
+
+=== Parsing file rohidekar.ged
+Header start
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5.1 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Duplicate entry found for encoding 'ASCII', ignoring
+WARNING: Warning on line 5: Duplicate entry found for encoding 'UTF-8', ignoring
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+Source is MYHERITAGE (ctxt is 1001, parent is 1)
+== 2 NAME (342) MyHeritage Family Tree Builder (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 8.2.0.8522 (ctxt is 1001, conversion failures: 0)
+== 2 _RTLSAVE (264) RTL (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) MyHeritage.com (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+== 1 DEST (310) MYHERITAGE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 14 JAN 2024 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 22:02:10 (ctxt is 1, conversion failures: 0)
+== 2 _TIMEZONE (264) GMT-8 (ctxt is 1, conversion failures: 0)
+== 1 _RINS (264) I304,F110,N4,M0,R0,S0,U5,L0,P16,Q0,IF2,FF-2 (ctxt is 1, conversion failures: 0)
+== 1 _UID (264) 65A4CA149E91E6DDA29F73A6F0000290 (ctxt is 1, conversion failures: 0)
+== 1 _DESCRIPTION_AWARE (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _FACTS_DEFRAGGED (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _USERNAME (264) ss401533@gmail.com (ctxt is 1, conversion failures: 0)
+== 1 _DISABLED (264) Y (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 RIN (372) MH:U1 (ctxt is 10000, conversion failures: 0)
+ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
+
+=== Total conversion failures: 0
+Parse failed
+
+=== Parsing file rohidekar.ged
+Header start
+== 1 GEDC (326) (null) (ctxt is 1, conversion failures: 0)
+== 2 VERS (391) 5.5.1 (ctxt is 1, conversion failures: 0)
+== 2 FORM (325) LINEAGE-LINKED (ctxt is 1, conversion failures: 0)
+WARNING: Warning on line 5: Duplicate entry found for encoding 'ASCII', ignoring
+WARNING: Warning on line 5: Duplicate entry found for encoding 'UTF-8', ignoring
+== 1 CHAR (292) UTF-8 (ctxt is 1, conversion failures: 0)
+== 1 LANG (334) English (ctxt is 1, conversion failures: 0)
+Source is MYHERITAGE (ctxt is 1001, parent is 1)
+== 2 NAME (342) MyHeritage Family Tree Builder (ctxt is 1001, conversion failures: 0)
+== 2 VERS (391) 8.2.0.8522 (ctxt is 1001, conversion failures: 0)
+== 2 _RTLSAVE (264) RTL (ctxt is 1001, conversion failures: 0)
+== 2 CORP (302) MyHeritage.com (ctxt is 1001, conversion failures: 0)
+Source context 1001 in parent 1
+== 1 SUBM (382) @U1@ (ctxt is 1, conversion failures: 0)
+== 1 DEST (310) MYHERITAGE (ctxt is 1, conversion failures: 0)
+== 1 DATE (306) 14 JAN 2024 (ctxt is 1, conversion failures: 0)
+== 2 TIME (387) 22:02:10 (ctxt is 1, conversion failures: 0)
+== 2 _TIMEZONE (264) GMT-8 (ctxt is 1, conversion failures: 0)
+== 1 _RINS (264) I304,F110,N4,M0,R0,S0,U5,L0,P16,Q0,IF2,FF-2 (ctxt is 1, conversion failures: 0)
+== 1 _UID (264) 65A4CA149E91E6DDA29F73A6F0000290 (ctxt is 1, conversion failures: 0)
+== 1 _DESCRIPTION_AWARE (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _FACTS_DEFRAGGED (264) Y (ctxt is 1, conversion failures: 0)
+== 1 _USERNAME (264) ss401533@gmail.com (ctxt is 1, conversion failures: 0)
+== 1 _DISABLED (264) Y (ctxt is 1, conversion failures: 0)
+Header end, context is 1
+Submitter, xref is @U1@
+== 1 RIN (372) MH:U1 (ctxt is 10000, conversion failures: 0)
+ERROR: Error on line 24: The tag 'NAME' is mandatory within 'SUBM', but missing
+
+=== Total conversion failures: 0
+Parse failed
