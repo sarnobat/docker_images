@@ -1,15 +1,15 @@
-# Simple Makefile for gedcom-parse (macOS-safe)
-# Usage: make
+# Makefile for gedcom-parse 0.90.0 (macOS/ARM-ready)
 
 SRCDIR = /tmp/gedcom-parse-0.90.0
 PORTFILE = $(SRCDIR)/t/src/portability.c
+ENC_FILE1 = $(SRCDIR)/src/encoding.c
+ENC_FILE2 = $(SRCDIR)/gedcom/encoding.c
 CFILES = $(shell find $(SRCDIR)/t/src -name '*.c')
 
 all:
 	@echo "==> Entering $(SRCDIR)"
 	cd $(SRCDIR) && \
 	if [ -f "$(PORTFILE)" ]; then \
-		echo "==> Patching portability.c"; \
 		if ! grep -q '__aarch64__' "$(PORTFILE)"; then \
 			tmp=$$(mktemp); \
 			awk '/^#if SIZEOF_VOID_P == 4/ { \
@@ -19,25 +19,33 @@ all:
 			} {print $$0}' "$(PORTFILE)" > $$tmp && mv $$tmp "$(PORTFILE)"; \
 		fi; \
 	fi && \
+	for ENC_FILE in $(ENC_FILE1) $(ENC_FILE2); do \
+		if [ -f "$$ENC_FILE" ]; then \
+			if ! grep -q 'return "ASCII";' "$$ENC_FILE"; then \
+				tmp=$$(mktemp); \
+				awk '\
+				/char\* get_encoding/ { f=1; print; next } \
+				/{/ { if(f){ print; print "    if (strcmp(gedcom_n, \"UTF-8\") == 0) return \"UTF-8\";"; f=0; next } } \
+				{print}' "$$ENC_FILE" > $$tmp && mv $$tmp "$$ENC_FILE"; \
+			fi; \
+		fi; \
+	done && \
 	for f in $(CFILES); do \
 		[ -f "$$f" ] || continue; \
 		if grep -Eq '\bstrcmp\b|\bstrncmp\b' "$$f" && ! grep -q '<string.h>' "$$f"; then \
-			echo "==> Adding <string.h> to $${f##*/}"; \
 			tmp=$$(mktemp); printf '#include <string.h>\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
 		fi; \
 		if grep -Eq '\bcalloc\b|\bfree\b|\bexit\b' "$$f" && ! grep -q '<stdlib.h>' "$$f"; then \
-			echo "==> Adding <stdlib.h> to $${f##*/}"; \
 			tmp=$$(mktemp); printf '#include <stdlib.h>\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
 		fi; \
 		if grep -Eq '\boutput\b' "$$f" && ! grep -q '"output.h"' "$$f"; then \
-			echo "==> Adding \"output.h\" to $${f##*/}"; \
 			tmp=$$(mktemp); printf '#include "output.h"\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
 		fi; \
 	done && \
 	unset CFLAGS CPPFLAGS LDFLAGS && \
 	export CC=clang CXX=clang++ SDKROOT=$$(xcrun --show-sdk-path) CFLAGS="-std=gnu89 -DSIZEOF_VOID_P=8" && \
-	echo "==> Configuring..." && ./configure && \
-	echo "==> Building..." && make \
+	./configure && \
+	make \
 	&& echo "Your file is called: $(SRCDIR)/t/src/testgedcom"
 
 
