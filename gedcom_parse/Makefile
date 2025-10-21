@@ -37,7 +37,8 @@ all:
 	unset CFLAGS CPPFLAGS LDFLAGS && \
 	export CC=clang CXX=clang++ SDKROOT=$$(xcrun --show-sdk-path) CFLAGS="-std=gnu89 -DSIZEOF_VOID_P=8" && \
 	echo "==> Configuring..." && ./configure && \
-	echo "==> Building..." && make
+	echo "==> Building..." && make \
+	&& echo "Your file is called: $(SRCDIR)/t/src/testgedcom"
 
 
 build:
