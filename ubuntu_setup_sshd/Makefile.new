@@ -14,3 +14,5 @@ run:
 	#sudo docker image rm myimage
 	sudo docker ps --all
 	sh /Volumes/git/computers.git/mac/bin/docker_prune_images.sh
+
+# apt install linux-image-arm64-dbg will give you dbg versions of .ko files. You can run nm on those to see where the memory manager, network manager and file system code is compiled to (for my diagrams)
