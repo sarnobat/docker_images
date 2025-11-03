@@ -27,15 +27,6 @@ EOF
 
 
 # set -e
-source ~/computers.git/mac/zsh/.zshrc-git
-source ~/computers.git/mac/zsh/.zshrc-tab-completions
-source ~/computers.git/mac/zsh/.zshrc-key-bindings
-source ~/computers.git/mac/zsh/.zshrc-misc
-source ~/computers.git/dotfiles_and_scripts/.aliases
-source ~/computers.git/common/.zshrc-dircolors.auto
-
-ln -srf ~/computers.git/ubuntu/bin ~/
-ln -srf ~/computers.git/dotfiles_and_scripts/.dir_colors
 
 PROMPT='%F{164}docker %F{154}%n %F{068}%D{%a %d %B %G} %F{139}%t>%f '
 
@@ -180,6 +171,18 @@ source    ~/computers.git/common/.zshrc-dircolors.auto
 source    ~/computers.git/common/.zshrc-key-bindings.auto
 source    ~/computers.git/common/.zshrc-key-bindings.vim.auto
 source    ~/computers.git/common/.zshrc.mac.common.auto
+
+# source ~/computers.git/mac/zsh/.zshrc-git
+# source ~/computers.git/mac/zsh/.zshrc-tab-completions
+# source ~/computers.git/mac/zsh/.zshrc-key-bindings
+# source ~/computers.git/mac/zsh/.zshrc-misc
+# source ~/computers.git/dotfiles_and_scripts/.aliases
+# source ~/computers.git/common/.zshrc-dircolors.auto
+
+ln -srf ~/computers.git/ubuntu/bin ~/
+ln -srf ~/computers.git/dotfiles_and_scripts/.dir_colors
+
+
 cd
 unlink ~/videos; ln -s /media/sarnobat/3TB/disks/thistle/videos ~/
 unlink ~/other; ln -s /media/sarnobat/e/misc_sync_master ~/other
