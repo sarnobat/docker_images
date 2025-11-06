@@ -19,7 +19,7 @@ RUN apt install -y zsh
 
 RUN useradd -rm -d /home/sarnobat -s /bin/zsh -g root -G sudo -u 1000 sarnobat
 RUN echo 'sarnobat	ALL = (ALL) NOPASSWD: ALL' >> /etc/sudoers
-RUN  echo 'sarnobat:sarnobat' | chpasswd
+RUN echo 'sarnobat:sarnobat' | chpasswd
 RUN ssh-keygen -A
 
 
