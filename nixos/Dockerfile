@@ -19,6 +19,8 @@ RUN nix-env -iA \
     nixpkgs.wget \
     nixpkgs.zsh
 
+ENV PATH="/root/.nix-profile/bin:${PATH}"
+
 # Optional: set a default shell
 SHELL ["/root/.nix-profile/bin/zsh", "-c"]
 
