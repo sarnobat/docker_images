@@ -1,0 +1,465 @@
+25342  sh /Volumes/git/computers.git/mac/bin/qemu_linux_build.sh
+25343  bat /Volumes/git/computers.git/mac/bin/qemu_linux_build.sh
+25344  sh /Volumes/git/computers.git/mac/bin/qemu_linux_build.sh
+25345  sh /Volumes/git/computers.git/mac/bin/qemu_linux_build.sh
+25346  source ~/.zshrc
+25347  m
+25348  /Volumes/git/github/2024/open_source/rust/findutils/target/debug/find $PWD -maxdepth 10 -type f -iname "**" | xargs --delimiter "\n" grep --with-filename --directories=skip --color=auto --binary-files=without-match --ignore-case --line-number "kernel data structures"
+25349  find $PWD -maxdepth 10 -type f -iname "**" | xargs --delimiter "\n" grep --with-filename --directories=skip --color=auto --binary-files=without-match --ignore-case --line-number "kernel data structures"
+25350  ps aux | grep qemu
+25351  pkill qemu
+25352  vi /Volumes/git/computers.git/mac/bin/qemu_linux.sh
+25353  bbedit /Volumes/git/computers.git/mac/bin/qemu_linux.sh
+25354  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh
+25355  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh
+25356  cd ~/trash && make -f /tmp/Makefile_tinycore
+25357  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh
+25358  cd ~/trash && make -f /tmp/Makefile_tinycore
+25359  cd ~/trash && make -f /tmp/Makefile_tinycore
+25360  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore
+25361  git -c color.status=always status --untracked-files --short
+25362  git -c color.status=always status --untracked-files --short
+25363  \nurce ~/computers.git/common/.zshrc.git.common.auto
+25364  source ~/computers.git/common/.zshrc.git.common.auto
+25365  git commit --message=2025-12-10:\ workspace.json\  --
+25366  git -c color.status=always status --untracked-files --short
+25367  c
+25368  git -c color.status=always status --untracked-files --short
+25369  git add mac/bin/qemu_linux.sh
+25370  git -c color.status=always status --untracked-files --short
+25371  git commit --message=2025-12-10:\ qemu_linux.sh\  --
+25372  cd mac/bin
+25373  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25374  cd linux-arm64-build/
+25375  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25376  du -h
+25377  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25378  git clean -df .
+25379  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25380  git -c color.status=always status --untracked-files --short
+25381  git clean -df .
+25382  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25383  sudo find . -depth -empty -type d -exec rmdir -v '{}' \;
+25384  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25385  find
+25386  rm -rf kernel-src
+25387  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25388  git -c color.status=always status --untracked-files --short
+25389  cd ..
+25390  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25391  sudo find . -depth -empty -type d -exec rmdir -v '{}' \;
+25392  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25393  git -c color.status=always status --untracked-files --short
+25394  git difftool --no-prompt --extcmd="/Applications/DiffMerge.app/Contents/MacOS/DiffMerge"
+25395  crontab -e
+25396  git -c color.status=always status --untracked-files --short
+25397  git checkout -- .
+25398  git -c color.status=always status --untracked-files --short
+25399  git checkout -- :/
+25400  git -c color.status=always status --untracked-files --short
+25401  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25402  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25403  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25404  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25405  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25406  ls /opt/homebrew/include/libelf/elf.h\n
+25407  mdfind elf.h
+25408  mdfind elf.h | grep elf.h
+25409  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25410  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25411  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25412  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25413  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25414  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25415  bbedit ~/new/meta_coding_interview.`date -I`.txt
+25416  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25417  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25418  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25419  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25420  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25421  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25422  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25423  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25424  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25425  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25426  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25427  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25428  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25429  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25430  git -c color.status=always status --untracked-files --short
+25431  git add --all . :/
+25432  git commit --message="2025-12-10: `git diff --name-only --cached | xargs --delimiter "\n" --no-run-if-empty -n 1 basename | tr "\n" " "`" --
+25433  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25434  docker_prune_images.sh
+25435  docker_prune_images.sh
+25436  df.sh | grep -v -e pool | sort -h -k 3
+25437  docker image prune -af ; docker builder prune -f
+25438  df.sh | grep -v -e pool | sort -h -k 3
+25439  find /Volumes/index_* -size +300M
+25440  find /Volumes/index_* -size +200M
+25441  find /Volumes/index_* -size +100M
+25442  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25443  df.sh | grep -v -e pool | sort -h -k 3
+25444  source ~/.zshrc
+25445  tail du_computer
+25446  tail du_computer.txt
+25447  cd /System/Volumes/Data/Volumes/new_large/new
+25448  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25449  du.sh
+25450  du -Sh
+25451  sudo find . -depth -empty -type d -exec rmdir -v '{}' \;
+25452  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25453  du.sh
+25454  sudo find . -depth -empty -type d -exec rmdir -v '{}' \;
+25455  du.sh
+25456  df.sh | grep -v -e pool | sort -h -k 3
+25457  df.sh | grep -v -e pool | sort -h -k 3 | grep /index
+25458  open /Volumes/index_photos_by_extension
+25459  bg
+25460  fg
+25461  fg
+25462  docker image prune -af ; docker builder prune -f
+25463  bbedit ~/new/meta_coding_interview.`date -I`.txt
+25464  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25465  df.sh | grep -v -e pool | sort -h -k 3
+25466  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25467  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25468  df.sh | grep -v -e pool | sort -h -k 3
+25469  df.sh | grep -v -e pool | sort -h -k 3
+25470  which tar
+25471  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25472  df.sh | grep -v -e pool | sort -h -k 3
+25473  df.sh | grep -v -e pool | sort -h -k 3
+25474  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25475  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25476  docker image prune -af ; docker builder prune -f
+25477  docker image prune -af ; docker builder prune -f
+25478  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25479  docker
+25480  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25481  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25482  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25483  cd /Volumes/index_photos_by_extension
+25484  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25485  tail du.txt
+25486  duc
+25487  duc index .
+25488  duc_count.sh
+25489  find -size -10M
+25490  find -size -10M
+25491  find -size -10M -type f
+25492  find -size +10M -type f
+25493  find -size +5M -type f
+25494  find -size +4M -type f
+25495  find -size +2M -type f
+25496  find -size -1M -type f
+25497  dss
+25498  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25499  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25500  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25501  curl -L -o ~/trash/config-6.12.11 https://distro.ibiblio.org/tinycorelinux/16.x/x86/release/src/kernel/config-6.12.11\n
+25502  ls config-6.12.11
+25503  tail config-6.12.11
+25504  tail config-6.12.11
+25505  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25506  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25507  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25508  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25509  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25510  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25511  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25512  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25513  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25514  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25515  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25516  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25517  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25518  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25519  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25520  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25521  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25522  ls /Volumes/trash/trash/entrypoint.sh
+25523  vi /Volumes/trash/trash/entrypoint.sh
+25524  vi /Volumes/trash/trash/entrypoint.sh
+25525  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25526  vi /tmp/Makefile_tinycore_src +10
+25527  bat /tmp/Makefile_tinycore_src
+25528  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25529  nl /tmp/Makefile_tinycore_src
+25530  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25531  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25532  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25533  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25534  nl /tmp/Makefile_tinycore_src
+25535  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25536  nl /tmp/Makefile_tinycore_src
+25537  nl /tmp/Makefile_tinycore_src
+25538  sh /Volumes/git/computers.git/mac/bin/qemu_linux.sh && cd ~/trash && make -f /tmp/Makefile_tinycore_src
+25539  linux-6.12.11-patched.tar.xz\nconfig-6.12.11-tinycore64\n
+25540  ls linux-6.12.11*
+25541  ls config-6.12.11*
+25542  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25543  mv Dockerfile Dockerfile.old
+25544  bbedit Dockerfile
+25545  mv entrypoint.sh entrypoint.sh.old
+25546  bbedit entrypoint.sh
+25547  chmod +x /Volumes/trash/trash/entrypoint.sh\n
+25548  docker build -t tinycore-kernel-builder .\n
+25549  docker run --rm -v /Volumes/trash/trash:/out tinycore-kernel-builder\n
+25550  vi arch/x86/Makefile +335
+25551  docker ps
+25552  docker run -v /Volumes/trash/trash:/out tinycore-kernel-builder
+25553  docker ps
+25554  docker run -it \\n    --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n
+25555  docker exec -it kerneldebug /bin/bash\n
+25556  docker run -it \\n    --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    --entrypoint /bin/bash \\n    tinycore-kernel-builder\n
+25557  docker rm kerneldebug\n
+25558  docker run -it \\n    --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    --entrypoint /bin/bash \\n    tinycore-kernel-builder\n
+25559  docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n
+25560  docker exec -it kerneldebug /bin/bash\n
+25561  docker rm -f kerneldebug 2>/dev/null || true\n
+25562  docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n
+25563  du -h /Volumes/volumize_these/
+25564  source ~/.zshrc
+25565  cd /Volumes/volumize_these/
+25566  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25567  du.sh
+25568  du.sh
+25569  source ~/.zshrc
+25570  cd /Volumes/volumize_these/
+25571  find -size +100M
+25572  find -size +100M
+25573  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25574  du -h index_cloud_mirrored*
+25575  du -h index_cloud_mirrored* /Volumes/index_cloud_mirrored\ 1/
+25576  rsync --min-size=1G --debug=ALL -h -a -v --progress --backup --suffix=.`date -I` --prune-empty-dirs --remove-source-files /Volumes/index_cloud_mirrored\ 1/ /Volumes/volumize_these/index_cloud_mirrored\ 1/
+25577  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25578  docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n
+25579  docker rm -f kerneldebug 2>/dev/null || true && docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n\n
+25580  find -regex '.*arch/x86/Makefile'
+25581  find linux-6.12.11/arch  -regex '.*arch/x86/Makefile'
+25582  find linux-6.12.11/arch  -regex '.*Makefile'
+25583  find linux-6.12.11/arch  -iregex '.*Makefile'
+25584  find linux-6.12.11/arch  -name 'Makefile'
+25585  find /Volumes/index_cloud_mirrored\ 1/
+25586  sudo find /Volumes/index_cloud_mirrored\ 1/  -depth -empty -type d -exec rmdir -v '{}' \;
+25587  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25588  find -empty
+25589  du -sh '/Volumes/volumize_these/index_cloud_mirrored 1'
+25590  du -h '/Volumes/volumize_these/index_cloud_mirrored 1'
+25591  ls '/Volumes/volumize_these/cache_books'
+25592  find $PWD -maxdepth 10 -type d -iname "*books"
+25593  ls -d *books
+25594  du -h *books
+25595  du --max-depth=1 -h *books
+25596  du --max-depth=1 -h *books | sort -n
+25597  du --max-depth=1 -h *books | sort -h
+25598  ~/github/2024/open_source/c/rsync/rsync --debug=ALL -h -a -v --progress --backup --suffix=.`date -I` --prune-empty-dirs --remove-source-files index_books/ cache_books/
+25599  df.sh | grep -v -e pool | sort -h -k 3
+25600  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25601  find -size +1G
+25602  du -h blender
+25603  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25604  du.sh
+25605  df.sh | grep -v -e pool | sort -h -k 3
+25606  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25607  df.sh | grep -v -e pool | sort -h -k 3
+25608  cd /Volumes/index_photos
+25609  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25610  tail du_sum_striped.txt
+25611  du -h /Volumes/volumize_these/index_photos_by_extension
+25612  find /Volumes/volumize_these/index_photos_by_extension
+25613  find /Volumes/volumize_these/index_photos_by_extension -empty
+25614  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25615  cd ..
+25616  cd index_photos_by_extension
+25617  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25618  tail du_sum_striped.txt
+25619  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25620  find -size +100M
+25621  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25622  find -size +500M
+25623  find $PWD -size +500M | tee files_500M.txt
+25624  cd /Volumes/new_large/new
+25625  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25626  cd ..
+25627  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25628  du.sh
+25629  cd /Volumes/git
+25630  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25631  tail du.txt
+25632  find /Volumes/git/github/mysql-server /Volumes/git/github/elasticsearch /Volumes/git/github/2024/open_source/.git -size +100M
+25633  find /Volumes/git/github/mysql-server /Volumes/git/github/elasticsearch  -size +100M
+25634  find /Volumes/git/github/mysql-server /Volumes/git/github/elasticsearch  -size +100M -delete
+25635  find /Volumes/git/github/mysql-server /Volumes/git/github/elasticsearch  -size +50M
+25636  find /Volumes/git/github/mysql-server /Volumes/git/github/elasticsearch  -size +50M -delete
+25637  find -size +100M -type f
+25638  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25639  du.sh
+25640  rm -rf /Volumes/git/github/mysql-server/build
+25641  rm -f /Volumes/git/github/linux/linux-arm64-build/kernel-src/.git/objects/pack
+25642  rm -rf /Volumes/git/github/linux/linux-arm64-build/kernel-src/.git/objects/pack
+25643  sudo find index_books/ -depth -empty -type d -exec rmdir -v '{}' \;
+25644  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25645  df.sh | grep -v -e pool | sort -h -k 3
+25646  source ~/.zshrc
+25647  cd trash
+25648  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25649  docker rm -f kerneldebug 2>/dev/null || true && docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n\n
+25650  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25651  tar -cvf linux-6.12.11-patched.tar.xz
+25652  tar -cvf linux-6.12.11-patched.tar.xz linux-6.12.11-patched/
+25653  mkdir linux-6.12.11-patched/
+25654  tar -cvf linux-6.12.11-patched.tar.xz linux-6.12.11-patched/
+25655  cd linux-6.12.11-patched/
+25656  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25657  cd ..
+25658  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25659  tar -xvf linux-6.12.11-patched.tar.xz
+25660  find linux-6.12.11
+25661  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25662  rm -rf linux-6.12.11
+25663  tar -xvf linux-6.12.11-patched.tar.xz
+25664  find linux-6.12.11-patched
+25665  find linux-6.12.11-patched/
+25666  ls linux-6.12.11-patched/
+25667  rm linux-6.12.11-patched.tar.xz
+25668  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25669  bbedit /Volumes/git/computers.git/mac/bin/qemu_linux.sh
+25670  cat files_500M.txt
+25671  cat files_500M.txt | du_sum.sh
+25672  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=1 ls -lh
+25673  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=1 ls -lh | sort -h
+25674  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lh | sort -h
+25675  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lh
+25676  /Volumes/git/github/2024/open_source/rust/findutils/target/debug/find $PWD -maxdepth 10 -type f -iname "*filmmakin*"
+25677  find -size +1G
+25678  find -size +5G
+25679  rm -rf './index_watch_these/trash/videos/watch/The_Art_of_Documentary_Filmmaking_(2008)_(oT3MvbfotvQ).webm'
+25680  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25681  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lh
+25682  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lhs
+25683  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lhs S
+25684  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lhs Sr
+25685  cat files_500M.txt  |  xargs --delimiter '\n' --max-args=10000 ls -lhsSr
+25686  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25687  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25688  tar -xvf linux-6.12.11-patched.tar.xz
+25689  bbedit Dockerfile
+25690  realpath linux-6.12.11
+25691  realpath linux-6.12.11
+25692  ls linux-6.12.11-patched/
+25693  realpath linux-6.12.11
+25694  rm -rf linux-6.12.11-patched/
+25695  docker rm -f kerneldebug 2>/dev/null || true && docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n\n
+25696  bbedit entrypoint.sh
+25697  docker rm -f kerneldebug 2>/dev/null || true && docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n\n
+25698  docker rm -f kerneldebug 2>/dev/null || true && docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n\n
+25699  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25700  bbedit Dockerfile
+25701  docker rm -f kerneldebug 2>/dev/null || true && docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n\n
+25702  docker rm -f kerneldebug 2>/dev/null || true\n
+25703  cd /Volumes/trash/trash\ndocker build -t tinycore-kernel-builder .\n
+25704  docker build --no-cache -t tinycore-kernel-builder .\n
+25705  docker_prune_images.sh
+25706  docker image prune -af ; docker builder prune -f
+25707  docker build --no-cache -t tinycore-kernel-builder .\n
+25708  docker run --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    tinycore-kernel-builder\n
+25709  docker ps
+25710  docker run -it \\n    --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    --entrypoint /bin/bash \\n    tinycore-kernel-builder\n
+25711  docker rm -f kerneldebug 2>/dev/null || true && docker run -it \\n    --name kerneldebug \\n    -v /Volumes/trash/trash:/out \\n    --entrypoint /bin/bash \\n    tinycore-kernel-builder\n\n
+25712  source ~/.zshrc
+25713  cd trash
+25714  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25715  find linux-6.12.11/arch/
+25716  find linux-6.12.11/arch/x86/boot/
+25717  ls linux-6.12.11/arch/x86/boot/
+25718  realpath linux-6.12.11/arch/x86/boot/bzImage
+25719  ls corepure64.gz
+25720  qemu-system-x86_64 \\n  -kernel bzImage \\n  -initrd corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0"\n
+25721  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0"\n
+25722  pkill qem
+25723  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25724  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0"\n
+25725  pkill qem
+25726  realpath corepure64.gz
+25727  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0"\n
+25728  pkill qem
+25729  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0 root=/dev/ram0 rdinit=/init"\n
+25730  pkill qem
+25731  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25732  file /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage
+25733  ls -lh /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage
+25734  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0 root=/dev/ram0 rdinit=/init"\n
+25735  pkill qem
+25736  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/corepure64.gz \\n  -m 1024 \\n  -nographic \\n  -append "console=ttyS0 root=/dev/ram0 rdinit=/init"\n
+25737  pkill qem
+25738  qemu-system-x86_64 \\n  -kernel bzImage \\n  -initrd corepure64.gz \\n  -append "console=ttyS0 rdinit=/usr/init initrd=/core.gz" \\n  -m 1024 \\n  -nographic\n
+25739  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/corepure64.gz \\n  -append "console=ttyS0 rdinit=/usr/init initrd=/core.gz" \\n  -m 1024 \\n  -nographic\n
+25740  pkill qem
+25741  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/corepure64.gz \\n  -append "console=ttyS0 tce=UUID=none waitusb=5 nomsr noswap nozswap" \\n  -m 1024 \\n  -nographic\n
+25742  pkill qem
+25743  ls
+25744  ls rootfs.cpio.gz
+25745  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init"\n
+25746  pkill qem
+25747  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25748  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init"\n
+25749  pkill qem
+25750  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25751  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init"\n
+25752  pkill qem
+25753  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init"\n
+25754  pkill qem
+25755  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init"\n
+25756  pkill qem
+25757  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init"\n
+25758  pkill qem
+25759  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init debug"\n
+25760  pkill qem
+25761  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25762  zcat rootfs.cpio.gz| cpio -idv
+25763  zcat rootfs.cpio.gz  | cpio -idv
+25764  ls -l
+25765  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25766  cat init
+25767  ls bin/busybox
+25768  find bin/busybox
+25769  find bin/
+25770  find $PWDbin/
+25771  find $PWD/bin/
+25772  history
+25773  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init debug"\n
+25774  pkill qem
+25775  mdfind busybox
+25776  mdfind busybox | grep busybox
+25777  file usr/bin/busybox
+25778  qemu-system-x86_64 \\n  -kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \\n  -initrd /Volumes/trash/trash/rootfs.cpio.gz \\n  -m 512 \\n  -nographic \\n  -append "console=ttyS0 rdinit=/init debug"\n
+25779  source ~/.zshrc
+25780  cd
+25781  cd github/docker_images
+25782  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25783  mkdir linux_build_tinycore_from_source
+25784  cd linux_build_tinycore_from_source
+25785  mv ~/trash/Dockerfile .
+25786  git -c color.status=always status --untracked-files --short
+25787  git add -a
+25788  git -c color.status=always status --untracked-files --short
+25789  git add --all
+25790  git -c color.status=always status --untracked-files --short
+25791  \nurce ~/computers.git/common/.zshrc.git.common.auto
+25792  source ~/computers.git/common/.zshrc.git.common.auto
+25793  git commit --message="2025-12-10: `git diff --name-only --cached | xargs --delimiter "\n" --no-run-if-empty -n 1 basename | tr "\n" " "`" --
+25794  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25795  bat Dockerfile
+25796  mv ~/trash/config-6.12.11-tinycore64 .
+25797  git -c color.status=always status --untracked-files --short
+25798  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25799  git add --all . :/
+25800  git -c color.status=always status --untracked-files --short
+25801  git commit --message="2025-12-10: `git diff --name-only --cached | xargs --delimiter "\n" --no-run-if-empty -n 1 basename | tr "\n" " "`" --
+25802  ls -lr --time=ctime --color=auto --classify --almost-all --reverse --human-readable --group-directories-first --ignore="._*" --literal
+25803  bbedit Makefile
+25804  bbedit commands.container.txt
+25805  docker ps
+25806  history

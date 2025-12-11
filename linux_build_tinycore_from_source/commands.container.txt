@@ -1,0 +1,334 @@
+root@4379496b807d:~/initramfs# history
+    1  ls
+    2  ls /out/linux-6.12.11
+    3  realpath /build/config-6.12.11-tinycore64
+    4  realpath /out/linux-6.12.11
+    5  cd /out/linux-6.12.11
+    6  cp /out/config-6.12.11-tinycore64 ./.config
+    7  make ARCH=x86 CC=gcc-14 KCFLAGS=-Wno-error bzImage
+    8  make ARCH=x86 CC=gcc KCFLAGS=-Wno-error bzImage
+    9  cd /build/src/linux-src
+   10  nl -ba arch/x86/Makefile | sed -n '300,360p'
+   11  make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=-mindirect-branch=thunk KCFLAGS=-Wno-error -j$(nproc) bzImage
+   12  yes n | make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=-mindirect-branch=thunk KCFLAGS=-Wno-error olddefconfig
+   13  apt install -y gcc-14 g++-14
+   14  apt-get update && apt install -y gcc-14 g++-14
+   15  make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=-mindirect-branch=thunk KCFLAGS=-Wno-error -j$(nproc) bzImage
+   16  yes n | make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=-mindirect-branch=thunk KCFLAGS=-Wno-error olddefconfig
+   17  make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=-mindirect-branch=thunk KCFLAGS=-Wno-error -j$(nproc) bzImage
+   18  apt-get install -y gcc-x86-64-linux-gnu
+   19  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- ...
+   20  yes n | make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=yes KCFLAGS=-Wno-error olddefconfig
+   21  make ARCH=x86 CC=gcc-14 RETPOLINE_CFLAGS=yes KCFLAGS=-Wno-error -j$(nproc) bzImage
+   22  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- ...
+   23  make      ARCH=x86_64     KCFLAGS=-Wno-error     KBUILD_CFLAGS="-Wno-error"     bzImage
+   24  make      ARCH=x86_64     KCFLAGS=-Wno-error     KBUILD_CFLAGS="-Wno-error"     RETPOLINE_CFLAGS=-mindirect-branch=thunk bzImage
+   25  make ARCH=x86_64      CROSS_COMPILE=x86_64-linux-gnu-      KCFLAGS="-Wno-error"      KBUILD_CFLAGS="-Wno-error"      RETPOLINE_CFLAGS=yes      -j$(nproc)      bzImage
+   26  make ARCH=x86_64      CROSS_COMPILE=x86_64-linux-gnu-      KCFLAGS="-Wno-error"      KBUILD_CFLAGS="-Wno-error"      RETPOLINE_CFLAGS=yes      -j$(nproc)      bzImage
+   27  Indirect Branch Tracking (X86_KERNEL_IBT) [Y/n/?] (NEW)
+   28  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- defconfig
+   29  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+   30  make ARCH=x86_64      CROSS_COMPILE=x86_64-linux-gnu-      KCFLAGS=-Wno-error      KBUILD_CFLAGS=-Wno-error      RETPOLINE_CFLAGS=yes      -j$(nproc)      bzImage
+   31  history
+   32  x86_64-linux-gnu-gcc -v
+   33  scripts/config --disable X86_X32
+   34  scripts/config --disable IA32_EMULATION
+   35  scripts/config --disable COMPAT
+   36  scripts/config --disable X86_32
+   37  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+   38  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j$(nproc) V=1 bzImage
+   39  grep -i "error" -n build.log
+   40  vi Makefile:224
+   41  nl Makefile:224
+   42  nl Makefile
+   43  nl Makefile | 244
+   44  nl Makefile | grep 244
+   45  apt install -y vim
+   46  vi Makefile +224
+   47  nl Makefile | less
+   48  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j"$(nproc)" V=1 bzImage 2>&1 | tee /tmp/kernel-build.log
+   49  grep -i "error:" -n /tmp/kernel-build.log | head -20
+   50  ls /tmp/kernel-build.log
+   51  grep -i error /tmp/kernel-build.log
+   52  grep -i error: /tmp/kernel-build.log
+   53  apt install -y libssl-dev
+   54  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j$(nproc) V=1 bzImage
+   55  realpath ./arch/x86_64/boot/bzImage
+   56  ls /out/
+   57  # Initrd support
+   58  scripts/config --enable BLK_DEV_INITRD
+   59  scripts/config --enable RD_GZIP
+   60  scripts/config --enable DEVTMPFS
+   61  scripts/config --enable DEVTMPFS_MOUNT
+   62  # Basic filesystems TinyCore needs
+   63  scripts/config --enable TMPFS
+   64  scripts/config --enable TMPFS_POSIX_ACL
+   65  scripts/config --enable TMPFS_XATTR
+   66  scripts/config --enable RAMFS
+   67  # SquashFS (TinyCore uses it for extensions)
+   68  scripts/config --enable SQUASHFS
+   69  scripts/config --enable SQUASHFS_XZ
+   70  # EXT4 (TinyCore can use ext4 loops)
+   71  scripts/config --enable EXT4_FS
+   72  # Disable 32-bit compatibility (we already learned this is needed)
+   73  scripts/config --disable IA32_EMULATION
+   74  scripts/config --disable X86_X32
+   75  scripts/config --disable COMPAT
+   76  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+   77  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j$(nproc) bzImage
+   78  cp -v /out/config-6.12.11-tinycore64 .config
+   79  KCONFIG_NONINTERACTIVE=1  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+   80  make ARCH=x86_64      CROSS_COMPILE=x86_64-linux-gnu-      -j"$(nproc)"      bzImage
+   81  apt-get install -y busybox-static
+   82  mkdir -p /root/initramfs/{bin,sbin,etc,proc,sys,usr/bin,usr/sbin,dev}
+   83  cp /bin/busybox /root/initramfs/bin/
+   84  cat > /root/initramfs/init << 'EOF'
+#!/bin/sh
+mount -t proc proc /proc
+mount -t sysfs sys /sys
+
+echo "=== Hello from custom initramfs ==="
+echo "Kernel: $(uname -a)"
+echo "Dropping to shell..."
+exec /bin/sh
+EOF
+
+   85  chmod +x /root/initramfs/init
+   86  cd /root/initramfs
+   87  find . -print0 | cpio --null -ov --format=newc | gzip -9 > /out/rootfs.cpio.gz
+   88  apt-get install -y cpio
+   89  cd /root/initramfs
+   90  find . -print0 | cpio --null -ov --format=newc | gzip -9 > /out/rootfs.cpio.gz
+   91  ls -R /root/initramfs
+   92  gzip -dc /out/rootfs.cpio.gz | cpio -t | head -20
+   93  history
+   94  dirs -v
+   95  cd
+   96  cd /out/linux-6.12.11
+   97  ls
+   98  scripts/config --enable BLK_DEV_INITRD
+   99  scripts/config --set-str INITRAMFS_SOURCE ""
+  100  scripts/config --enable RD_GZIP
+  101  scripts/config --enable RD_BZIP2
+  102  scripts/config --enable RD_LZMA
+  103  scripts/config --enable RD_XZ
+  104  scripts/config --enable RD_LZO
+  105  scripts/config --enable RD_LZ4
+  106  scripts/config --enable TMPFS
+  107  scripts/config --enable TMPFS_POSIX_ACL
+  108  scripts/config --enable TMPFS_XATTR
+  109  scripts/config --enable DEVTMPFS
+  110  scripts/config --enable DEVTMPFS_MOUNT
+  111  scripts/config --disable MITIGATION_RETPOLINE
+  112  scripts/config --disable RETPOLINE
+  113  cp /out/config-6.12.11-tinycore64 .config
+  114  make scriptsconfig
+  115  scripts/config --enable TMPFS
+  116  scripts/config --enable TMPFS_POSIX_ACL
+  117  scripts/config --enable TMPFS_XATTR
+  118  scripts/config --enable DEVTMPFS
+  119  scripts/config --enable DEVTMPFS_MOUNT
+  120  scripts/config --disable MITIGATION_RETPOLINE
+  121  scripts/config --disable RETPOLINE
+  122  yes "" | make olddefconfig
+  123  make -j$(nproc) bzImage
+  124  history
+  125  history -100
+  126  history -n 100
+  127  history 100
+  128  history 1000
+  129  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j$(nproc) bzImage
+  130  cp /out/config-6.12.11-tinycore64 .config
+  131  scripts/config --enable BLK_DEV_INITRD
+  132  scripts/config --set-str INITRAMFS_SOURCE ""
+  133  scripts/config --enable RD_GZIP
+  134  scripts/config --enable DEVTMPFS
+  135  scripts/config --enable DEVTMPFS_MOUNT
+  136  scripts/config --enable TMPFS
+  137  scripts/config --enable TMPFS_POSIX_ACL
+  138  scripts/config --enable TMPFS_XATTR
+  139  scripts/config --disable MITIGATION_RETPOLINE
+  140  scripts/config --disable RETPOLINE
+  141  yes "" | make olddefconfig
+  142  make -j$(nproc) bzImage
+  143  cp /out/config-6.12.11-tinycore64 .config
+  144  # Initrd support & external initramfs
+  145  scripts/config --enable BLK_DEV_INITRD
+  146  scripts/config --set-str INITRAMFS_SOURCE ""
+  147  scripts/config --enable RD_GZIP
+  148  # Device /dev population in initramfs
+  149  scripts/config --enable DEVTMPFS
+  150  scripts/config --enable DEVTMPFS_MOUNT
+  151  # tmpfs support
+  152  scripts/config --enable TMPFS
+  153  scripts/config --enable TMPFS_POSIX_ACL
+  154  scripts/config --enable TMPFS_XATTR
+  155  # Disable retpoline stuff that exploded with your compiler
+  156  scripts/config --disable MITIGATION_RETPOLINE
+  157  scripts/config --disable RETPOLINE
+  158  # Keep the stuff we already fixed earlier (no going backwards):
+  159  scripts/config --disable X86_X32
+  160  scripts/config --disable IA32_EMULATION
+  161  scripts/config --disable COMPAT
+  162  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+  163  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  164  fc -l 1-200
+  165  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- clean
+  166  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  167  cd /out/linux-6.12.11
+  168  cp /out/config-6.12.11-tinycore64 .config
+  169  # Initrd + external initramfs
+  170  scripts/config --enable BLK_DEV_INITRD
+  171  scripts/config --set-str INITRAMFS_SOURCE ""
+  172  scripts/config --enable RD_GZIP
+  173  # /dev in initramfs
+  174  scripts/config --enable DEVTMPFS
+  175  scripts/config --enable DEVTMPFS_MOUNT
+  176  # tmpfs (TinyCore-style)
+  177  scripts/config --enable TMPFS
+  178  scripts/config --enable TMPFS_POSIX_ACL
+  179  scripts/config --enable TMPFS_XATTR
+  180  # Kill 32-bit/x32 compat that caused asm/constraint hell
+  181  scripts/config --disable X86_X32
+  182  scripts/config --disable IA32_EMULATION
+  183  scripts/config --disable COMPAT
+  184  # Kill retpoline stuff TinyCore expects from a different compiler
+  185  scripts/config --disable MITIGATION_RETPOLINE
+  186  scripts/config --disable RETPOLINE
+  187  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+  188  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- clean
+  189  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  190  scripts/config --enable BLK_DEV_INITRD
+  191  scripts/config --set-str INITRAMFS_SOURCE ""
+  192  scripts/config --enable RD_GZIP
+  193  # Initramfs device + tmpfs requirements
+  194  scripts/config --enable DEVTMPFS
+  195  scripts/config --enable DEVTMPFS_MOUNT
+  196  scripts/config --enable TMPFS
+  197  scripts/config --enable TMPFS_POSIX_ACL
+  198  scripts/config --enable TMPFS_XATTR
+  199  # Kill ALL features that caused asm constraint / CET / IBT issues
+  200  scripts/config --disable X86_KERNEL_IBT
+  201  scripts/config --disable X86_SHADOW_CALL_STACK
+  202  scripts/config --disable X86_CET
+  203  scripts/config --disable MITIGATION_RETPOLINE
+  204  scripts/config --disable RETPOLINE
+  205  scripts/config --disable CPU_IBPB
+  206  scripts/config --disable CPU_IBRS_ENTRY
+  207  scripts/config --disable CPU_SRSO
+  208  # Disable ALL 32-bit/x32 compatibility — critical fix
+  209  scripts/config --disable IA32_EMULATION
+  210  scripts/config --disable X86_X32
+  211  scripts/config --disable COMPAT
+  212  scripts/config --disable COMPAT_32
+  213  # Force kernel into pure 64-bit mode
+  214  scripts/config --enable X86_64
+  215  scripts/config --disable X86_32
+  216  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+  217  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- clean
+  218  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  219  history
+  220  cp /out/config-6.12.11-tinycore64 .config
+  221  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  222  history
+  223  cp /out/config-6.12.11-tinycore64 .config
+  224  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+  225  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  226  x86_64-linux-gnu-gcc -v
+  227  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  228  cp /out/config-6.12.11-tinycore64 .config
+  229  scripts/config --disable X86_X32
+  230  scripts/config --disable IA32_EMULATION
+  231  scripts/config --disable COMPAT
+  232  scripts/config --disable X86_32
+  233  yes "" | make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- olddefconfig
+  234  make   ARCH=x86_64   CROSS_COMPILE=x86_64-linux-gnu-   KCFLAGS=-Wno-error   KBUILD_CFLAGS=-Wno-error   -j"$(nproc)"   bzImage
+  235  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j$(nproc) V=1 bzImage
+  236  make ARCH=x86_64 CROSS_COMPILE=x86_64-linux-gnu- -j$(nproc)  bzImage
+  237  ls
+  238  ls ..
+  239  cd ..
+  240  ls -l
+  241  zcat /out/rootfs.cpio.gz | cpio -idv
+  242  head -1 init
+  243  file init
+  244  ls -l init
+  245  ls -l
+  246  history
+  247  rm -rf /root/initramfs
+  248  mkdir -p /root/initramfs/{bin,proc,sys,dev}
+  249  cp /bin/busybox /root/initramfs/bin/
+  250  chmod 0755 /root/initramfs/bin/busybox
+  251  ln -sf busybox /root/initramfs/bin/sh
+  252  cat > /root/initramfs/init << 'EOF'
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+echo "=== Hello from custom initramfs ==="
+echo "Kernel: $(uname -a)"
+echo "Dropping to shell..."
+exec /bin/sh
+EOF
+
+  253  chmod +x /root/initramfs/init
+  254  cd /root/initramfs
+  255  find . -print0 | cpio --null -ov --format=newc | gzip -9 > /out/rootfs.cpio.gz
+  256  gzip -dc /out/rootfs.cpio.gz | cpio -t | grep -E "init$|busybox|bin/sh"
+  257  cd -
+  258  curl -L -o busybox https://busybox.net/downloads/binaries/1.35.0-x86_64-linux-musl/busybox
+  259  chmod +x busybox
+  260  apt search busybox
+  261  wget https://deb.debian.org/debian/pool/main/b/busybox/busybox-static_1.30.1-6_amd64.deb
+  262  ar x busybox-static_1.30.1-6_amd64.deb
+  263  tar xf data.tar.xz
+  264  wget http://ftp.us.debian.org/debian/pool/main/b/busybox/busybox-static_1.37.0-7_arm64.deb
+  265  ar x busybox-static_1.37.0-7_arm64.deb
+  266  ls -l
+  267  tar xf data.tar.xz
+  268  find bin/
+  269  file bin/busybox
+  270  stat bin/busybox
+  271  cp bin/busybox /root/initramfs/bin/
+  272  chmod 0755 /root/initramfs/bin/busybox
+  273  ln -sf busybox /root/initramfs/bin/sh
+  274  ls
+  275  rm data.tar.xz
+  276  rm bin/ -rfv
+  277  rm busybox-static_1.37.0-7_arm64.deb
+  278  wget http://http.us.debian.org/debian/pool/main/b/busybox/busybox-static_1.37.0-7_amd64.deb
+  279  ar x busybox-static_1.37.0-7_amd64.deb
+  280  tar xf data.tar.xz
+  281  find bi
+  282  find bin
+  283  tar xf data.tar.xz
+  284  ls bin
+  285  ls
+  286  ls -l
+  287  ar x busybox-static_1.30.1-6_amd64.deb
+  288  ar x busybox-static_1.37.0-7_amd64.deb
+  289  ls -l
+  290  ls data.tar.xz
+  291  tar xvf data.tar.xz
+  292  ls
+  293  rm -rf /root/initramfs
+  294  mkdir -p /root/initramfs/{bin,proc,sys,dev}
+  295  cp usr/bin/busybox /root/initramfs/bin/
+  296  chmod 0755 /root/initramfs/bin/busybox
+  297  ln -sf busybox /root/initramfs/bin/sh
+  298  cat > /root/initramfs/init << 'EOF'
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+echo "=== Hello from custom initramfs ==="
+echo "Kernel: $(uname -a)"
+echo "Dropping to shell..."
+exec /bin/sh
+EOF
+
+  299  chmod +x /root/initramfs/init
+  300  cd /root/initramfs
+  301  find . -print0 | cpio --null -ov --format=newc | gzip -9 > /out/rootfs.cpio.gz
+  302  gzip -dc /out/rootfs.cpio.gz | cpio -t | grep -E 'init$|bin/busybox|bin/sh'
+  303  history

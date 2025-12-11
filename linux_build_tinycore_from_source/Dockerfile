@@ -10,9 +10,13 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
 WORKDIR /build
 
 # COPY linux-6.12.11-patched.tar.xz /build/
-COPY config-6.12.11-tinycore64 /build/
+COPY	config-6.12.11-tinycore64 	/build/
+
+COPY 	Makefile_linux			/build/
+COPY	init				/build/
 
 # COPY entrypoint.sh /entrypoint.sh
 # RUN chmod +x /entrypoint.sh
 
 # ENTRYPOINT ["/entrypoint.sh"]
+CMD ["sleep", "infinity"]
