@@ -1,8 +1,10 @@
 IMAGE_NAME = nixos-bat
+ZSHRC_SRC = /Users/sarnobat/computers.git/docker/.zshrc
 
 .PHONY: build run clean
 
 build:
+	cp $(ZSHRC_SRC) .
 	docker build -t $(IMAGE_NAME):latest .
 
 run:
