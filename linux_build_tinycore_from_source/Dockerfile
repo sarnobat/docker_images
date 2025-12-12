@@ -5,6 +5,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     libncurses-dev libelf-dev \
     xz-utils curl wget git \
     gcc-14 g++-14 libssl-dev \
+    gcc-x86-64-linux-gnu g++-x86-64-linux-gnu \
  && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build
