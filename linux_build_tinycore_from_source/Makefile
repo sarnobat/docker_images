@@ -22,11 +22,26 @@ download:
 	test -f "/Volumes/trash/trash/linux-6.12.11-patched.tar.xz" || echo "cd /Volumes/trash/trash/ && wget http://www.tinycorelinux.net/16.x/x86/release/src/kernel/linux-6.12.11-patched.tar.xz"
 	test -d "/Volumes/trash/trash/linux-6.12.11" || echo "cd /Volumes/trash/trash/ && tar xvf linux-6.12.11-patched.tar.xz"
 
-run:	bzImage	rootfs.cpio.gz
+.PHONY: info
+
+info:
+	@echo "rootfs.cpio.gz"
+	@echo "└── ."
+	@echo "    ├── init"
+	@echo "    ├── bin"
+	@echo "    │   ├── busybox"
+	@echo "    │   └── sh"
+	@echo "    ├── proc"
+	@echo "    ├── sys"
+	@echo "    └── dev"
+
+run:	$(BZIMAGE_PATH)	rootfs.cpio.gz
+
+	@echo "Try and get this to work with vanilla linux github repo, not tinycore linux archive"
 
 	qemu-system-x86_64 \
 		-kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \
-		-initrd /Volumes/trash/trash/rootfs.cpio.gz \
+		-initrd rootfs.cpio.gz \
 		-m 512 \
 		-nographic \
 		-append "console=ttyS0 rdinit=/init debug"
@@ -44,3 +59,4 @@ rootfs.cpio.gz:
 		-v "$(PWD):/work" \
 		-v /Volumes/trash/trash:/out	\
 		$(DOCKER_IMAGE)
+
