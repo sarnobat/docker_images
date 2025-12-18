@@ -42,7 +42,7 @@ $(BUSYBOX_BIN): $(BUSYBOX_DEB)
 
 $(INITRAMFS)/bin/busybox: $(BUSYBOX_BIN)
 	rm -rf $(INITRAMFS)
-	mkdir -p $(INITRAMFS)/{bin,proc,sys,dev}
+	mkdir -p $(INITRAMFS)/bin $(INITRAMFS)/proc $(INITRAMFS)/sys $(INITRAMFS)/dev
 	cp $(BUSYBOX_BIN) $(INITRAMFS)/bin/
 	chmod 0755 $(INITRAMFS)/bin/busybox
 	ln -sf busybox $(INITRAMFS)/bin/sh
