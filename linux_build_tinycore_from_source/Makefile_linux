@@ -6,8 +6,8 @@ CONFIG_SRC ?= /build/config-6.12.11-tinycore64
 config:
 	echo "SRIDHAR"
 	test -d "$(KERNEL_DIR)"
-	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) scripts
 	cp "$(CONFIG_SRC)" "$(KERNEL_DIR)/.config"
+	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) scripts
 	cd "$(KERNEL_DIR)" && \
 		scripts/config --disable X86_X32 && \
 		scripts/config --disable IA32_EMULATION && \
