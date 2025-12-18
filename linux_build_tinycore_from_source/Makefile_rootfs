@@ -52,16 +52,16 @@ $(INITRAMFS)/bin/busybox: $(BUSYBOX_BIN)
 # -------------------------
 
 $(INITRAMFS)/init: $(INITRAMFS)/bin/busybox
-	cat > $@ << 'EOF'
-#!/bin/sh
-mount -t proc none /proc
-mount -t sysfs none /sys
+	cat > $@ <<-'EOF'
+	#!/bin/sh
+	mount -t proc none /proc
+	mount -t sysfs none /sys
 
-echo "=== Hello from custom initramfs ==="
-echo "Kernel: $$(uname -a)"
-echo "Dropping to shell..."
-exec /bin/sh
-EOF
+	echo "=== Hello from custom initramfs ==="
+	echo "Kernel: $$(uname -a)"
+	echo "Dropping to shell..."
+	exec /bin/sh
+	EOF
 	chmod +x $@
 
 # -------------------------
