@@ -40,5 +40,5 @@ docker-image:
 rootfs.cpio.gz:
 	docker run --rm \
 		-v "$(PWD):/work" \
-		-v "$(OUT_DIR):/out" \
+		-v /Volumes/trash/trash:/out	\
 		$(DOCKER_IMAGE)
