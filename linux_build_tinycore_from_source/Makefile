@@ -20,7 +20,7 @@ download:
 	test -f "/Volumes/trash/trash/linux-6.12.11-patched.tar.xz" || echo "cd /Volumes/trash/trash/ && wget http://www.tinycorelinux.net/16.x/x86/release/src/kernel/linux-6.12.11-patched.tar.xz"
 	test -d "/Volumes/trash/trash/linux-6.12.11" || echo "cd /Volumes/trash/trash/ && tar xvf linux-6.12.11-patched.tar.xz"
 
-run:	bzImage
+run:	bzImage	rootfs.cpio.gz
 	qemu-system-x86_64 \
 		-kernel /Volumes/trash/trash/linux-6.12.11/arch/x86/boot/bzImage \
 		-initrd /Volumes/trash/trash/rootfs.cpio.gz \
@@ -37,9 +37,7 @@ docker-image:
 		-t $(DOCKER_IMAGE) \
 		.
 
-.PHONY: docker-run
-
-docker-run:
+rootfs.cpio.gz:
 	docker run --rm \
 		-v "$(PWD):/work" \
 		-v "$(OUT_DIR):/out" \
