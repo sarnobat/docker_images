@@ -64,7 +64,7 @@ $(INITRAMFS)/bin/busybox: $(BUSYBOX_BIN)
 # -------------------------
 
 $(INITRAMFS)/init: $(INITRAMFS)/bin/busybox
-	printf '%s\n' '$(INIT_SCRIPT)' > $@
+	$(file >$@,$(INIT_SCRIPT))
 	chmod +x $@
 
 # -------------------------

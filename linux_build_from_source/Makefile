@@ -28,6 +28,7 @@ run:	/Volumes/git/github/linux/arch/x86/boot/bzImage	rootfs.cpio.gz
 .PHONY: docker-image
 
 docker-image:
+	docker image rm $(DOCKER_IMAGE) || true
 	docker build \
 		-f $(DOCKERFILE) \
 		-t $(DOCKER_IMAGE) \
@@ -38,4 +39,5 @@ rootfs.cpio.gz:
 		-v "$(PWD):/work" \
 		-v /Volumes/trash/trash:/out	\
 		$(DOCKER_IMAGE)
+	rm -rf build
 
