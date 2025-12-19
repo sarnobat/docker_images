@@ -1,0 +1,8 @@
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+echo "=== Hello from custom initramfs ==="
+echo "Kernel: $(uname -a)"
+echo "Dropping to shell..."
+exec /bin/sh
