@@ -1,3 +1,6 @@
+DOCKER_IMAGE := rootfs-builder
+DOCKERFILE   := Dockerfile_rootfs
+
 /Volumes/git/github/linux/arch/x86/boot/bzImage:
 	docker build -t tinycore-kernel-builder .	\
 		&& docker rm -f kerneldebug 2>/dev/null || true	\

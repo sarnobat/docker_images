@@ -1,0 +1,93 @@
+# -------------------------
+# Configuration
+# -------------------------
+
+BUSYBOX_DEB := busybox-static_1.37.0-7_amd64.deb
+BUSYBOX_URL := http://http.us.debian.org/debian/pool/main/b/busybox/$(BUSYBOX_DEB)
+
+BUILD_DIR   := build
+EXTRACT_DIR := $(BUILD_DIR)/busybox
+INITRAMFS   := $(BUILD_DIR)/initramfs
+OUT_DIR     ?= .
+
+BUSYBOX_BIN := $(EXTRACT_DIR)/usr/bin/busybox
+ROOTFS_CPIO := $(OUT_DIR)/rootfs.cpio.gz
+ROOTFS_CPIO_ABS := $(abspath $(ROOTFS_CPIO))
+
+define INIT_SCRIPT
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+
+echo "=== Hello from custom initramfs ==="
+echo "Kernel: $$(uname -a)"
+echo "Dropping to shell..."
+exec /bin/sh
+endef
+
+# -------------------------
+# Default target
+# -------------------------
+
+all: $(ROOTFS_CPIO)
+
+# -------------------------
+# Download BusyBox .deb
+# -------------------------
+
+$(BUSYBOX_DEB):
+	wget -O $@ $(BUSYBOX_URL)
+
+# -------------------------
+# Extract BusyBox
+# -------------------------
+
+$(BUSYBOX_BIN): $(BUSYBOX_DEB)
+	rm -rf $(EXTRACT_DIR)
+	mkdir -p $(EXTRACT_DIR)
+	cd $(EXTRACT_DIR) && ar x ../../$(BUSYBOX_DEB)
+	cd $(EXTRACT_DIR) && tar xf data.tar.xz
+
+# -------------------------
+# Build initramfs tree
+# -------------------------
+
+$(INITRAMFS)/bin/busybox: $(BUSYBOX_BIN)
+	rm -rf $(INITRAMFS)
+	mkdir -p $(INITRAMFS)/bin $(INITRAMFS)/proc $(INITRAMFS)/sys $(INITRAMFS)/dev
+	cp $(BUSYBOX_BIN) $(INITRAMFS)/bin/
+	chmod 0755 $(INITRAMFS)/bin/busybox
+	ln -sf busybox $(INITRAMFS)/bin/sh
+
+# -------------------------
+# Create init
+# -------------------------
+
+$(INITRAMFS)/init: $(INITRAMFS)/bin/busybox
+	printf '%s\n' '$(INIT_SCRIPT)' > $@
+	chmod +x $@
+
+# -------------------------
+# Create rootfs.cpio.gz
+# -------------------------
+
+$(ROOTFS_CPIO): $(INITRAMFS)/init
+	mkdir -p $(dir $(ROOTFS_CPIO_ABS))
+	cd $(INITRAMFS) && \
+	find . -print0 | cpio --null -ov --format=newc | gzip -9 > "$(ROOTFS_CPIO_ABS)"
+
+# -------------------------
+# Verify contents
+# -------------------------
+
+verify: $(ROOTFS_CPIO)
+	gzip -dc $(ROOTFS_CPIO) | cpio -t | grep -E 'init$|bin/busybox|bin/sh'
+
+# -------------------------
+# Cleanup
+# -------------------------
+
+clean:
+	rm -rf $(BUILD_DIR) $(OUT_DIR)
+
+.PHONY: all verify clean
