@@ -3,24 +3,49 @@ CROSS_COMPILE ?= x86_64-linux-gnu-
 KERNEL_DIR ?= /out/linux-6.12.11
 CONFIG_SRC ?= /build/config-6.12.11-tinycore64
 
+.PHONY: config bzImage
+
 config:
 	echo "SRIDHAR"
 	test -d "$(KERNEL_DIR)"
-# 	cp "$(CONFIG_SRC)" "$(KERNEL_DIR)/.config"
 
-	make -C /out/linux-6.12.11 tinyconfig
+	# 1) Start from tinyconfig (correctly invoked)
+	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) tinyconfig
 
+	# 2) Ensure scripts/config is built
+	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) scripts
 
-	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) scripts
+	# 3) Disable unwanted compatibility / legacy paths
 	cd "$(KERNEL_DIR)" && \
 		scripts/config --disable X86_X32 && \
 		scripts/config --disable IA32_EMULATION && \
 		scripts/config --disable COMPAT && \
 		scripts/config --disable X86_32 && \
 		scripts/config --disable MITIGATION_RETPOLINE && \
-		scripts/config --disable RETPOLINE && \
-		yes "" | make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) olddefconfig && \
-		make ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) V=1 bzImage
+		scripts/config --disable RETPOLINE
+
+	# 4) FORCE required symbols for boot + serial + initramfs
+	cd "$(KERNEL_DIR)" && \
+		scripts/config --enable PRINTK && \
+		scripts/config --enable EARLY_PRINTK && \
+		scripts/config --enable TTY && \
+		scripts/config --enable VT && \
+		scripts/config --enable VT_CONSOLE && \
+		scripts/config --enable SERIAL_8250 && \
+		scripts/config --enable SERIAL_8250_CONSOLE && \
+		scripts/config --enable BLK_DEV_INITRD && \
+		scripts/config --enable BINFMT_ELF && \
+		scripts/config --enable PROC_FS && \
+		scripts/config --enable SYSFS && \
+		scripts/config --enable TMPFS && \
+		scripts/config --enable DEVTMPFS && \
+		scripts/config --enable DEVTMPFS_MOUNT
+
+	# 5) Let Kconfig resolve dependencies (MANDATORY)
+	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) olddefconfig
+
+	# 6) Build bzImage
+	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) V=1 bzImage
 
 bzImage:
-	@echo "TODO"
+	@echo "Use: make config"

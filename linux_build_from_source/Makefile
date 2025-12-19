@@ -11,6 +11,8 @@ DOCKERFILE   := Dockerfile_rootfs
 			make -f /build/Makefile_linux
 
 
+build:	/Volumes/git/github/linux/arch/x86/boot/bzImage
+
 checkout:
 	cd /Volumes/git/github/linux/ && git checkout v6.12
 
