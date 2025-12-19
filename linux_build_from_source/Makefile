@@ -16,6 +16,44 @@ build:	/Volumes/git/github/linux/arch/x86/boot/bzImage
 checkout:
 	cd /Volumes/git/github/linux/ && git checkout v6.12
 
+info:
+
+	@echo ""
+	@echo "bzImage"
+	@echo "├── vmlinux"
+	@echo "│   ├── vmlinux.o"
+	@echo "│   │   ├── built-in.a"
+	@echo "│   │   └── arch/x86/kernel/built-in.a"
+	@echo "│   └── vmlinux.a"
+	@echo "│       ├── init/built-in.a"
+	@echo "│       ├── kernel/built-in.a"
+	@echo "│       ├── mm/built-in.a"
+	@echo "│       ├── fs/built-in.a"
+	@echo "│       ├── drivers/built-in.a"
+	@echo "│       ├── net/built-in.a"
+	@echo "│       └── arch/x86/built-in.a"
+	@echo "└── arch/x86/boot/bzImage"
+	@echo "    ├── setup.bin"
+	@echo "    │   ├── arch/x86/boot/setup.o"
+	@echo "    │   └── arch/x86/boot/video.o"
+	@echo "    └── vmlinux.bin"
+	@echo "        ├── arch/x86/boot/compressed/head_64.o"
+	@echo "        ├── arch/x86/boot/compressed/misc.o"
+	@echo "        ├── arch/x86/boot/compressed/string.o"
+	@echo "        └── arch/x86/boot/compressed/vmlinux"
+	@echo "            └── vmlinux → head_64.S"
+	@echo ""
+	@echo "rootfs.cpio.gz"
+	@echo "└── ."
+	@echo "    ├── init"
+	@echo "    ├── bin"
+	@echo "    │   ├── busybox"
+	@echo "    │   └── sh"
+	@echo "    ├── proc"
+	@echo "    ├── sys"
+	@echo "    └── dev"
+	
+	@echo "This entire build job is better than the tinycore one but still nto completely touchless due to the nature of downloading the source code. "
 
 run:	/Volumes/git/github/linux/arch/x86/boot/bzImage	rootfs.cpio.gz
 
