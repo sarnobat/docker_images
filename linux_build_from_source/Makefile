@@ -9,11 +9,13 @@ DOCKERFILE   := Dockerfile_rootfs
 			-v /Volumes/git/github/:/out	\
 			tinycore-kernel-builder		\
 			make -f /build/Makefile_linux
-
+	@echo "See here for code locations (keeping my log statements is tough with such a big codebase) https://github.com/sarnobat/linux_kernel/blob/master/README.md#2025"
 
 build:	/Volumes/git/github/linux/arch/x86/boot/bzImage
 
+
 checkout:
+	# * adc218676eef 2024-11-17 Linux 6.12  Linus Torvalds  (HEAD -> v6.12, tag: v6.12)
 	cd /Volumes/git/github/linux/ && git checkout v6.12
 
 info:
@@ -52,8 +54,12 @@ info:
 	@echo "    ├── proc"
 	@echo "    ├── sys"
 	@echo "    └── dev"
-	
-	@echo "This entire build job is better than the tinycore one but still nto completely touchless due to the nature of downloading the source code. "
+	@echo ""
+	@echo "print statement with colors"
+	@echo 'pr_info("\\033[38;5;45m[trace]\\033[0m " \
+        "\\033[38;5;202mSRIDHAR\\033[0m Run %s as init process\n", \
+        init_filename);'
+	@echo "\nThis entire build job is better than the tinycore one but still nto completely touchless due to the nature of downloading the source code. "
 
 run:	/Volumes/git/github/linux/arch/x86/boot/bzImage	rootfs.cpio.gz
 
