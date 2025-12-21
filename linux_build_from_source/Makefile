@@ -1,6 +1,8 @@
 DOCKER_IMAGE := rootfs-builder
 DOCKERFILE   := Dockerfile_rootfs
 
+build:	/Volumes/git/github/linux/arch/x86/boot/bzImage
+
 /Volumes/git/github/linux/arch/x86/boot/bzImage:
 # 	cd /Volumes/git/github/ && ln -sf linux linux-6.12.11
 	docker build -t tinycore-kernel-builder .	\
@@ -11,8 +13,13 @@ DOCKERFILE   := Dockerfile_rootfs
 			make -f /build/Makefile_linux
 	@echo "See here for code locations (keeping my log statements is tough with such a big codebase) https://github.com/sarnobat/linux_kernel/blob/master/README.md#2025"
 
-build:	/Volumes/git/github/linux/arch/x86/boot/bzImage
-
+rebuild:
+	docker build -t tinycore-kernel-builder .	\
+			&& docker rm -f kerneldebug 2>/dev/null || true	\
+			&& docker run --name kerneldebug	\
+				-v /Volumes/git/github/:/out	\
+				tinycore-kernel-builder		\
+				make -f /build/Makefile_linux rebuild
 
 checkout:
 	# * adc218676eef 2024-11-17 Linux 6.12  Linus Torvalds  (HEAD -> v6.12, tag: v6.12)
@@ -70,6 +77,8 @@ run:	/Volumes/git/github/linux/arch/x86/boot/bzImage	rootfs.cpio.gz
 		-initrd rootfs.cpio.gz \
 		-m 512 \
 		-nographic \
+		-device virtio-net-pci,netdev=n0 \
+		-netdev user,id=n0 \
 		-append "console=ttyS0 rdinit=/init debug"
 
 .PHONY: docker-image

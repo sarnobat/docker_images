@@ -6,6 +6,10 @@ CONFIG_SRC ?= /build/config-6.12.11-tinycore64
 
 .PHONY: config bzImage
 
+build:	bzImage
+
+rebuild:	.config bzImage
+
 .config:
 	echo "SRIDHAR"
 	test -d "$(KERNEL_DIR)"
@@ -41,6 +45,13 @@ CONFIG_SRC ?= /build/config-6.12.11-tinycore64
 		scripts/config --enable TMPFS && \
 		scripts/config --enable DEVTMPFS && \
 		scripts/config --enable DEVTMPFS_MOUNT
+
+
+	#
+	# TODO: I can't get networking to work despite adding a lot of flags. Don't use tinyconfig
+	#
+
+
 
 	# 5) Let Kconfig resolve dependencies (MANDATORY)
 	$(MAKE) -C "$(KERNEL_DIR)" ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) olddefconfig
