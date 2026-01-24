@@ -12,7 +12,8 @@ bzImage:
 			-v /Volumes/git/github/:/out	\
 			tinycore-kernel-builder		\
 			make -f /build/Makefile_linux
-	@echo "See here for code locations (keeping my log statements is tough with such a big codebase) https://github.com/sarnobat/linux_kernel/blob/master/README.md#2025"
+	@echo "\nSee here for code locations (keeping my log statements is tough with such a big codebase) https://github.com/sarnobat/linux_kernel/blob/master/README.md#2025"
+	@echo "\nLooks useful: https://henryomd.blogspot.com/2014/11/linux-kernel-startup.html"
 
 rebuild:
 	docker build -t tinycore-kernel-builder .	\
