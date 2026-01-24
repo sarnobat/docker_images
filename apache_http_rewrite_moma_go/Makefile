@@ -1,9 +1,10 @@
 .PHONY: all stop start restart logs
 
-HTTPD_CONF := /Volumes/trash/trash/httpd.conf
+HTTPD_CONF := $(realpath httpd.conf)
 
 all: restart
-
+	open "http://go/hungry"
+	
 stop:
 	-sudo apachectl -k stop
 
