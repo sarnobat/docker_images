@@ -12,17 +12,17 @@ new:
 		fi; \
 	fi && \
 	for ENC_FILE in src/encoding.c gedcom/encoding.c; do \
-		if [ -f "src/encoding.c" ]; then \
-			if ! grep -q 'return "ASCII";' "src/encoding.c"; then \
+		if [ -f "$$ENC_FILE" ]; then \
+			if ! grep -q 'return "ASCII";' "$$ENC_FILE"; then \
 				tmp=$$(mktemp); \
 				awk '\
 				/char\* get_encoding/ { f=1; print; next } \
 				/{/ { if(f){ print; print "    add_encoding(\"ASCII\", \"1\", \"ASCII\");"; print "    add_encoding(\"UTF-8\", \"1\", \"UTF-8\");"; f=0; next } } \
-				{print}' "src/encoding.c" > $$tmp && mv $$tmp "src/encoding.c"; \
+				{print}' "$$ENC_FILE" > $$tmp && mv $$tmp "$$ENC_FILE"; \
 			fi; \
 		fi; \
 	done && \
-	for f in $(shell find t/src -name '*.c'); do \
+	for f in $$(find t/src -name '*.c'); do \
 		[ -f "$$f" ] || continue; \
 		if grep -Eq '\bstrcmp\b|\bstrncmp\b' "$$f" && ! grep -q '<string.h>' "$$f"; then \
 			tmp=$$(mktemp); printf '#include <string.h>\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
@@ -37,4 +37,7 @@ new:
 	&& unset CFLAGS CPPFLAGS LDFLAGS && \
 	export CC=clang CXX=clang++ SDKROOT=$$(xcrun --show-sdk-path) CFLAGS="-std=gnu89 -DSIZEOF_VOID_P=8" && \
 	./configure && \
-	make
+	make && \
+	echo "Your build is in: " $$(PWD) \
+	&& du -sh \
+	&& t/src/testgedcom t/input/allged.ged

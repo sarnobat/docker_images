@@ -2562,3 +2562,15 @@ Rec _MYOWNTAG start, xref is (null)
 
 === Total conversion failures: 0
 Parse succeeded
+
+=== Parsing file allged.ged
+ERROR: Error on line 1: No encoding defined for 'ASCII'
+
+=== Total conversion failures: 0
+Parse failed
+
+=== Parsing file minimal.ged
+ERROR: Error on line 1: No encoding defined for 'ASCII'
+
+=== Total conversion failures: 0
+Parse failed
