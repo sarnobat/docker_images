@@ -1,6 +1,10 @@
 run:
 	cd /Volumes/git/github/2025/gedcom-parse && /tmp/gedcom-parse-0.90.0/t/src/testgedcom gedcom-parse-0.90.0/t/input/allged.ged
 
+repair_others:
+	cd ~/trash/ && ln -s /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0
+	cd /Volumes/git/github/2025/depot_parent/c/7_gedcom && ln -sf ~/sarnobat.git/2023/genealogy/rohidekar.ged
+
 all:
 	echo "We don't need Docker. This works on Mac OS."
 # 	cp /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/t/src/standalone.c /tmp/gedcom-parse-0.90.0/t/src/standalone.c
