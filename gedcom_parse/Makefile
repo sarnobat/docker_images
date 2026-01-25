@@ -5,6 +5,11 @@ repair_others:
 	cd ~/trash/ && ln -s /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0
 	cd /Volumes/git/github/2025/depot_parent/c/7_gedcom && ln -sf ~/sarnobat.git/2023/genealogy/rohidekar.ged
 
+new:
+	cd /Volumes/git/github/2025/gedcom-parse && make new
+
+
+# this works but relies on statefully changed gedcom-parse source tree
 build:
 	echo "We don't need Docker. This works on Mac OS."
 # 	cp /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/t/src/standalone.c /tmp/gedcom-parse-0.90.0/t/src/standalone.c
@@ -13,6 +18,7 @@ build:
 	&& rsync -a -v /Volumes/git/github/2025/gedcom-parse-0.90.0/gedcom/gedcom.y gedcom.y.`date -I` \
 		&& sleep 5 \
 	&& cd /Volumes/git/github/2025/gedcom-parse && make init \
+		&& echo "cp -v /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/gedcom/*.y		/tmp/gedcom-parse-0.90.0/gedcom/" \
 		&& cp -v /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/t/src/standalone.c	/tmp/gedcom-parse-0.90.0/t/src/standalone.c \
 		&& cp -v /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/gedcom/*.c		/tmp/gedcom-parse-0.90.0/gedcom/ \
 		&& sleep 5 \
