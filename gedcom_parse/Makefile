@@ -1,5 +1,7 @@
 new:
-	DIR=$$(mktemp -d) && cd $$DIR && pwd && tar -xf /Volumes/git/github/2024/docker_images/gedcom_parse/gedcom-parse-0.90.0.tar.gz  && cd gedcom-parse-0.90.0 && find "$$(pwd)" -maxdepth 1 \
+	cp *c /tmp/ && DIR=$$(mktemp -d) && cd $$DIR && pwd && tar -xf /Volumes/git/github/2024/docker_images/gedcom_parse/gedcom-parse-0.90.0.tar.gz  && cd gedcom-parse-0.90.0 && find "$$(pwd)" -maxdepth 1 \
+		&& cp -v /tmp/standalone.c t/src/ \
+		&& cp -v /tmp/multilex.c gedcom/ \
 		&& \
 	if [ -f "t/src/portability.c" ]; then \
 		if ! grep -q '__aarch64__' "t/src/portability.c"; then \
