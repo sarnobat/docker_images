@@ -1,5 +1,5 @@
 new:
-	DIR=$$(mktemp -d) && cd $$DIR && pwd && tar -xf /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0.tar.gz  && cd gedcom-parse-0.90.0 && find "$$(pwd)" -maxdepth 1 \
+	DIR=$$(mktemp -d) && cd $$DIR && pwd && tar -xf /Volumes/git/github/2024/docker_images/gedcom_parse/gedcom-parse-0.90.0.tar.gz  && cd gedcom-parse-0.90.0 && find "$$(pwd)" -maxdepth 1 \
 		&& \
 	if [ -f "t/src/portability.c" ]; then \
 		if ! grep -q '__aarch64__' "t/src/portability.c"; then \
