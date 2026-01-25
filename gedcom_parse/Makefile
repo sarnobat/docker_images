@@ -1,29 +1,43 @@
-run:
-	cd /Volumes/git/github/2025/gedcom-parse && /tmp/gedcom-parse-0.90.0/t/src/testgedcom gedcom-parse-0.90.0/t/input/allged.ged #| ts | $(OLDPWD)/tee testgedcom.allged.out
-
-repair_others:
-	cd ~/trash/ && ln -s /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0
-	cd /Volumes/git/github/2025/depot_parent/c/7_gedcom && ln -sf ~/sarnobat.git/2023/genealogy/rohidekar.ged
-
 new:
-	cd /Volumes/git/github/2025/gedcom-parse && make new
-
-
-# this works but relies on statefully changed gedcom-parse source tree
-build:
-	echo "We don't need Docker. This works on Mac OS."
-# 	cp /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/t/src/standalone.c /tmp/gedcom-parse-0.90.0/t/src/standalone.c
-	rsync -a -v /Volumes/git/github/2025/gedcom-parse-0.90.0/gedcom/interface.c . \
-	&& rsync -a -v standalone.c standalone.c.`date -I` \
-	&& rsync -a -v /Volumes/git/github/2025/gedcom-parse-0.90.0/gedcom/gedcom.y gedcom.y.`date -I` \
-		&& sleep 5 \
-	&& cd /Volumes/git/github/2025/gedcom-parse && make init \
-		&& echo "cp -v /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/gedcom/*.y		/tmp/gedcom-parse-0.90.0/gedcom/" \
-		&& cp -v /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/t/src/standalone.c	/tmp/gedcom-parse-0.90.0/t/src/standalone.c \
-		&& cp -v /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0/gedcom/*.c		/tmp/gedcom-parse-0.90.0/gedcom/ \
-		&& sleep 5 \
-		&& make && make test && ./testgedcom gedcom-parse-0.90.0/t/input/allged.ged
-	@echo "TODO: get this working: ~/sarnobat.git/2023/genealogy/rohidekar.ged"
-	@echo "'/Users/sarnobat/github/2025/gedcom-parse/gedcom-parse-0.90.0/gedcom flex bison lex yacc here.2025-02-13.txt'"
-	
-all:	build
+	DIR=$$(mktemp -d) && cd $$DIR && pwd && tar -xf /Volumes/git/github/2025/gedcom-parse/gedcom-parse-0.90.0.tar.gz  && cd gedcom-parse-0.90.0 && find "$$(pwd)" -maxdepth 1 \
+		&& \
+	if [ -f "t/src/portability.c" ]; then \
+		if ! grep -q '__aarch64__' "t/src/portability.c"; then \
+			tmp=$$(mktemp); \
+			awk '/^#if SIZEOF_VOID_P == 4/ { \
+				print "#if defined(__aarch64__) || defined(__arm64__) || defined(__x86_64__)"; \
+				print "# define SIZEOF_VOID_P 8"; \
+				print "#endif"; \
+			} {print $$0}' "t/src/portability.c" > $$tmp && mv $$tmp "t/src/portability.c"; \
+		fi; \
+	fi && \
+	for ENC_FILE in src/encoding.c gedcom/encoding.c; do \
+		if [ -f "$$ENC_FILE" ]; then \
+			if ! grep -q 'return "ASCII";' "$$ENC_FILE"; then \
+				tmp=$$(mktemp); \
+				awk '\
+				/char\* get_encoding/ { f=1; print; next } \
+				/{/ { if(f){ print; print "    add_encoding(\"ASCII\", \"1\", \"ASCII\");"; print "    add_encoding(\"UTF-8\", \"1\", \"UTF-8\");"; f=0; next } } \
+				{print}' "$$ENC_FILE" > $$tmp && mv $$tmp "$$ENC_FILE"; \
+			fi; \
+		fi; \
+	done && \
+	for f in $$(find t/src -name '*.c'); do \
+		[ -f "$$f" ] || continue; \
+		if grep -Eq '\bstrcmp\b|\bstrncmp\b' "$$f" && ! grep -q '<string.h>' "$$f"; then \
+			tmp=$$(mktemp); printf '#include <string.h>\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
+		fi; \
+		if grep -Eq '\bcalloc\b|\bfree\b|\bexit\b' "$$f" && ! grep -q '<stdlib.h>' "$$f"; then \
+			tmp=$$(mktemp); printf '#include <stdlib.h>\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
+		fi; \
+		if grep -Eq '\boutput\b' "$$f" && ! grep -q '"output.h"' "$$f"; then \
+			tmp=$$(mktemp); printf '#include "output.h"\n' > $$tmp; cat "$$f" >> $$tmp; mv $$tmp "$$f"; \
+		fi; \
+	done \
+	&& unset CFLAGS CPPFLAGS LDFLAGS && \
+	export CC=clang CXX=clang++ SDKROOT=$$(xcrun --show-sdk-path) CFLAGS="-std=gnu89 -DSIZEOF_VOID_P=8" && \
+	./configure && \
+	make && \
+	echo "Your build is in: " $$(PWD) \
+	&& du -sh \
+	&& t/src/testgedcom t/input/allged.ged
