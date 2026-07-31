@@ -36,48 +36,7 @@ COPY hello.py /root/app/hello.py
 #         net-tools iproute2 procps psmisc vim less
 
 RUN mkdir -p /etc/ganesha
-RUN cat > /etc/ganesha/ganesha.conf <<'EOF'
-NFS_Core_Param {
-    NFS_Protocols = 4;
-    Bind_Addr = 0.0.0.0;
-    Disable_Tcp6 = true;
-    MNT_Port = 20048;
-    NFS_Port = 2051;
-}
-
-NFSv4 {
-    Grace_Period = 0;
-    Lease_Lifetime = 10;
-    RecoveryBackend = fs;
-}
-
-NFS_KRB5 {
-    Active_krb5 = false;
-}
-
-LOG {
-    Components {
-        ALL = EVENT;
-    }
-    Facility {
-        name = FILE;
-        destination = "/var/log/ganesha.log";
-    }
-}
-
-EXPORT {
-    Export_Id = 1;
-    Path = /export/fuse;
-    Pseudo = /;
-    Access_Type = RW;
-    Squash = No_Root_Squash;
-    Protocols = 4;
-    Transports = TCP;
-    SecType = "sys";
-    Clients = ALL;
-    FSAL { Name = VFS; }
-}
-EOF
+COPY ganesha.conf /etc/ganesha/ganesha.conf
 
 # ---- Expose NFS port ----
 EXPOSE 2051
