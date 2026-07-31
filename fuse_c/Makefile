@@ -1,3 +1,6 @@
+MOUNT_POINT = /tmp/nfs-test-c
+NFS_MOUNT_OPTIONS = vers=4,resvport,port=2049,soft,timeo=2,retrans=1
+
 image:
 	docker build -t fuse-nfs-image .
 	
@@ -13,19 +16,21 @@ run:
 
 start:	run	
 
-mount:
-	mkdir -p /tmp/nfs-test-c
-	sudo mount -t nfs -o vers=4,resvport,port=2049 localhost:/ /tmp/nfs-test-c \
-		&& find /tmp/nfs-test-c \
-		&& echo "Works" \
-		&& cat  /tmp/nfs-test-c/hello
+ensure-mounted:
+	mkdir -p $(MOUNT_POINT)
+	mount | grep -q '$(MOUNT_POINT)' || sudo mount -t nfs -o $(NFS_MOUNT_OPTIONS) localhost:/ $(MOUNT_POINT)
 
-test:
-	find /tmp/nfs-test-c
-	cat  /tmp/nfs-test-c/hello
+mount: ensure-mounted
+	find $(MOUNT_POINT) \
+		&& echo "Works" \
+		&& cat  $(MOUNT_POINT)/hello
+
+test: ensure-mounted
+	find $(MOUNT_POINT)
+	cat  $(MOUNT_POINT)/hello
 
 stop:
-	sudo umount -f /tmp/nfs-test-c || echo ""
+	sudo umount -f $(MOUNT_POINT) || echo ""
 	echo "pkill ganesha.nfsd && killall tail"
 	echo "pkill ganesha.nfsd && killall tail"
 	mount | grep nfs

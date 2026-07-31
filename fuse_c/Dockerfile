@@ -32,46 +32,7 @@ RUN gcc /root/hello.c -o /usr/local/bin/hello -lfuse3 || { echo "Build failed"; 
 
 # ---- Configure NFS-Ganesha ----
 RUN mkdir -p /etc/ganesha
-RUN cat > /etc/ganesha/ganesha.conf <<'EOF'
-NFS_Core_Param {
-    NFS_Protocols = 4;
-    Bind_Addr = 0.0.0.0;
-    MNT_Port = 20048;
-    NFS_Port = 2049;
-}
-
-NFSv4 {
-    Grace_Period = 0;
-    Lease_Lifetime = 10;
-    RecoveryBackend = fs;
-}
-
-NFS_KRB5 {
-    Active_krb5 = false;
-}
-
-LOG {
-    Components {
-        ALL = EVENT;
-    }
-    Facility {
-        name = FILE;
-        destination = "/var/log/ganesha.log";
-    }
-}
-
-EXPORT {
-    Export_Id = 1;
-    Path = /export/fuse;
-    Pseudo = /;
-    Access_Type = RW;
-    Squash = No_Root_Squash;
-    Protocols = 4;
-    Transports = TCP;
-    SecType = "sys";
-    FSAL { Name = VFS; }
-}
-EOF
+COPY ganesha.conf /etc/ganesha/ganesha.conf
 
 # ---- Expose NFS port ----
 EXPOSE 2049
